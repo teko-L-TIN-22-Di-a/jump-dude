@@ -10,3 +10,7 @@ Nach einer gewissen Zeit soll ein Jetpack erscheinen, welches eingesammelt werde
 Es soll eine Stoppuhr ersichtlich sein, welche misst wie viel Zeit bereits vergangen ist, damit verschiedene Läufe verglichen werden können. 
 Optional: Multiplayerfähigkeit übers Netzwerk. Hierbei ist das Ziel, als Team möglichst lange zu überleben.
 Optional: Items welche den Schaden von bereits berührten Hindernissen reduzieren oder bei der Hindernisbewältigung helfen können.
+
+## Used assets
+
+Player: [Pixel Adventure](https://pixelfrog-assets.itch.io/pixel-adventure-1)

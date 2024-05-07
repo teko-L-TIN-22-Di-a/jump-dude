@@ -1,6 +1,5 @@
 package jump.dude;
 
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.JFrame;
 
 /**
@@ -20,7 +19,7 @@ public class Main {
         JFrame level = new JFrame("Jump Dude");
         level.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         level.setSize(1000, 800);
-        level.add(new panel());
+        level.add(new Panel());
         level.setVisible(true);
     }
 }

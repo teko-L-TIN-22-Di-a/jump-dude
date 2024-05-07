@@ -1,6 +1,7 @@
 package jump.dude;
 
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import javax.swing.JFrame;
 
 /**
  *
@@ -16,10 +17,10 @@ public class Main {
     }
     
     private static void initializeLevel(){
-        var level = new level();
-        level.show();
-        level.setResizable(false);   
-        level.setTitle("Jump Dude");
-        level.setDefaultCloseOperation(DISPOSE_ON_CLOSE);        
+        JFrame level = new JFrame("Jump Dude");
+        level.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        level.setSize(1000, 800);
+        level.add(new panel());
+        level.setVisible(true);
     }
 }

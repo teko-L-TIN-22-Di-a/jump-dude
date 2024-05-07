@@ -12,32 +12,64 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class panel extends JPanel implements ActionListener {
+public class Panel extends JPanel implements ActionListener {
+    private Player player = null;    
+    
+    private SpriteEngine spriteEngine;    
     private Graphics2D graphics2d;
     private int obstacleXOne = 200; // startpoint from obstacle
     private int obstacleXTwo = 500;
     private int obstacleXThree = 700;
+    private int windowWidth = 0;
+    
+    public Panel()            
+    {
+        player = new Player(this.getClass().getResource("resources\\sprites\\run.png"));
+        System.out.println(player);
+                
+        spriteEngine = new SpriteEngine(25);
+        spriteEngine.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                repaint();
+            }
+        });
+        spriteEngine.start();        
+        
+        Timer levelTimer = new Timer(10, this);
+        levelTimer.start();
+    }
     
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         graphics2d = (Graphics2D) g;       
         
-        var windowWidth = super.size().width;
+        windowWidth = super.size().width;
         setBackground(Color.BLUE);
         
-        Timer timer = new Timer(80, this);
-        timer.start();
-        
-        drawGround(windowWidth);
+        int groundHeight = 200;
+        drawGround(windowWidth, groundHeight);
         drawObstacle();
+        drawPlayer(groundHeight);                
     }
     
-    private void drawGround(int width)
+    private void drawPlayer(int groundHeight)
+    {        
+        var sprite = player.spriteSheet.getSprite(spriteEngine.getCycleProgress());
+        int x = (this.getWidth() - sprite.getWidth()) / 2;
+        
+        int spacingCorrection = 30;
+        int y = this.getHeight() - sprite.getHeight() - groundHeight - spacingCorrection;
+        graphics2d.drawImage(sprite, x, y, 100, 100, this);
+        graphics2d.dispose();
+    }
+    
+    private void drawGround(int width, int height)
     {
         var groundColor = Color.GREEN;
         graphics2d.setColor(groundColor);
-        graphics2d.fillRect(0, 600, width, 200);
+        graphics2d.fillRect(0, 600, width, height);
     }
     
     private void drawObstacle()
@@ -56,13 +88,13 @@ public class panel extends JPanel implements ActionListener {
         obstacleXThree -= speed;
         
         if (obstacleXOne <= 0) {
-            obstacleXOne = +1000; // set to right again
+            obstacleXOne = + windowWidth;
         }
         if (obstacleXTwo <= 0) {
-            obstacleXTwo = +1000; // set to right again
+            obstacleXTwo = + windowWidth;
         }
         if (obstacleXThree <= 0) {
-            obstacleXThree = +1000; // set to right again
+            obstacleXThree = + windowWidth;
         }
         repaint();
     }    

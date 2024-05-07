@@ -10,10 +10,12 @@ import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class Panel1 extends JPanel implements ActionListener {
+public class Panel extends JPanel implements ActionListener {
     private Player player = null;    
     
     private SpriteEngine spriteEngine;    
@@ -23,9 +25,13 @@ public class Panel1 extends JPanel implements ActionListener {
     private int obstacleXThree = 700;
     private int windowWidth = 0;
     
-    public Panel1() throws IOException            
+    public Panel()         
     {
-        player = new Player(this.getClass().getResource("resources\\sprites\\pink-man\\run.png"));
+        try {
+            player = new Player(this.getClass().getResource("resources\\sprites\\pink-man\\run.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println(player);
                 
         spriteEngine = new SpriteEngine(25);

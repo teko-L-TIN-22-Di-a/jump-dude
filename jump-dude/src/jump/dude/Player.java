@@ -4,8 +4,6 @@
  */
 package jump.dude;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.net.URL;
@@ -17,19 +15,13 @@ import java.net.URL;
 public class Player {
     public SpriteSheet spriteSheet;
     
-    public Player(URL playerSprite)
+    public Player(URL playerSprite) throws IOException
     {
-        try {
-            var urlToSheet = this.getClass().getResource("resources\\sprites\\run.png");
-            var sheet = ImageIO.read(urlToSheet);            
-            spriteSheet = new SpriteSheetBuilder().
-                    withSheet(sheet).
-                    withColumns(12).
-                    withSpriteCount(12).
-                    build();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-    
+        var sheet = ImageIO.read(playerSprite);            
+        spriteSheet = new SpriteSheetBuilder().
+                withSheet(sheet).
+                withColumns(12).
+                withSpriteCount(12).
+                build();
+    }    
 }

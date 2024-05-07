@@ -24,7 +24,7 @@ public class Panel extends JPanel implements ActionListener {
     
     public Panel()            
     {
-        player = new Player(this.getClass().getResource("resources\\sprites\\run.png"));
+        player = new Player(this.getClass().getResource("resources\\sprites\\pink-man\\run.png"));
         System.out.println(player);
                 
         spriteEngine = new SpriteEngine(25);

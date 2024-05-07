@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -22,7 +23,7 @@ public class Panel extends JPanel implements ActionListener {
     private int obstacleXThree = 700;
     private int windowWidth = 0;
     
-    public Panel()            
+    public Panel() throws IOException            
     {
         player = new Player(this.getClass().getResource("resources\\sprites\\pink-man\\run.png"));
         System.out.println(player);

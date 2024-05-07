@@ -13,4 +13,4 @@ Optional: Items welche den Schaden von bereits berührten Hindernissen reduziere
 
 ## Used assets
 
-[Pixel Adventure](https://pixelfrog-assets.itch.io/pixel-adventure-1)
+Player: [Pixel Adventure](https://pixelfrog-assets.itch.io/pixel-adventure-1)

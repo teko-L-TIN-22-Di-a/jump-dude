@@ -13,7 +13,7 @@ import java.io.IOException;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class Panel extends JPanel implements ActionListener {
+public class Panel1 extends JPanel implements ActionListener {
     private Player player = null;    
     
     private SpriteEngine spriteEngine;    
@@ -23,7 +23,7 @@ public class Panel extends JPanel implements ActionListener {
     private int obstacleXThree = 700;
     private int windowWidth = 0;
     
-    public Panel() throws IOException            
+    public Panel1() throws IOException            
     {
         player = new Player(this.getClass().getResource("resources\\sprites\\pink-man\\run.png"));
         System.out.println(player);

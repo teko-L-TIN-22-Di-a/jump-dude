@@ -1,4 +1,4 @@
-package jump.dude;
+package ch.teko.bir.jumpdude;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

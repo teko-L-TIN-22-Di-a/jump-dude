@@ -1,4 +1,4 @@
-package jump.dude;
+package ch.teko.bir.jumpdude;
 
 /**
  *
@@ -16,6 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Panel extends JPanel implements ActionListener {
+    private org.apache.logging.log4j.Logger logger;
+    
     private Player player = null;    
     
     private SpriteEngine spriteEngine;    
@@ -25,24 +27,39 @@ public class Panel extends JPanel implements ActionListener {
     private int obstacleXThree = 700;
     private int windowWidth = 0;
     
-    public Panel()         
+    public Panel(org.apache.logging.log4j.Logger logger2)         
     {
-        try {
-            player = new Player(this.getClass().getResource("resources\\sprites\\pink-man\\run.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        System.out.println(player);
-                
+        logger = logger2;
+        
+        createPlayer();                
+        createSpriteEngine();      
+        
+        createLevelTimer();
+    }
+
+    private void createSpriteEngine() {
         spriteEngine = new SpriteEngine(25);
+        
         spriteEngine.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 repaint();
             }
         });
-        spriteEngine.start();        
-        
+        spriteEngine.start();
+    }
+
+    private void createPlayer() {
+        try {
+            player = new Player(this.getClass().getResource("/sprites/pink-man/run.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        logger.info("Player successfully created.");
+    }
+    
+
+    private void createLevelTimer() {
         Timer levelTimer = new Timer(10, this);
         levelTimer.start();
     }

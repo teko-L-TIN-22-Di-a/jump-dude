@@ -32,8 +32,7 @@ public class Panel extends JPanel implements ActionListener {
         logger = logger2;
         
         createPlayer();                
-        createSpriteEngine();      
-        
+        createSpriteEngine();
         createLevelTimer();
     }
 
@@ -62,6 +61,7 @@ public class Panel extends JPanel implements ActionListener {
     private void createLevelTimer() {
         Timer levelTimer = new Timer(10, this);
         levelTimer.start();
+        logger.trace("Level timer successfully created.");
     }
     
     @Override
@@ -69,13 +69,15 @@ public class Panel extends JPanel implements ActionListener {
         super.paintComponent(g);
         graphics2d = (Graphics2D) g;       
         
-        windowWidth = super.size().width;
+        windowWidth = super.getSize().width;
         setBackground(Color.BLUE);
         
         int groundHeight = 200;
         drawGround(windowWidth, groundHeight);
         drawObstacle();
-        drawPlayer(groundHeight);                
+        drawPlayer(groundHeight);
+        
+        logger.info("All components successfully painted.");          
     }
     
     private void drawPlayer(int groundHeight)
@@ -87,6 +89,8 @@ public class Panel extends JPanel implements ActionListener {
         int y = this.getHeight() - sprite.getHeight() - groundHeight - spacingCorrection;
         graphics2d.drawImage(sprite, x, y, 100, 100, this);
         graphics2d.dispose();
+        
+        logger.info("Player successfully painted.");
     }
     
     private void drawGround(int width, int height)
@@ -94,6 +98,7 @@ public class Panel extends JPanel implements ActionListener {
         var groundColor = Color.GREEN;
         graphics2d.setColor(groundColor);
         graphics2d.fillRect(0, 600, width, height);
+        logger.info("Ground successfully painted.");
     }
     
     private void drawObstacle()
@@ -102,6 +107,7 @@ public class Panel extends JPanel implements ActionListener {
         graphics2d.fillRect(obstacleXOne, 550, 50, 50); // x, y, width, length
         graphics2d.fillRect(obstacleXTwo, 570, 30, 30);
         graphics2d.fillRect(obstacleXThree, 550, 50, 50);
+        logger.info("Obstacles successfully painted.");
     }
     
     @Override

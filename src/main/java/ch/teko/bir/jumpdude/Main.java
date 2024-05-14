@@ -10,7 +10,6 @@ import javax.swing.JFrame;
  * @author Sarah
  */
 public class Main {    
-    
     protected static final Logger logger = LogManager.getLogger();
 
     /**
@@ -18,6 +17,7 @@ public class Main {
      */
     public static void main(String[] args) {
         initializeLevel();
+        
     }
     
     private static void initializeLevel(){

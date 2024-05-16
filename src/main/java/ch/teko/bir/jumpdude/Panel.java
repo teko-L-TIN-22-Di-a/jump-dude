@@ -83,11 +83,12 @@ public class Panel extends JPanel implements ActionListener {
     private void drawPlayer(int groundHeight)
     {        
         var sprite = player.spriteSheet.getSprite(spriteEngine.getCycleProgress());
-        int x = (this.getWidth() - sprite.getWidth()) / 2;
-        
+                
         int spacingCorrection = 30;
-        int y = this.getHeight() - sprite.getHeight() - groundHeight - spacingCorrection;
-        graphics2d.drawImage(sprite, x, y, 100, 100, this);
+        player.positionY = this.getHeight() - sprite.getHeight() - groundHeight - spacingCorrection;
+        player.positionX = (this.getWidth() - sprite.getWidth()) / 2;
+        
+        graphics2d.drawImage(sprite, player.positionX, player.positionY, 100, 100, this);
         graphics2d.dispose();
         
         logger.info("Player successfully painted.");

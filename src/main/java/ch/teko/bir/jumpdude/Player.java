@@ -14,6 +14,8 @@ import java.net.URL;
  */
 public class Player {
     public SpriteSheet spriteSheet;
+    public int positionX;
+    public int positionY;
     
     public Player(URL playerSprite) throws IOException
     {
@@ -23,5 +25,10 @@ public class Player {
                 withColumns(12).
                 withSpriteCount(12).
                 build();
-    }    
+    }
+    
+    public void jump()
+    {
+        Jump.execute(positionX, positionY);
+    }
 }

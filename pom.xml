@@ -45,4 +45,18 @@
         </resources>        
     </build>
 
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.6.3</version>
+                <configuration>
+                    <!-- Specify the output directory -->
+                    <reportOutputDirectory>/docs</reportOutputDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
+
 </project>

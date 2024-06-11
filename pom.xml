@@ -52,8 +52,8 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.6.3</version>
                 <configuration>
-                    <!-- Specify the output directory -->
-                    <reportOutputDirectory>/docs</reportOutputDirectory>
+                    <reportOutputDirectory>${basedir}/docs</reportOutputDirectory>
+                    <stylesheetfile>src/main/resources/stylesheet.css</stylesheetfile>
                 </configuration>
             </plugin>
         </plugins>

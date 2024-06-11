@@ -22,7 +22,7 @@ public class Panel extends JPanel implements ActionListener {
     
     private SpriteEngine spriteEngine;    
     private Graphics2D graphics2d;
-    private int obstacleXOne = 200; // startpoint from obstacle
+    private int obstacleXOne = 200;
     private int obstacleXTwo = 500;
     private int obstacleXThree = 700;
     private int windowWidth = 0;

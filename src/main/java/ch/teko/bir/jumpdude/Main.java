@@ -22,7 +22,7 @@ public class Main {
         JFrame level = new JFrame("Jump Dude");
         level.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         level.setSize(1000, 800);
-        level.add(new Panel(logger));
+        level.add(new Panel(new PanelModel()));
         level.setVisible(true);
     }
 }

@@ -52,9 +52,6 @@
                 <mxCell id="22" value="Obstacle" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="240" y="350" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="29" value="TODO&lt;br&gt;- hit boxes" style="whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="470" y="70" width="120" height="60" as="geometry"/>
-                </mxCell>
                 <mxCell id="32" value="Hitbox" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="450" y="350" width="120" height="60" as="geometry"/>
                 </mxCell>

@@ -11,14 +11,11 @@ import javax.swing.Timer;
  * @author Sarah
  */
 public class SpriteEngine {
-
     private Timer timer;
     private int framesPerSecond;
     private Long cycleStartTime;
     private TimerHandler timerHandler;
-
     private double cycleProgress;
-
     private List<ActionListener> listeners;
 
     public SpriteEngine(int fps) {

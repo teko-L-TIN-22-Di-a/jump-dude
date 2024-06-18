@@ -4,12 +4,13 @@
  */
 package ch.teko.bir.jumpdude.Player;
 
-import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheet;
-import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheetBuilder;
-
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
+
+import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheet;
+import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheetBuilder;
 /**
  *
  * @author Sarah
@@ -18,16 +19,16 @@ public class Player {
     private SpriteSheet spriteSheet;
     private Position position;
     private int maxJumpHeight = 300;
-    private int maxDoubleJumpHeight = 200;
+    private int maxDoubleJumpingHeight = 200;
     private PlayerState state = PlayerState.Running;
-    private String runningSpritePath= "/sprites/pink-man/run.png";
-    private String jumpUpSpritePath= "/sprites/pink-man/jump.png";
-    private String jumpDownSpritePath= "/sprites/pink-man/fall.png";
-    private String doubleJumpSpritePath = "/sprites/pink-man/doubleJump.png";
+    private String runingSpritePath = "/sprites/pink-man/run.png";
+    private String jumpingSpritePath = "/sprites/pink-man/jump.png";
+    private String FallingSpritePath = "/sprites/pink-man/fall.png";
+    private String doubleJumpingingSpritePath = "/sprites/pink-man/doubleJump.png";
 
     public Player()
     {
-        loadSprite(runningSpritePath, 12, 12);
+        loadSprite(runingSpritePath, 12, 12);
     }
 
     public SpriteSheet getSpriteSheet() {
@@ -68,12 +69,12 @@ public class Player {
     public void setMaxJumpHeight(int maxJumpHeight) {
         this.maxJumpHeight = maxJumpHeight;
     }
-    public int getMaxDoubleJumpHeight() {
-        return maxDoubleJumpHeight;
+    public int getMaxDoubleJumpingHeight() {
+        return maxDoubleJumpingHeight;
     }
 
-    public void setMaxDoubleJumpHeight(int maxDoubleJumpHeight) {
-        this.maxDoubleJumpHeight = maxDoubleJumpHeight;
+    public void setMaxDoubleJumpingHeight(int maxDoubleJumpingHeight) {
+        this.maxDoubleJumpingHeight = maxDoubleJumpingHeight;
     }
     public PlayerState getState() {
         return state;
@@ -83,16 +84,16 @@ public class Player {
         
         switch (this.state) {
             case Running:
-                loadSprite(runningSpritePath, 12, 12);                
+                loadSprite(runingSpritePath, 12, 12);                
                 break;        
-            case JumpUp:
-                loadSprite(jumpUpSpritePath, 1, 1);
+            case Jumping:
+                loadSprite(jumpingSpritePath, 1, 1);
                 break;    
-            case DoubleJump:
-                loadSprite(doubleJumpSpritePath, 6, 6);
+            case DoubleJumping:
+                loadSprite(doubleJumpingingSpritePath, 6, 6);
                 break;
-            case JumpDown:
-                loadSprite(jumpDownSpritePath, 1, 1);
+            case Falling:
+                loadSprite(FallingSpritePath, 1, 1);
                 break;
             default:
                 break;

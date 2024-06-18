@@ -2,6 +2,7 @@ package ch.teko.bir.jumpdude.KeyListener;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import javax.swing.JFrame;
 
 import ch.teko.bir.jumpdude.Player.PlayerController;
@@ -22,20 +23,13 @@ public class MainKeyListener extends JFrame implements KeyListener {
     private void executeActionWhenArrowUpIsPressed(KeyEvent e)
     {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            playerController.jumpUp();
+            playerController.Jumping();
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        //executeActionWhenArrowUpIsReleased(e);
-    }
-
-    private void executeActionWhenArrowUpIsReleased(KeyEvent e)
-    {
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-            playerController.jumpDown();
-        }
+        
     }
 
     @Override

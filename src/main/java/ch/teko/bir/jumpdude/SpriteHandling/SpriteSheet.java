@@ -1,4 +1,4 @@
-package ch.teko.bir.jumpdude;
+package ch.teko.bir.jumpdude.SpriteHandling;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

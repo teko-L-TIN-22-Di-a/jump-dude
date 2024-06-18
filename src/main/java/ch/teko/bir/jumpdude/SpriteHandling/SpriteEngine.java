@@ -1,4 +1,4 @@
-package ch.teko.bir.jumpdude;
+package ch.teko.bir.jumpdude.SpriteHandling;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,14 +11,11 @@ import javax.swing.Timer;
  * @author Sarah
  */
 public class SpriteEngine {
-
     private Timer timer;
     private int framesPerSecond;
     private Long cycleStartTime;
     private TimerHandler timerHandler;
-
     private double cycleProgress;
-
     private List<ActionListener> listeners;
 
     public SpriteEngine(int fps) {

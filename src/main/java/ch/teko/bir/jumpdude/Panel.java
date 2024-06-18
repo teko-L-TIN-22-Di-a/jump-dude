@@ -15,27 +15,41 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import ch.teko.bir.jumpdude.Ground.Ground;
+import ch.teko.bir.jumpdude.Ground.GroundModel;
+import ch.teko.bir.jumpdude.Obstacles.ObstacleController;
+import ch.teko.bir.jumpdude.Obstacles.ObstacleModel;
+import ch.teko.bir.jumpdude.SpriteHandling.SpriteEngine;
+
 public class Panel extends JPanel implements ActionListener {
-    private org.apache.logging.log4j.Logger logger;
-    
     private Player player = null;    
     
     private SpriteEngine spriteEngine;    
     private Graphics2D graphics2d;
-    private int obstacleXOne = 200; // startpoint from obstacle
-    private int obstacleXTwo = 500;
-    private int obstacleXThree = 700;
-    private int windowWidth = 0;
     
-    public Panel(org.apache.logging.log4j.Logger logger2)         
-    {
-        logger = logger2;
+    private PanelModel panelModel;
+    private ObstacleController obstacleController;
+    
+    public Panel(PanelModel model)         
+    {        
+        panelModel = model;
         
-        createPlayer();                
+        this.obstacleController = new ObstacleController(new ObstacleModel());
+
+        createPlayer();
         createSpriteEngine();
         createLevelTimer();
     }
 
+    private void createPlayer() {
+        try {
+            player = new Player(this.getClass().getResource("/sprites/pink-man/run.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                   
+    }
+    
     private void createSpriteEngine() {
         spriteEngine = new SpriteEngine(25);
         
@@ -48,20 +62,9 @@ public class Panel extends JPanel implements ActionListener {
         spriteEngine.start();
     }
 
-    private void createPlayer() {
-        try {
-            player = new Player(this.getClass().getResource("/sprites/pink-man/run.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        logger.info("Player successfully created.");
-    }
-    
-
     private void createLevelTimer() {
-        Timer levelTimer = new Timer(10, this);
+        Timer levelTimer = new Timer(panelModel.getLevelTimer(), this);
         levelTimer.start();
-        logger.trace("Level timer successfully created.");
     }
     
     @Override
@@ -69,15 +72,12 @@ public class Panel extends JPanel implements ActionListener {
         super.paintComponent(g);
         graphics2d = (Graphics2D) g;       
         
-        windowWidth = super.getSize().width;
+        panelModel.setWindowWidth(super.getSize().width);
         setBackground(Color.BLUE);
         
-        int groundHeight = 200;
-        drawGround(windowWidth, groundHeight);
-        drawObstacle();
-        drawPlayer(groundHeight);
-        
-        logger.info("All components successfully painted.");          
+        drawGround();
+        drawObstacles();
+        drawPlayer(panelModel.getGroundHeight());      
     }
     
     private void drawPlayer(int groundHeight)
@@ -90,43 +90,22 @@ public class Panel extends JPanel implements ActionListener {
         
         graphics2d.drawImage(sprite, player.positionX, player.positionY, 100, 100, this);
         graphics2d.dispose();
-        
-        logger.info("Player successfully painted.");
     }
     
-    private void drawGround(int width, int height)
+    private void drawGround()
     {
-        var groundColor = Color.GREEN;
-        graphics2d.setColor(groundColor);
-        graphics2d.fillRect(0, 600, width, height);
-        logger.info("Ground successfully painted.");
+        var ground = new Ground(new GroundModel());
+        ground.draw(graphics2d, panelModel.getWindowWidth());
     }
     
-    private void drawObstacle()
+    private void drawObstacles()
     {
-        graphics2d.setColor(Color.MAGENTA);
-        graphics2d.fillRect(obstacleXOne, 550, 50, 50); // x, y, width, length
-        graphics2d.fillRect(obstacleXTwo, 570, 30, 30);
-        graphics2d.fillRect(obstacleXThree, 550, 50, 50);
-        logger.info("Obstacles successfully painted.");
+        obstacleController.draw(graphics2d, panelModel.getWindowWidth());
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        int speed = 2;
-        obstacleXOne -= speed;
-        obstacleXTwo -= speed;
-        obstacleXThree -= speed;
-        
-        if (obstacleXOne <= 0) {
-            obstacleXOne = + windowWidth;
-        }
-        if (obstacleXTwo <= 0) {
-            obstacleXTwo = + windowWidth;
-        }
-        if (obstacleXThree <= 0) {
-            obstacleXThree = + windowWidth;
-        }
+        obstacleController.repaint(panelModel.getWindowWidth());
         repaint();
-    }    
+    }
 }

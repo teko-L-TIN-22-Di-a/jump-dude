@@ -58,12 +58,21 @@ public class PlayerController {
         player.setPosition(position);
     }
     
-    public void jump()
+    public void jumpUp()
     {
         if (player.getState() == State.running)
         {
             player.setState(State.JumpUp);
             executeJumpUp();
+        }
+    }
+
+    public void jumpDown()
+    {
+        if (player.getState() == State.JumpUp)
+        {
+            player.setState(State.JumpDown);
+            executeJumpDown();
         }
     }
 

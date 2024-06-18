@@ -28,7 +28,7 @@ public class MainKeyListener extends JFrame implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        executeActionWhenArrowUpIsReleased(e);
+        //executeActionWhenArrowUpIsReleased(e);
     }
 
     private void executeActionWhenArrowUpIsReleased(KeyEvent e)

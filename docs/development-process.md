@@ -2,7 +2,7 @@
 
 Als erstes wurde das Level simpel generiert. Die Idee war es möglichst viele Erfahrungen zu sammen und den Aufbau von Java und den Komponenten zu verstehen.
 
-[Testing Java Features](./docs/videos/levelBuild.mp4)
+[Testing Java Features](./videos/levelBuild.mp4)
 
 # Refactoring
 

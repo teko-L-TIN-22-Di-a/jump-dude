@@ -16,20 +16,20 @@ Das erste Feature welches implementiert wurde ist der Jump. Dabei gab es einige 
 
 Bei einem Jump wird lediglich die Y Achse angepasst. Problematik hier war aber, dass ich an einer anderen Stelle im Code statt der Y Achse die X Achse geladen habe. Dieser Fehler kam durch das Refactoring rein. Deshalb bewegt sich der Dude auch nicht direkt auf dem Boden. :-)
 Zudem wurde jeweils bei einem Sprung die Y achse nur +10 oder -10 verändert. Dabei habe ich mir dann Gedanken über einen State für den Player gemacht.
-[First Try](./docs/videos/first-try-jump.mp4)
+[First Try](./videos/first-try-jump.mp4)
 
 Nach dem ergänzen eines Player States, welcher Aktuell 4 Stati hat Running, Jumping und Falling. Sah dann der Jump so aus.
-[Second Try](./docs/videos/second-try-jump.mp4)
+[Second Try](./videos/second-try-jump.mp4)
 
 Nach dem setzen einer Limite für die Höhe eines Sprunges und implementierung des Falles sah es dann so aus.
-[Third Try](./docs/videos/third-try-jump.mp4)
+[Third Try](./videos/third-try-jump.mp4)
 
 Nach dem setzen einer Limite für die Höhe eines Sprunges und implementierung des Falles sah es dann so aus.
-[Third Try](./docs/videos/third-try-jump.mp4)
+[Third Try](./videos/third-try-jump.mp4)
 
 Nach dem rumprobieren hatte ich dann die Idee einen Jump zu implementieren, welcher bei einem längeren Knopfdruck auch höher springt.
-[Jump with long key press](./docs/videos/jump-with-long-key-press.mp4)
+[Jump with long key press](./videos/jump-with-long-key-press.mp4)
 
 Nun leider musste ich dieses Feature wieder entfernen, da es mit dem Double Jump nicht funktionierte. Bei einem längeren Key Press wurde dann direkt ein double jump erkannt. Dabei wollte ich aber keine spezielle Implementation machen und habe mich deshalb für das double jump feature entschieden.
 
-[Double Jump](./docs/videos/double-jump.mp4)
+[Double Jump](./videos/double-jump.mp4)

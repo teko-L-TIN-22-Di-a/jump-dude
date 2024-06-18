@@ -6,6 +6,10 @@ package ch.teko.bir.jumpdude;
 
 import java.io.IOException;
 import javax.imageio.ImageIO;
+
+import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheet;
+import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheetBuilder;
+
 import java.net.URL;
 
 /**

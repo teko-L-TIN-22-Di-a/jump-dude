@@ -1,13 +1,8 @@
 package ch.teko.bir.jumpdude.Player;
 
 import java.awt.Graphics2D;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javax.swing.JPanel;
 
-import ch.teko.bir.jumpdude.Panel;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteEngine;
 
 public class PlayerController {
@@ -17,12 +12,7 @@ public class PlayerController {
 
     public PlayerController()
     {
-        try {
-            player = new Player(this.getClass().getResource("/sprites/pink-man/run.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        player = new Player();
     }
 
     public void draw(Graphics2D graphics2d, int windowWidth, int windowHeight, int groundHeight, SpriteEngine spriteEngine, JPanel panel)
@@ -32,25 +22,34 @@ public class PlayerController {
         var spacingCorrection = 30;
         initialPlayerYPosition = windowHeight - playerSprite.getHeight() - groundHeight - spacingCorrection;
         
-        var playerState = player.getState();
-        if (playerState == State.running)
-        {
-            setRunningPlayerPosition(windowHeight, windowWidth, playerSprite.getHeight(), playerSprite.getWidth(), groundHeight);
-        }
-        else if (playerState == State.JumpUp)
-        {
-            executeJumpUp();
-        }
-        else if (playerState == State.JumpDown)
-        {
-            executeJumpDown();
-        }
+        doMovementFromState(windowWidth, windowHeight, playerSprite.getWidth());
 
         graphics2d.drawImage(playerSprite, player.getPosition().getX(), player.getPosition().getY(), 100, 100, panel);
         graphics2d.dispose();
     }
 
-    private void setRunningPlayerPosition(int windowHeight, int windowWidth, int spriteHeight, int spriteWidth,int groundHeight)
+    private void doMovementFromState(int windowHeight, int windowWidth, int spriteWidth)
+    {
+        var playerState = player.getState();
+
+        switch (playerState) {
+            case Running:
+                setRunningPlayerPosition(windowHeight, windowWidth, spriteWidth);
+                break;
+            case JumpUp:
+                executeJumpUp();                    
+                break;
+            case DoubleJump:
+                executeDoubleJump();
+                break;
+            case JumpDown:
+                executeJumpDown();
+            default:
+                break;
+        }
+    }
+
+    private void setRunningPlayerPosition(int windowHeight, int windowWidth, int spriteWidth)
     {
         var playerPositionX = windowWidth / 2 - spriteWidth;
         var playerPositionY = initialPlayerYPosition;
@@ -60,18 +59,23 @@ public class PlayerController {
     
     public void jumpUp()
     {
-        if (player.getState() == State.running)
+        if (player.getState() == PlayerState.Running)
         {
-            player.setState(State.JumpUp);
+            player.setState(PlayerState.JumpUp);
             executeJumpUp();
+        }
+        else if (player.getState() == PlayerState.JumpUp)
+        {
+            player.setState(PlayerState.DoubleJump);
+            executeDoubleJump();
         }
     }
 
     public void jumpDown()
     {
-        if (player.getState() == State.JumpUp)
+        if (player.getState() == PlayerState.JumpUp || player.getState() == PlayerState.DoubleJump)
         {
-            player.setState(State.JumpDown);
+            player.setState(PlayerState.JumpDown);
             executeJumpDown();
         }
     }
@@ -83,9 +87,21 @@ public class PlayerController {
 
         if (player.getMaxJumpHeight() >= newPlayerPosition.getY())
         {
-            player.setState(State.JumpDown);
+            player.setState(PlayerState.JumpDown);
         }
     }
+
+    private void executeDoubleJump()
+    {
+        var newPlayerPosition = Jump.Up(player.getPosition());
+        player.setPosition(newPlayerPosition);
+
+        if (player.getMaxDoubleJumpHeight() >= newPlayerPosition.getY())
+        {
+            player.setState(PlayerState.JumpDown);
+        }
+    }
+
 
     private void executeJumpDown()
     {
@@ -94,7 +110,7 @@ public class PlayerController {
 
         if (initialPlayerYPosition <= newPlayerPosition.getY())
         {
-            player.setState(State.running);
+            player.setState(PlayerState.Running);
         }
     }
 }

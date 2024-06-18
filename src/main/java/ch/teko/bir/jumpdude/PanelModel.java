@@ -11,19 +11,19 @@ public class PanelModel {
     private int groundX = 0;
 
     private int groundY = 600;
+    private int groundHeight = 200;
+
+    public PanelModel()         
+    {
+
+    }
+
     public int getGroundY() {
         return groundY;
     }
 
     public void setGroundY(int groundY) {
         this.groundY = groundY;
-    }
-
-    private int groundHeight = 200;
-
-    public PanelModel()         
-    {
-
     }
 
     public int getWindowWidth()

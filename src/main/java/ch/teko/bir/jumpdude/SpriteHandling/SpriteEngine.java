@@ -21,7 +21,7 @@ public class SpriteEngine {
     public SpriteEngine(int fps) {
         framesPerSecond = fps;
         timerHandler = new TimerHandler();
-        listeners = new ArrayList<>(25);
+        listeners = new ArrayList<>(20);
     }
 
     public int getFramesPerSecond() {

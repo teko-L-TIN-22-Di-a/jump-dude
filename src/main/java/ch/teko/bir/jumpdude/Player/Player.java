@@ -18,7 +18,7 @@ public class Player {
     private SpriteSheet spriteSheet;
     private Position position;
     private int maxJumpHeight = 300;
-    private int maxDoubleJumpHeight = 100;
+    private int maxDoubleJumpHeight = 200;
     private PlayerState state = PlayerState.Running;
     private String runningSpritePath= "/sprites/pink-man/run.png";
     private String jumpUpSpritePath= "/sprites/pink-man/jump.png";

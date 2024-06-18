@@ -22,12 +22,20 @@ public class MainKeyListener extends JFrame implements KeyListener {
     private void executeActionWhenArrowUpIsPressed(KeyEvent e)
     {
         if (e.getKeyCode() == KeyEvent.VK_UP) {
-            playerController.jump();
+            playerController.jumpUp();
         }
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {        
+    public void keyReleased(KeyEvent e) {
+        executeActionWhenArrowUpIsReleased(e);
+    }
+
+    private void executeActionWhenArrowUpIsReleased(KeyEvent e)
+    {
+        if (e.getKeyCode() == KeyEvent.VK_UP) {
+            playerController.jumpDown();
+        }
     }
 
     @Override

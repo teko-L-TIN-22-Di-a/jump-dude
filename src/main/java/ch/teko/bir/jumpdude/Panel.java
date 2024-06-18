@@ -19,10 +19,12 @@ import ch.teko.bir.jumpdude.Ground.Ground;
 import ch.teko.bir.jumpdude.Ground.GroundModel;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleController;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleModel;
+import ch.teko.bir.jumpdude.Player.Player;
+import ch.teko.bir.jumpdude.Player.PlayerController;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteEngine;
 
 public class Panel extends JPanel implements ActionListener {
-    private Player player = null;    
+    private PlayerController playerController = null;    
     
     private SpriteEngine spriteEngine;    
     private Graphics2D graphics2d;
@@ -30,26 +32,17 @@ public class Panel extends JPanel implements ActionListener {
     private PanelModel panelModel;
     private ObstacleController obstacleController;
     
-    public Panel(PanelModel model)         
+    public Panel(PanelModel model, PlayerController playerController)         
     {        
         panelModel = model;
         
+        this.playerController = playerController;
         this.obstacleController = new ObstacleController(new ObstacleModel());
 
-        createPlayer();
         createSpriteEngine();
         createLevelTimer();
     }
 
-    private void createPlayer() {
-        try {
-            player = new Player(this.getClass().getResource("/sprites/pink-man/run.png"));
-        } catch (IOException ex) {
-            Logger.getLogger(Panel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                   
-    }
-    
     private void createSpriteEngine() {
         spriteEngine = new SpriteEngine(25);
         
@@ -81,15 +74,8 @@ public class Panel extends JPanel implements ActionListener {
     }
     
     private void drawPlayer(int groundHeight)
-    {        
-        var sprite = player.spriteSheet.getSprite(spriteEngine.getCycleProgress());
-                
-        int spacingCorrection = 30;
-        player.positionY = this.getHeight() - sprite.getHeight() - groundHeight - spacingCorrection;
-        player.positionX = (this.getWidth() - sprite.getWidth()) / 2;
-        
-        graphics2d.drawImage(sprite, player.positionX, player.positionY, 100, 100, this);
-        graphics2d.dispose();
+    { 
+        this.playerController.draw(graphics2d, this.getWidth(), this.getHeight(), groundHeight, spriteEngine, this);
     }
     
     private void drawGround()

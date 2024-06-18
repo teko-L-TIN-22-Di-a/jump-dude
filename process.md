@@ -9,6 +9,6 @@ Als erstes wurde der Jump implementiert. Bei diesem gab es einige Schwierigkeite
 
 ## Jump
 
-## Fall
+## Falling
 
 ## Double Jump

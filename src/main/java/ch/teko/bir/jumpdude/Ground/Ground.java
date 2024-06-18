@@ -1,8 +1,10 @@
-package ch.teko.bir.jumpdude;
+package ch.teko.bir.jumpdude.Ground;
 
 import java.awt.Graphics2D;
 
-public class Ground {
+import ch.teko.bir.jumpdude.ILevelElement;
+
+public class Ground implements ILevelElement {
     private GroundModel groundModel;
 
     public Ground(GroundModel model)

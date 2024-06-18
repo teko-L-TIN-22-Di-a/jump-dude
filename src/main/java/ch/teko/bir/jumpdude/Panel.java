@@ -15,21 +15,26 @@ import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import ch.teko.bir.jumpdude.Ground.Ground;
+import ch.teko.bir.jumpdude.Ground.GroundModel;
+import ch.teko.bir.jumpdude.Obstacles.ObstacleController;
+import ch.teko.bir.jumpdude.Obstacles.ObstacleModel;
+import ch.teko.bir.jumpdude.SpriteHandling.SpriteEngine;
+
 public class Panel extends JPanel implements ActionListener {
     private Player player = null;    
     
     private SpriteEngine spriteEngine;    
     private Graphics2D graphics2d;
-
-    private int obstacleXOne = 200;
-    private int obstacleXTwo = 500;
-    private int obstacleXThree = 700;
     
     private PanelModel panelModel;
+    private ObstacleController obstacleController;
     
     public Panel(PanelModel model)         
     {        
         panelModel = model;
+        
+        this.obstacleController = new ObstacleController(new ObstacleModel());
 
         createPlayer();
         createSpriteEngine();
@@ -71,7 +76,7 @@ public class Panel extends JPanel implements ActionListener {
         setBackground(Color.BLUE);
         
         drawGround();
-        drawObstacle();
+        drawObstacles();
         drawPlayer(panelModel.getGroundHeight());      
     }
     
@@ -93,30 +98,14 @@ public class Panel extends JPanel implements ActionListener {
         ground.draw(graphics2d, panelModel.getWindowWidth());
     }
     
-    private void drawObstacle()
+    private void drawObstacles()
     {
-        graphics2d.setColor(Color.MAGENTA);
-        graphics2d.fillRect(obstacleXOne, 550, 50, 50); // x, y, width, length
-        graphics2d.fillRect(obstacleXTwo, 570, 30, 30);
-        graphics2d.fillRect(obstacleXThree, 550, 50, 50);
+        obstacleController.draw(graphics2d, panelModel.getWindowWidth());
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        int speed = 2;
-        obstacleXOne -= speed;
-        obstacleXTwo -= speed;
-        obstacleXThree -= speed;
-        
-        if (obstacleXOne <= 0) {
-            obstacleXOne = + panelModel.getWindowWidth();
-        }
-        if (obstacleXTwo <= 0) {
-            obstacleXTwo = + panelModel.getWindowWidth();
-        }
-        if (obstacleXThree <= 0) {
-            obstacleXThree = + panelModel.getWindowWidth();
-        }
+        obstacleController.repaint(panelModel.getWindowWidth());
         repaint();
-    }    
+    }
 }

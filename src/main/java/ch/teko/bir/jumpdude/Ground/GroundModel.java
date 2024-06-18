@@ -1,4 +1,4 @@
-package ch.teko.bir.jumpdude;
+package ch.teko.bir.jumpdude.Ground;
 
 import java.awt.Color;
 
@@ -22,6 +22,7 @@ public class GroundModel {
     public void setGroundY(int groundY) {
         this.groundY = groundY;
     }
+    
     public Color getGroundColor() {
         return groundColor;
     }

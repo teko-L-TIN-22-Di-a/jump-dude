@@ -44,7 +44,7 @@ public class Panel extends JPanel implements ActionListener {
     }
 
     private void createSpriteEngine() {
-        spriteEngine = new SpriteEngine(25);
+        spriteEngine = new SpriteEngine(60);
         
         spriteEngine.addActionListener(new ActionListener() {
             @Override

@@ -25,7 +25,7 @@ public class ObstacleController implements ILevelElement {
 
     public void repaint(int windowWidth)
     {
-        int speed = 2;
+        int speed = 5;
 
         var obstacles = obstacleModel.getObstacleList();
         

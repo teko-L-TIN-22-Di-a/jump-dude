@@ -1,6 +1,7 @@
 package ch.teko.bir.jumpdude.Player;
 
 import java.awt.Graphics2D;
+
 import javax.swing.JPanel;
 
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteEngine;
@@ -34,22 +35,22 @@ public class PlayerController {
 
         switch (playerState) {
             case Running:
-                setRunningPlayerPosition(windowHeight, windowWidth, spriteWidth);
+                setRunPlayerPosition(windowHeight, windowWidth, spriteWidth);
                 break;
-            case JumpUp:
-                executeJumpUp();                    
+            case Jumping:
+                executeJumping();                    
                 break;
-            case DoubleJump:
-                executeDoubleJump();
+            case DoubleJumping:
+                executeDoubleJumping();
                 break;
-            case JumpDown:
-                executeJumpDown();
+            case Falling:
+                executeFalling();
             default:
                 break;
         }
     }
 
-    private void setRunningPlayerPosition(int windowHeight, int windowWidth, int spriteWidth)
+    private void setRunPlayerPosition(int windowHeight, int windowWidth, int spriteWidth)
     {
         var playerPositionX = windowWidth / 2 - spriteWidth;
         var playerPositionY = initialPlayerYPosition;
@@ -57,53 +58,53 @@ public class PlayerController {
         player.setPosition(position);
     }
     
-    public void jumpUp()
+    public void Jumping()
     {
         if (player.getState() == PlayerState.Running)
         {
-            player.setState(PlayerState.JumpUp);
-            executeJumpUp();
+            player.setState(PlayerState.Jumping);
+            executeJumping();
         }
-        else if (player.getState() == PlayerState.JumpUp)
+        else if (player.getState() == PlayerState.Jumping)
         {
-            player.setState(PlayerState.DoubleJump);
-            executeDoubleJump();
+            player.setState(PlayerState.DoubleJumping);
+            executeDoubleJumping();
         }
     }
 
-    public void jumpDown()
+    public void Falling()
     {
-        if (player.getState() == PlayerState.JumpUp || player.getState() == PlayerState.DoubleJump)
+        if (player.getState() == PlayerState.Jumping || player.getState() == PlayerState.DoubleJumping)
         {
-            player.setState(PlayerState.JumpDown);
-            executeJumpDown();
+            player.setState(PlayerState.Falling);
+            executeFalling();
         }
     }
 
-    private void executeJumpUp()
+    private void executeJumping()
     {
         var newPlayerPosition = Jump.Up(player.getPosition());
         player.setPosition(newPlayerPosition);
 
         if (player.getMaxJumpHeight() >= newPlayerPosition.getY())
         {
-            player.setState(PlayerState.JumpDown);
+            player.setState(PlayerState.Falling);
         }
     }
 
-    private void executeDoubleJump()
+    private void executeDoubleJumping()
     {
         var newPlayerPosition = Jump.Up(player.getPosition());
         player.setPosition(newPlayerPosition);
 
-        if (player.getMaxDoubleJumpHeight() >= newPlayerPosition.getY())
+        if (player.getMaxDoubleJumpingHeight() >= newPlayerPosition.getY())
         {
-            player.setState(PlayerState.JumpDown);
+            player.setState(PlayerState.Falling);
         }
     }
 
 
-    private void executeJumpDown()
+    private void executeFalling()
     {
         var newPlayerPosition = Jump.Down(player.getPosition());
         player.setPosition(newPlayerPosition);

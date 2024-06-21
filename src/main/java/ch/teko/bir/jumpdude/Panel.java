@@ -9,9 +9,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -19,7 +17,6 @@ import ch.teko.bir.jumpdude.Ground.Ground;
 import ch.teko.bir.jumpdude.Ground.GroundModel;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleController;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleModel;
-import ch.teko.bir.jumpdude.Player.Player;
 import ch.teko.bir.jumpdude.Player.PlayerController;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteEngine;
 
@@ -29,8 +26,8 @@ public class Panel extends JPanel implements ActionListener {
     private SpriteEngine spriteEngine;    
     private Graphics2D graphics2d;
     
-    private PanelModel panelModel;
-    private ObstacleController obstacleController;
+    private final PanelModel panelModel;
+    private final ObstacleController obstacleController;
     
     public Panel(PanelModel model, PlayerController playerController)         
     {        
@@ -46,11 +43,8 @@ public class Panel extends JPanel implements ActionListener {
     private void createSpriteEngine() {
         spriteEngine = new SpriteEngine(60);
         
-        spriteEngine.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                repaint();
-            }
+        spriteEngine.addActionListener((ActionEvent e) -> {
+            repaint();
         });
         spriteEngine.start();
     }

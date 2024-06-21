@@ -1,13 +1,12 @@
 package ch.teko.bir.jumpdude;
 
+import javax.swing.JFrame;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import ch.teko.bir.jumpdude.KeyListener.MainKeyListener;
-import ch.teko.bir.jumpdude.Player.Player;
 import ch.teko.bir.jumpdude.Player.PlayerController;
-
-import javax.swing.JFrame;
 
 /**
  *

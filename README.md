@@ -23,4 +23,5 @@ Der Entwicklungsprozess wurde unter [Entwicklungsprozess](./docs/development-pro
 
 ## Used assets
 
-Player: [Pixel Adventure](https://pixelfrog-assets.itch.io/pixel-adventure-1)
+Player Sprites: [Pixel Adventure](https://pixelfrog-assets.itch.io/pixel-adventure-1)
+Sprites Handling: [Load a sprites image in java](https://stackoverflow.com/questions/35472233/load-a-sprites-image-in-java)

@@ -15,11 +15,15 @@ Optional: Items welche den Schaden von bereits berührten Hindernissen reduziere
 
 ## Konzept
 
-Im [Konzept](./concept.md) ist die Grund Idee beschrieben, welche verfolgt wird.
+Im [Konzept](./docs/markdown/concept.md) ist die Grund Idee beschrieben, welche verfolgt wird.
 
 ## Entwicklungsprozess
 
-Der Entwicklungsprozess wurde unter [Entwicklungsprozess](./docs/development-process.md) beschrieben.
+Der Entwicklungsprozess wurde unter [Entwicklungsprozess](./docs/markdown/development-process.md) beschrieben.
+
+## JavaDocs
+
+[jump dude JavaDocs](https://teko-l-tin-22-di-a.github.io/jump-dude/)
 
 ## Used assets
 

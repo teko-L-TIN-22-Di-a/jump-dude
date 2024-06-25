@@ -1,7 +1,6 @@
 package ch.teko.bir.jumpdude.Obstacles;
 
 import java.awt.Color;
-import java.awt.List;
 import java.util.ArrayList;
 
 public class ObstacleModel {

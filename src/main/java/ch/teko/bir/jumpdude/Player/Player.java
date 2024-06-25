@@ -9,13 +9,15 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import ch.teko.bir.jumpdude.CollisionElement;
+import ch.teko.bir.jumpdude.Hitbox.Hitbox;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheet;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheetBuilder;
 /**
  *
  * @author Sarah
  */
-public class Player {
+public class Player extends CollisionElement{
     private SpriteSheet spriteSheet;
     private Position position;
     private int maxJumpHeight = 300;
@@ -29,6 +31,16 @@ public class Player {
     public Player()
     {
         loadSprite(runingSpritePath, 12, 12);
+    }
+
+    public Player(Hitbox hitbox)
+    {
+        this.hitbox = hitbox;
+        loadSprite(runingSpritePath, 12, 12);
+    }
+
+    public boolean collides(CollisionElement collisionElement) {
+        return hitbox.intersects(collisionElement.hitbox);
     }
 
     public SpriteSheet getSpriteSheet() {
@@ -83,20 +95,12 @@ public class Player {
         this.state = state;
         
         switch (this.state) {
-            case Running:
-                loadSprite(runingSpritePath, 12, 12);                
-                break;        
-            case Jumping:
-                loadSprite(jumpingSpritePath, 1, 1);
-                break;    
-            case DoubleJumping:
-                loadSprite(doubleJumpingingSpritePath, 6, 6);
-                break;
-            case Falling:
-                loadSprite(FallingSpritePath, 1, 1);
-                break;
-            default:
-                break;
+            case Running -> loadSprite(runingSpritePath, 12, 12);
+            case Jumping -> loadSprite(jumpingSpritePath, 1, 1);
+            case DoubleJumping -> loadSprite(doubleJumpingingSpritePath, 6, 6);
+            case Falling -> loadSprite(FallingSpritePath, 1, 1);
+            default -> {
+            }
         }
     }
 }

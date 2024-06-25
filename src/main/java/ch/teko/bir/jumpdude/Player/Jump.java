@@ -1,19 +1,23 @@
 package ch.teko.bir.jumpdude.Player;
 
 public class Jump {
-    private static int jumpSpeed = 5;
+    private static final int JUMP_SPEED = 5;
 
     public static Position Up(Position playerPositions)
     {
-        playerPositions.addToY(-jumpSpeed);
+        playerPositions.addToY(-JUMP_SPEED);
         
         return playerPositions;
     }
 
     public static Position Down(Position playerPositions)
     {
-        playerPositions.addToY(+jumpSpeed);
+        playerPositions.addToY(+JUMP_SPEED);
         
         return playerPositions;
+    }
+
+    public static int getJumpSpeed() {
+        return JUMP_SPEED;
     }
 }

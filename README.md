@@ -21,6 +21,10 @@ Im [Konzept](./docs/markdown/concept.md) ist die Grund Idee beschrieben, welche 
 
 Der Entwicklungsprozess wurde unter [Entwicklungsprozess](./docs/markdown/development-process.md) beschrieben.
 
+## JavaDocs
+
+[jump dude JavaDocs](teko-l-tin-22-di-a.github.io/jump-dude/)
+
 ## Used assets
 
 Player: [Pixel Adventure](https://pixelfrog-assets.itch.io/pixel-adventure-1)

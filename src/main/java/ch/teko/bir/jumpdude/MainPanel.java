@@ -20,7 +20,7 @@ import ch.teko.bir.jumpdude.Obstacles.ObstacleModel;
 import ch.teko.bir.jumpdude.Player.PlayerController;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteEngine;
 
-public class Panel extends JPanel implements ActionListener {
+public class MainPanel extends JPanel implements ActionListener {
     private PlayerController playerController = null;    
     
     private SpriteEngine spriteEngine;    
@@ -29,7 +29,7 @@ public class Panel extends JPanel implements ActionListener {
     private final PanelModel panelModel;
     private final ObstacleController obstacleController;
     
-    public Panel(PanelModel model, PlayerController playerController)         
+    public MainPanel(PanelModel model, PlayerController playerController)         
     {        
         panelModel = model;
         

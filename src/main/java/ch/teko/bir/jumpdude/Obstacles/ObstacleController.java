@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 
 import ch.teko.bir.jumpdude.CollisionElement;
 
-public class ObstacleController implements CollisionElement {
+public class ObstacleController extends CollisionElement {
     private final ObstacleModel obstacleModel;
 
     public ObstacleController(ObstacleModel model)

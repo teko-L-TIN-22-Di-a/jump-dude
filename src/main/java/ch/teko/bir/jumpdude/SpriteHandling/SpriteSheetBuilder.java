@@ -15,7 +15,7 @@ import java.util.List;
 public class SpriteSheetBuilder {
 
     private BufferedImage spriteSheet;
-    private int cols;
+    private int columns;
     private int spriteWidth, spriteHeight;
     private int spriteCount;
 
@@ -25,7 +25,7 @@ public class SpriteSheetBuilder {
     }
 
     public SpriteSheetBuilder withColumns(int cols) {
-        this.cols = cols;
+        this.columns = cols;
         return this;
     }
 
@@ -45,7 +45,7 @@ public class SpriteSheetBuilder {
     }
 
     protected int getCols() {
-        return cols;
+        return columns;
     }
 
     protected int getSpriteHeight() {
@@ -61,8 +61,8 @@ public class SpriteSheetBuilder {
     }
 
     public SpriteSheet build() {
-        int count = getSpriteCount();
-        int cols = getCols();
+        var count = getSpriteCount();
+        var cols = getCols();
         if (count == 0) {
             count = cols;
         }

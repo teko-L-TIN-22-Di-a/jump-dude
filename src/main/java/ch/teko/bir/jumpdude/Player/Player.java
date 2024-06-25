@@ -95,20 +95,12 @@ public class Player extends CollisionElement{
         this.state = state;
         
         switch (this.state) {
-            case Running:
-                loadSprite(runingSpritePath, 12, 12);                
-                break;        
-            case Jumping:
-                loadSprite(jumpingSpritePath, 1, 1);
-                break;    
-            case DoubleJumping:
-                loadSprite(doubleJumpingingSpritePath, 6, 6);
-                break;
-            case Falling:
-                loadSprite(FallingSpritePath, 1, 1);
-                break;
-            default:
-                break;
+            case Running -> loadSprite(runingSpritePath, 12, 12);
+            case Jumping -> loadSprite(jumpingSpritePath, 1, 1);
+            case DoubleJumping -> loadSprite(doubleJumpingingSpritePath, 6, 6);
+            case Falling -> loadSprite(FallingSpritePath, 1, 1);
+            default -> {
+            }
         }
     }
 }

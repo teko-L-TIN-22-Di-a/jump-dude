@@ -24,19 +24,19 @@ public class PlayerController {
         var spacingCorrection = 30;
         initialPlayerYPosition = windowHeight - playerSprite.getHeight() - groundHeight - spacingCorrection;
         
-        doMovementFromState(windowWidth, windowHeight, playerSprite.getWidth());
+        doMovementFromState(windowWidth, playerSprite.getWidth());
 
         graphics2d.drawImage(playerSprite, player.getPosition().getX(), player.getPosition().getY(), 100, 100, panel);
         graphics2d.dispose();
     }
 
-    private void doMovementFromState(int windowHeight, int windowWidth, int spriteWidth)
+    private void doMovementFromState(int windowWidth, int spriteWidth)
     {
         var playerState = player.getState();
 
         switch (playerState) {
             case Running:
-                setRunPlayerPosition(windowHeight, windowWidth, spriteWidth);
+                setRunPlayerPosition(windowWidth, spriteWidth);
                 break;
             case Jumping:
                 executeJumping();                    
@@ -51,7 +51,7 @@ public class PlayerController {
         }
     }
 
-    private void setRunPlayerPosition(int windowHeight, int windowWidth, int spriteWidth)
+    private void setRunPlayerPosition(int windowWidth, int spriteWidth)
     {
         var playerPositionX = windowWidth / 2 - spriteWidth;
         var playerPositionY = initialPlayerYPosition;

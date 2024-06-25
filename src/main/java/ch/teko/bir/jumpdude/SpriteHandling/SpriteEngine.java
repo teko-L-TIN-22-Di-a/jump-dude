@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.Timer;
 
 /**
@@ -12,11 +13,11 @@ import javax.swing.Timer;
  */
 public class SpriteEngine {
     private Timer timer;
-    private int framesPerSecond;
+    private final int framesPerSecond;
     private Long cycleStartTime;
-    private TimerHandler timerHandler;
+    private final TimerHandler timerHandler;
     private double cycleProgress;
-    private List<ActionListener> listeners;
+    private final List<ActionListener> listeners;
 
     public SpriteEngine(int fps) {
         framesPerSecond = fps;

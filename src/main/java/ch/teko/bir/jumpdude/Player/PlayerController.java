@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import ch.teko.bir.jumpdude.SoundHandling.PlaySound;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteEngine;
 
 public class PlayerController {
@@ -63,6 +64,7 @@ public class PlayerController {
         if (player.getState() == PlayerState.Running)
         {
             player.setState(PlayerState.Jumping);
+            playJumpSound();
             executeJumping();
         }
         else if (player.getState() == PlayerState.Jumping)
@@ -92,6 +94,12 @@ public class PlayerController {
         }
     }
 
+    private void playJumpSound()
+    {
+        var playSound = new PlaySound();
+        playSound.jump();
+    }
+
     private void executeDoubleJumping()
     {
         var newPlayerPosition = Jump.Up(player.getPosition());
@@ -102,7 +110,6 @@ public class PlayerController {
             player.setState(PlayerState.Falling);
         }
     }
-
 
     private void executeFalling()
     {

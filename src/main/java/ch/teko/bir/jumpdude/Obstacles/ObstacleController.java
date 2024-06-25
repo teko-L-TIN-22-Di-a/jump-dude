@@ -6,7 +6,7 @@ import ch.teko.bir.jumpdude.ILevelElement;
 
 public class ObstacleController implements ILevelElement {
 
-    private ObstacleModel obstacleModel;
+    private final ObstacleModel obstacleModel;
 
     public ObstacleController(ObstacleModel model)
     {

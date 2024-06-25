@@ -1,7 +1,6 @@
 package ch.teko.bir.jumpdude.Player;
 
 public class Jump {
-
     private static int jumpSpeed = 5;
 
     public static Position Up(Position playerPositions)

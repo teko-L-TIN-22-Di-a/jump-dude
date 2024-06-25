@@ -1,13 +1,12 @@
 package ch.teko.bir.jumpdude;
 
+import javax.swing.JFrame;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import ch.teko.bir.jumpdude.KeyListener.MainKeyListener;
-import ch.teko.bir.jumpdude.Player.Player;
 import ch.teko.bir.jumpdude.Player.PlayerController;
-
-import javax.swing.JFrame;
 
 /**
  *
@@ -29,7 +28,7 @@ public class Main {
         JFrame level = new JFrame("Jump Dude");
         level.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         level.setSize(1000, 800);
-        level.add(new Panel(new PanelModel(), playerController));
+        level.add(new MainPanel(new PanelModel(), playerController));
         level.addKeyListener(new MainKeyListener(playerController));
         level.setVisible(true);
     }

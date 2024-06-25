@@ -21,10 +21,10 @@ public class Player {
     private int maxJumpHeight = 300;
     private int maxDoubleJumpingHeight = 200;
     private PlayerState state = PlayerState.Running;
-    private String runingSpritePath = "/sprites/pink-man/run.png";
-    private String jumpingSpritePath = "/sprites/pink-man/jump.png";
-    private String FallingSpritePath = "/sprites/pink-man/fall.png";
-    private String doubleJumpingingSpritePath = "/sprites/pink-man/doubleJump.png";
+    private final String runingSpritePath = "/sprites/pink-man/run.png";
+    private final String jumpingSpritePath = "/sprites/pink-man/jump.png";
+    private final String FallingSpritePath = "/sprites/pink-man/fall.png";
+    private final String doubleJumpingingSpritePath = "/sprites/pink-man/doubleJump.png";
 
     public Player()
     {

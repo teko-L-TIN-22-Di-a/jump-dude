@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import ch.teko.bir.jumpdude.ILevelElement;
 
 public class Ground implements ILevelElement {
-    private GroundModel groundModel;
+    private final GroundModel groundModel;
 
     public Ground(GroundModel model)
     {

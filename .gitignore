@@ -29,8 +29,6 @@ replay_pid*
 
 ### Maven ###
 target/*
-target/classes/*
-target/classes/ch/teko/bir/jumpdude/*
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -49,3 +47,7 @@ buildNumber.properties
 .classpath
 
 # End of https://www.toptal.com/developers/gitignore/api/java,maven
+
+# project specific
+target/classes/*
+target/classes/ch/teko/bir/jumpdude/*

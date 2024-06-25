@@ -23,7 +23,7 @@ Der Entwicklungsprozess wurde unter [Entwicklungsprozess](./docs/markdown/develo
 
 ## JavaDocs
 
-[jump dude JavaDocs](teko-l-tin-22-di-a.github.io/jump-dude/)
+[jump dude JavaDocs](https://teko-l-tin-22-di-a.github.io/jump-dude/)
 
 ## Used assets
 

@@ -2,8 +2,10 @@ package ch.teko.bir.jumpdude.Player;
 
 import java.awt.Graphics2D;
 
+import javax.sound.sampled.LineUnavailableException;
 import javax.swing.JPanel;
 
+import ch.teko.bir.jumpdude.PlaySound;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteEngine;
 
 public class PlayerController {
@@ -63,6 +65,7 @@ public class PlayerController {
         if (player.getState() == PlayerState.Running)
         {
             player.setState(PlayerState.Jumping);
+            playJumpSound();
             executeJumping();
         }
         else if (player.getState() == PlayerState.Jumping)
@@ -89,6 +92,15 @@ public class PlayerController {
         if (player.getMaxJumpHeight() >= newPlayerPosition.getY())
         {
             player.setState(PlayerState.Falling);
+        }
+    }
+
+    private void playJumpSound()
+    {
+        var playSound = new PlaySound();
+        try {
+            playSound.jump();
+        } catch (LineUnavailableException ex) {
         }
     }
 

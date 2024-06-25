@@ -111,7 +111,6 @@ public class PlayerController {
         }
     }
 
-
     private void executeFalling()
     {
         var newPlayerPosition = Jump.Down(player.getPosition());

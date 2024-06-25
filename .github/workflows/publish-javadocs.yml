@@ -1,0 +1,25 @@
+# https://github.com/mono1010/java-street-fighter/blob/main/.github/workflows/publish-javadoc.yml
+name: Deploy Javadoc
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # if you have a protection rule on your repository, you'll need to give write permission to the workflow.
+    steps:
+      - name: Deploy JavaDoc 🚀
+        uses: MathieuSoysal/Javadoc-publisher.yml@v2.5.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.DELPOY_JUMPDUDE_JAVADOC }}
+          javadoc-branch: javadoc
+          java-version: 21
+          target-folder: '' # url will be https://<username>.github.io/<repo>/javadoc, This can be left as nothing to generate javadocs in the root folder.
+          project: maven
+          custom-command: mvn javadoc:javadoc
+          javadoc-source-folder: 'target/site/apidocs'
+          # subdirectories: moduleA moduleB #for subdirectories support, needs to be run with custom command

@@ -3,4 +3,5 @@ ch.teko.bir.jumpdude.Ground
 ch.teko.bir.jumpdude.KeyListener
 ch.teko.bir.jumpdude.Obstacles
 ch.teko.bir.jumpdude.Player
+ch.teko.bir.jumpdude.SoundHandling
 ch.teko.bir.jumpdude.SpriteHandling

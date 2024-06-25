@@ -2,10 +2,9 @@ package ch.teko.bir.jumpdude.Obstacles;
 
 import java.awt.Graphics2D;
 
-import ch.teko.bir.jumpdude.ILevelElement;
+import ch.teko.bir.jumpdude.CollisionElement;
 
-public class ObstacleController implements ILevelElement {
-
+public class ObstacleController implements CollisionElement {
     private final ObstacleModel obstacleModel;
 
     public ObstacleController(ObstacleModel model)

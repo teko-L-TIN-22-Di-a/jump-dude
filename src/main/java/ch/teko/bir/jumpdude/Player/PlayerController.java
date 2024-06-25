@@ -9,7 +9,7 @@ import ch.teko.bir.jumpdude.SpriteHandling.SpriteEngine;
 
 public class PlayerController {
     
-    private Player player;
+    private final Player player;
     private int initialPlayerYPosition;
 
     public PlayerController()

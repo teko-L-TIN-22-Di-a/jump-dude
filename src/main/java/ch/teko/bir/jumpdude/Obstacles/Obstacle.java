@@ -2,7 +2,9 @@ package ch.teko.bir.jumpdude.Obstacles;
 
 import java.awt.Color;
 
-public class Obstacle {
+import ch.teko.bir.jumpdude.CollisionElement;
+
+public class Obstacle extends CollisionElement {
 
     public Obstacle(){
 

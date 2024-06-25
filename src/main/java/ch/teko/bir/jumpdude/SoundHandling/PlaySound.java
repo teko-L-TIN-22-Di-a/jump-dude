@@ -1,4 +1,4 @@
-package ch.teko.bir.jumpdude;
+package ch.teko.bir.jumpdude.SoundHandling;
 
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;

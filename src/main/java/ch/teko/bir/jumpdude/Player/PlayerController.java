@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
-import ch.teko.bir.jumpdude.PlaySound;
+import ch.teko.bir.jumpdude.SoundHandling.PlaySound;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteEngine;
 
 public class PlayerController {

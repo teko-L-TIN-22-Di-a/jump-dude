@@ -2,7 +2,6 @@ package ch.teko.bir.jumpdude.Player;
 
 import java.awt.Graphics2D;
 
-import javax.sound.sampled.LineUnavailableException;
 import javax.swing.JPanel;
 
 import ch.teko.bir.jumpdude.PlaySound;
@@ -98,10 +97,7 @@ public class PlayerController {
     private void playJumpSound()
     {
         var playSound = new PlaySound();
-        try {
-            playSound.jump();
-        } catch (LineUnavailableException ex) {
-        }
+        playSound.jump();
     }
 
     private void executeDoubleJumping()

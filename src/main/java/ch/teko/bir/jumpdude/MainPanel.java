@@ -75,7 +75,7 @@ public class MainPanel extends JPanel implements ActionListener {
     private void drawGround()
     {
         var ground = new Ground(new GroundModel());
-        ground.draw(graphics2d, panelModel.getWindowWidth());
+        ground.draw(graphics2d, panelModel.getWindowWidth(), this);
     }
     
     private void drawObstacles()

@@ -22,4 +22,8 @@ public class SpriteSheet {
         int frame = (int) (count() * progress);
         return sprites.get(frame);
     }
+    
+    public BufferedImage getSpriteAtIndex(int index) {
+        return sprites.get(index);
+    }
 }

@@ -13,6 +13,7 @@ import ch.teko.bir.jumpdude.CollisionElement;
 import ch.teko.bir.jumpdude.Hitbox.Hitbox;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheet;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheetBuilder;
+
 /**
  *
  * @author Sarah
@@ -23,20 +24,20 @@ public class Player extends CollisionElement{
     private int maxJumpHeight = 300;
     private int maxDoubleJumpingHeight = 200;
     private PlayerState state = PlayerState.Running;
-    private final String runingSpritePath = "/sprites/pink-man/run.png";
+    private final String runningSpritePath = "/sprites/pink-man/run.png";
     private final String jumpingSpritePath = "/sprites/pink-man/jump.png";
     private final String FallingSpritePath = "/sprites/pink-man/fall.png";
     private final String doubleJumpingingSpritePath = "/sprites/pink-man/doubleJump.png";
 
     public Player()
     {
-        loadSprite(runingSpritePath, 12, 12);
+        loadSprite(runningSpritePath, 12, 12);
     }
 
     public Player(Hitbox hitbox)
     {
         this.hitbox = hitbox;
-        loadSprite(runingSpritePath, 12, 12);
+        loadSprite(runningSpritePath, 12, 12);
     }
 
     public boolean collides(CollisionElement collisionElement) {
@@ -95,7 +96,7 @@ public class Player extends CollisionElement{
         this.state = state;
         
         switch (this.state) {
-            case Running -> loadSprite(runingSpritePath, 12, 12);
+            case Running -> loadSprite(runningSpritePath, 12, 12);
             case Jumping -> loadSprite(jumpingSpritePath, 1, 1);
             case DoubleJumping -> loadSprite(doubleJumpingingSpritePath, 6, 6);
             case Falling -> loadSprite(FallingSpritePath, 1, 1);

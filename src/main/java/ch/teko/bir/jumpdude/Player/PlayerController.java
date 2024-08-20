@@ -17,12 +17,12 @@ public class PlayerController {
         player = new Player();
     }
 
-    public void draw(Graphics2D graphics2d, int windowWidth, int windowHeight, int groundHeight, SpriteEngine spriteEngine, JPanel panel)
+    public void draw(Graphics2D graphics2d, int windowWidth, int windowHeight, int groundY, SpriteEngine spriteEngine, JPanel panel)
     {
         var playerSpriteSheet = player.getSpriteSheet();
         var playerSprite = playerSpriteSheet.getSprite(spriteEngine.getCycleProgress());
-        var spacingCorrection = 30;
-        initialPlayerYPosition = windowHeight - playerSprite.getHeight() - groundHeight - spacingCorrection;
+        var spacingCorrection = 100;
+        initialPlayerYPosition = groundY - spacingCorrection;
         
         doMovementFromState(windowWidth, playerSprite.getWidth());
 

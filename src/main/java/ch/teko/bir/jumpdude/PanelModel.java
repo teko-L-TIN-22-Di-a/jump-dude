@@ -10,7 +10,7 @@ public class PanelModel {
     private Color groundColor = Color.GREEN;
     private int groundX = 0;
 
-    private int groundY = 600;
+    private int groundY = 650;
     private int groundHeight = 200;
 
     public PanelModel()         

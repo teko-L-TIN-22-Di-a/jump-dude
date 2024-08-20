@@ -1,25 +1,49 @@
 package ch.teko.bir.jumpdude.Ground;
 
-import java.awt.Graphics2D;
-
-import javax.swing.JPanel;
-
 public class Ground {
-    private final GroundModel groundModel;
 
-    public Ground(GroundModel model)
-    {
-        groundModel = model;
+    public Ground(){
+
     }
 
-    public void draw(Graphics2D graphics2d, int windowWidth, JPanel panel)
-    {        
-        var groundSprite = groundModel.getImage();
-        graphics2d.drawImage(groundSprite, groundModel.getGroundX(), groundModel.getGroundY(), groundSprite.getWidth(), groundSprite.getHeight(), panel);
-        graphics2d.drawImage(groundSprite, groundModel.getGroundX() + groundSprite.getWidth(), groundModel.getGroundY(), groundSprite.getWidth(), groundSprite.getHeight(), panel);
-        graphics2d.dispose();
+    public Ground(int x, int y, int width, int height)
+    {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+    
+    private int x = 0;
+    private int y = 0;
+    private int width = 0;
+    private int height = 0;
 
-        // graphics2d.setColor(groundModel.getGroundColor());
-        // graphics2d.fillRect(groundModel.getGroundX(), groundModel.getGroundY(), windowWidth, groundModel.getGroundHeight());
+    public int getX() {
+        return x;
+    }
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+    public void setWidth(int width) {
+        this.width = width;
+    }
+ 
+    public int getHeight() {
+        return height;
+    }
+    public void setHeight(int height) {
+        this.height = height;
     }
 }

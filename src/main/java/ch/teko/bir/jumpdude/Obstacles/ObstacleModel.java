@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class ObstacleModel {
 
-    public ObstacleModel(){
-        generateObstacles();
+    public ObstacleModel(int groundY){
+        generateObstacles(groundY);
     }
 
     private ArrayList<Obstacle> obstacleList = new ArrayList<>();
@@ -19,10 +19,13 @@ public class ObstacleModel {
         return obstacleList;
     }
 
-    private void generateObstacles()
+    private void generateObstacles(int groundY)
     {
-        obstacleList.add(new Obstacle(Color.CYAN, 200, 550, 50, 50));
-        obstacleList.add(new Obstacle(Color.CYAN, 500, 570, 30, 30));
-        obstacleList.add(new Obstacle(Color.CYAN, 700, 550, 50, 50));
+        int height = 50;
+        obstacleList.add(new Obstacle(Color.CYAN, 200, groundY - height, 50, height));
+        height = 30;
+        obstacleList.add(new Obstacle(Color.CYAN, 500, groundY - height, 30, height));
+        height = 50;
+        obstacleList.add(new Obstacle(Color.CYAN, 700, groundY - height, 30, height));
     }
 }

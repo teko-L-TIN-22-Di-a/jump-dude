@@ -2,10 +2,6 @@ package ch.teko.bir.jumpdude.Player;
 
 public class Position {
 
-    public Position()
-    {
-    }
-
     public Position(int x, int y)
     {
         this.X = x;

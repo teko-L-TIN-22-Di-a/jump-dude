@@ -7,11 +7,10 @@ import ch.teko.bir.jumpdude.Player.Position;
 public class Hitbox {
 
     private Position position;
-    private float width, height;
+    private int width, height;
 
-    public Hitbox(int x, int y, int width, int height) {
-        this.position.setX(x);
-        this.position.setY(y);
+    public Hitbox(Position position, int width, int height) {
+        this.position = position;
         this.width = width;
         this.height = height;
     }
@@ -26,6 +25,13 @@ public class Hitbox {
         this.position.setY(y);
         this.width = width;
         this.height = height;
+    }
+
+    public void setX(int x) {
+        position.setX(x);
+    }
+    public void setY(int y) {
+        position.setY(y);
     }
 
     // returns whether bounds of this Hitbox intersects the bounds of the given Hitbox

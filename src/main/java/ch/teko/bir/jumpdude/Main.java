@@ -38,7 +38,7 @@ public class Main {
         JFrame level = new JFrame("Jump Dude");
         level.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         level.setSize(1000, 800);
-        level.add(new MainPanel(panelModel, playerController));
+        level.add(new MainPanel(panelModel, playerController, obstacleModel));
         level.addKeyListener(new MainKeyListener(playerController));
         level.setVisible(true);
         level.setIconImage(img);

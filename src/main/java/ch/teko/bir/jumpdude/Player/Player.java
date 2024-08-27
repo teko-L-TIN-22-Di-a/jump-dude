@@ -4,8 +4,6 @@
  */
 package ch.teko.bir.jumpdude.Player;
 
-import com.sun.javafx.scene.text.TextLayout;
-
 import ch.teko.bir.jumpdude.Hitbox.Hitbox;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteLoader;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheet;
@@ -27,15 +25,16 @@ public class Player {
 
     public Hitbox hitbox;
 
-    public Player()
+    public Player(int y)
     {
+        this.position = new Position(100, y);
         spriteSheet = SpriteLoader.load(runningSpritePath, 12, 12);
-        hitbox = new Hitbox(position, spriteSheet.getWidth, spriteSheet.getHeight)
-    }
-
-    public Player(Hitbox hitbox)
-    {
-        spriteSheet = SpriteLoader.load(runningSpritePath, 12, 12);
+        var image = spriteSheet.getSpriteAtIndex(0);
+        var imageWidth = image.getWidth() + 30;
+        var imageHeight = image.getHeight() + 30;
+        hitbox = new Hitbox(this.position, 
+                            imageWidth, 
+                            imageHeight);
     }
 
     public SpriteSheet getSpriteSheet() {
@@ -49,8 +48,9 @@ public class Player {
     public Position getPosition() {
         return position;
     }
-    public void setPosition(Position position) {
-        this.position = position;
+    public void updatePosition(int x, int y) {
+        this.position.setX(x);
+        this.position.setY(y);
     }
     
     public int getMaxJumpHeight() {

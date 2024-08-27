@@ -4,21 +4,23 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
-import ch.teko.bir.jumpdude.CollisionElement;
 import ch.teko.bir.jumpdude.CollisionHelper.CollisionHelper;
 import ch.teko.bir.jumpdude.SoundHandling.PlaySound;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteEngine;
 
-public class PlayerController extends CollisionElement {
+public class PlayerController {
     
     private final Player player;
     private int initialPlayerYPosition;
-
     private final CollisionHelper collisionHelper;
+    private static int spacingCorrection = 100;
 
     public PlayerController(CollisionHelper collistionHelper)
     {
-        player = new Player();
+        var groundY = 650;
+        initialPlayerYPosition = groundY - spacingCorrection;
+        player = new Player(initialPlayerYPosition);
+        setRunPlayerPosition(500, 100);
         this.collisionHelper = collistionHelper;
     }
 
@@ -26,7 +28,6 @@ public class PlayerController extends CollisionElement {
     {
         var playerSpriteSheet = player.getSpriteSheet();
         var playerSprite = playerSpriteSheet.getSprite(spriteEngine.getCycleProgress());
-        var spacingCorrection = 100;
         initialPlayerYPosition = groundY - spacingCorrection;
         
         doMovementFromState(windowWidth, playerSprite.getWidth());
@@ -68,8 +69,7 @@ public class PlayerController extends CollisionElement {
     {
         var playerPositionX = windowWidth / 2 - spriteWidth;
         var playerPositionY = initialPlayerYPosition;
-        var position = new Position(playerPositionX, playerPositionY);
-        player.setPosition(position);
+        player.updatePosition(playerPositionX, playerPositionY);
     }
     
     public void Jumping()
@@ -99,7 +99,7 @@ public class PlayerController extends CollisionElement {
     private void executeJumping()
     {
         var newPlayerPosition = Jump.Up(player.getPosition());
-        player.setPosition(newPlayerPosition);
+        player.updatePosition(newPlayerPosition.getX(), newPlayerPosition.getY());
 
         if (player.getMaxJumpHeight() >= newPlayerPosition.getY())
         {
@@ -116,7 +116,7 @@ public class PlayerController extends CollisionElement {
     private void executeDoubleJumping()
     {
         var newPlayerPosition = Jump.Up(player.getPosition());
-        player.setPosition(newPlayerPosition);
+        player.updatePosition(newPlayerPosition.getX(), newPlayerPosition.getY());
 
         if (player.getMaxDoubleJumpingHeight() >= newPlayerPosition.getY())
         {
@@ -127,26 +127,11 @@ public class PlayerController extends CollisionElement {
     private void executeFalling()
     {
         var newPlayerPosition = Jump.Down(player.getPosition());
-        player.setPosition(newPlayerPosition);
+        player.updatePosition(newPlayerPosition.getX(), newPlayerPosition.getY());
 
         if (initialPlayerYPosition <= newPlayerPosition.getY())
         {
             player.setState(PlayerState.Running);
         }
-    }
-
-    @Override
-    public void repaint(int windowWidth) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void draw(Graphics2D graphics2d, JPanel panel) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    protected void handleCollision(CollisionElement collisionElement) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

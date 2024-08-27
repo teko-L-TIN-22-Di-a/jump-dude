@@ -28,11 +28,10 @@ public class ObstacleController {
     }
 
     public void draw(Graphics2D graphics2d, JPanel panel) {
-        var obstacleSprite = obstacleModel.getImage();
         var obstacles = obstacleModel.getObstacleList();
 
         for (var obstacle : obstacles) {
-            graphics2d.drawImage(obstacleSprite, 
+            graphics2d.drawImage(obstacle.getImage(), 
             obstacle.getX(), 
             obstacle.getY(), 
             obstacle.getWidth(), 

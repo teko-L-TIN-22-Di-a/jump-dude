@@ -30,12 +30,12 @@ public class MainPanel extends JPanel implements ActionListener {
     private final ObstacleController obstacleController;
     private final GroundController groundController;
     
-    public MainPanel(PanelModel model, PlayerController playerController)         
+    public MainPanel(PanelModel model, PlayerController playerController, ObstacleModel obstacleModel)         
     {        
         panelModel = model;
         
         this.playerController = playerController;
-        this.obstacleController = new ObstacleController(new ObstacleModel(panelModel.getGroundY()));
+        this.obstacleController = new ObstacleController(obstacleModel);
         this.groundController = new GroundController(new GroundModel());
 
         createSpriteEngine();

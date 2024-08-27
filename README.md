@@ -1,5 +1,9 @@
 # jump-dude
 
+[![Java CI with Maven](https://github.com/teko-L-TIN-22-Di-a/jump-dude/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/teko-L-TIN-22-Di-a/jump-dude/actions/workflows/build.yml)
+
+[![Deploy Javadoc](https://github.com/teko-L-TIN-22-Di-a/jump-dude/actions/workflows/publish-javadocs.yml/badge.svg)](https://github.com/teko-L-TIN-22-Di-a/jump-dude/actions/workflows/publish-javadocs.yml)
+
 ## Einleitung
 
 Das Spiel soll einen simplen Aufbau haben. Keine besonderen grafischen Elemente. Gespielt wird das Spiel von einer Side-View.

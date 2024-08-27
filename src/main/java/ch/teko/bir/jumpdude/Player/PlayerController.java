@@ -4,39 +4,50 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import ch.teko.bir.jumpdude.CollisionHelper.CollisionHelper;
 import ch.teko.bir.jumpdude.SoundHandling.PlaySound;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteEngine;
 
 public class PlayerController {
     
-    private Player player;
+    private final Player player;
     private int initialPlayerYPosition;
+    private final CollisionHelper collisionHelper;
+    private static int spacingCorrection = 100;
 
-    public PlayerController()
+    public PlayerController(CollisionHelper collistionHelper)
     {
-        player = new Player();
+        var groundY = 650;
+        initialPlayerYPosition = groundY - spacingCorrection;
+        player = new Player(initialPlayerYPosition);
+        setRunPlayerPosition(500, 100);
+        this.collisionHelper = collistionHelper;
     }
 
-    public void draw(Graphics2D graphics2d, int windowWidth, int windowHeight, int groundHeight, SpriteEngine spriteEngine, JPanel panel)
+    public void draw(Graphics2D graphics2d, int windowWidth, int windowHeight, int groundY, SpriteEngine spriteEngine, JPanel panel)
     {
         var playerSpriteSheet = player.getSpriteSheet();
         var playerSprite = playerSpriteSheet.getSprite(spriteEngine.getCycleProgress());
-        var spacingCorrection = 30;
-        initialPlayerYPosition = windowHeight - playerSprite.getHeight() - groundHeight - spacingCorrection;
+        initialPlayerYPosition = groundY - spacingCorrection;
         
-        doMovementFromState(windowWidth, windowHeight, playerSprite.getWidth());
+        doMovementFromState(windowWidth, playerSprite.getWidth());
 
-        graphics2d.drawImage(playerSprite, player.getPosition().getX(), player.getPosition().getY(), 100, 100, panel);
+        graphics2d.drawImage(playerSprite, player.getPosition().getX(), player.getPosition().getY(), player.getWidth(), player.getHeight(), panel);
         graphics2d.dispose();
     }
 
-    private void doMovementFromState(int windowHeight, int windowWidth, int spriteWidth)
+    private void doMovementFromState(int windowWidth, int spriteWidth)
     {
         var playerState = player.getState();
 
+        if (collisionHelper.CheckIfPlayerHitsObstacle(player.hitbox))
+        {
+            player.setState(PlayerState.Hitting);
+        }
+
         switch (playerState) {
             case Running:
-                setRunPlayerPosition(windowHeight, windowWidth, spriteWidth);
+                setRunPlayerPosition(windowWidth, spriteWidth);
                 break;
             case Jumping:
                 executeJumping();                    
@@ -46,17 +57,18 @@ public class PlayerController {
                 break;
             case Falling:
                 executeFalling();
+            case Hitting:
+                executeHitting();
             default:
                 break;
         }
     }
 
-    private void setRunPlayerPosition(int windowHeight, int windowWidth, int spriteWidth)
+    private void setRunPlayerPosition(int windowWidth, int spriteWidth)
     {
         var playerPositionX = windowWidth / 2 - spriteWidth;
         var playerPositionY = initialPlayerYPosition;
-        var position = new Position(playerPositionX, playerPositionY);
-        player.setPosition(position);
+        player.updatePosition(playerPositionX, playerPositionY);
     }
     
     public void Jumping()
@@ -86,7 +98,7 @@ public class PlayerController {
     private void executeJumping()
     {
         var newPlayerPosition = Jump.Up(player.getPosition());
-        player.setPosition(newPlayerPosition);
+        player.updatePosition(newPlayerPosition.getX(), newPlayerPosition.getY());
 
         if (player.getMaxJumpHeight() >= newPlayerPosition.getY())
         {
@@ -103,7 +115,7 @@ public class PlayerController {
     private void executeDoubleJumping()
     {
         var newPlayerPosition = Jump.Up(player.getPosition());
-        player.setPosition(newPlayerPosition);
+        player.updatePosition(newPlayerPosition.getX(), newPlayerPosition.getY());
 
         if (player.getMaxDoubleJumpingHeight() >= newPlayerPosition.getY())
         {
@@ -114,11 +126,16 @@ public class PlayerController {
     private void executeFalling()
     {
         var newPlayerPosition = Jump.Down(player.getPosition());
-        player.setPosition(newPlayerPosition);
+        player.updatePosition(newPlayerPosition.getX(), newPlayerPosition.getY());
 
         if (initialPlayerYPosition <= newPlayerPosition.getY())
         {
             player.setState(PlayerState.Running);
         }
+    }
+
+    private void executeHitting()
+    {
+        
     }
 }

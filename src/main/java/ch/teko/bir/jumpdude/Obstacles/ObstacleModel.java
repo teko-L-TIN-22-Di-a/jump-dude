@@ -1,13 +1,11 @@
 package ch.teko.bir.jumpdude.Obstacles;
 
-import java.awt.Color;
-import java.awt.List;
 import java.util.ArrayList;
 
 public class ObstacleModel {
 
-    public ObstacleModel(){
-        generateObstacles();
+    public ObstacleModel(int groundY){
+        generateObstacles(groundY);
     }
 
     private ArrayList<Obstacle> obstacleList = new ArrayList<>();
@@ -20,10 +18,13 @@ public class ObstacleModel {
         return obstacleList;
     }
 
-    private void generateObstacles()
+    private void generateObstacles(int groundY)
     {
-        obstacleList.add(new Obstacle(Color.CYAN, 200, 550, 50, 50));
-        obstacleList.add(new Obstacle(Color.CYAN, 500, 570, 30, 30));
-        obstacleList.add(new Obstacle(Color.CYAN, 700, 550, 50, 50));
+        int height = 100;
+        obstacleList.add(new Obstacle(900, groundY - height, 80, height));
+        height = 80;
+        obstacleList.add(new Obstacle(800, groundY - height, 70, height));
+        height = 80;
+        obstacleList.add(new Obstacle(1500, groundY - height, 40, height));
     }
 }

@@ -1,18 +1,44 @@
 package ch.teko.bir.jumpdude.Ground;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
+import ch.teko.bir.jumpdude.SpriteHandling.SpriteLoader;
+import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheet;
 
 public class GroundModel {  
     private Color groundColor = Color.GREEN;
     private int groundX = 0;
-
-    private int groundY = 600;
-
+    private int groundY = 650;
     private int groundHeight = 200;
+    
+    private final SpriteSheet spriteSheet;
+    private final BufferedImage image;
 
     public GroundModel()         
     {
+        spriteSheet = SpriteLoader.load("sprites/ground/basic.png", 1, 1);
+        image = spriteSheet.getSpriteAtIndex(0);
+        groundHeight = image.getHeight();
+        generateGroundBricks(groundY);
+    }
 
+    private ArrayList<Ground> groundBrickList = new ArrayList<>();
+    
+    public void setGroundBrickList(ArrayList<Ground> groundBrickList) {
+        this.groundBrickList = groundBrickList;
+    }
+
+    public ArrayList<Ground> getGroundBrickList() {
+        return groundBrickList;
+    }
+
+    private void generateGroundBricks(int groundY)
+    {
+        for (int i = 0; i < 15; i++) {
+            groundBrickList.add(new Ground(groundX + (groundHeight * i), groundY, groundHeight, groundHeight));            
+        }
     }
 
     public int getGroundY() {
@@ -45,5 +71,13 @@ public class GroundModel {
 
     public void setGroundX(int groundX) {
         this.groundX = groundX;
+    }
+
+    public SpriteSheet getSpriteSheet() {
+        return spriteSheet;
+    }
+
+    public BufferedImage getImage() {
+        return image;
     }
 }

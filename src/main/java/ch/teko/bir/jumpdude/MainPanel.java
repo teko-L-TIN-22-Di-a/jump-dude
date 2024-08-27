@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import ch.teko.bir.jumpdude.Ground.Ground;
+import ch.teko.bir.jumpdude.Ground.GroundController;
 import ch.teko.bir.jumpdude.Ground.GroundModel;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleController;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleModel;
@@ -28,13 +28,15 @@ public class MainPanel extends JPanel implements ActionListener {
     
     private final PanelModel panelModel;
     private final ObstacleController obstacleController;
+    private final GroundController groundController;
     
-    public MainPanel(PanelModel model, PlayerController playerController)         
+    public MainPanel(PanelModel model, PlayerController playerController, ObstacleModel obstacleModel)         
     {        
         panelModel = model;
         
         this.playerController = playerController;
-        this.obstacleController = new ObstacleController(new ObstacleModel());
+        this.obstacleController = new ObstacleController(obstacleModel);
+        this.groundController = new GroundController(new GroundModel());
 
         createSpriteEngine();
         createLevelTimer();
@@ -64,28 +66,28 @@ public class MainPanel extends JPanel implements ActionListener {
         
         drawGround();
         drawObstacles();
-        drawPlayer(panelModel.getGroundHeight());      
+        drawPlayer();      
     }
     
-    private void drawPlayer(int groundHeight)
+    private void drawPlayer()
     { 
-        this.playerController.draw(graphics2d, this.getWidth(), this.getHeight(), groundHeight, spriteEngine, this);
+        this.playerController.draw(graphics2d, this.getWidth(), this.getHeight(), panelModel.getGroundY(), spriteEngine, this);
     }
     
     private void drawGround()
     {
-        var ground = new Ground(new GroundModel());
-        ground.draw(graphics2d, panelModel.getWindowWidth());
+        groundController.draw(graphics2d, panelModel.getWindowWidth(), this);
     }
     
     private void drawObstacles()
     {
-        obstacleController.draw(graphics2d, panelModel.getWindowWidth());
+        obstacleController.draw(graphics2d, this);
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         obstacleController.repaint(panelModel.getWindowWidth());
+        groundController.repaint(panelModel.getWindowWidth());
         repaint();
     }
 }

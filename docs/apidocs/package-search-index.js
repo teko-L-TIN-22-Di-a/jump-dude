@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ch.teko.bir.jumpdude"},{"l":"ch.teko.bir.jumpdude.Ground"},{"l":"ch.teko.bir.jumpdude.KeyListener"},{"l":"ch.teko.bir.jumpdude.Obstacles"},{"l":"ch.teko.bir.jumpdude.Player"},{"l":"ch.teko.bir.jumpdude.SpriteHandling"}];updateSearchResults();

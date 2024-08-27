@@ -2,9 +2,9 @@ package ch.teko.bir.jumpdude.Obstacles;
 
 import java.awt.Graphics2D;
 
-import ch.teko.bir.jumpdude.ILevelElement;
+import javax.swing.JPanel;
 
-public class ObstacleController implements ILevelElement {
+public class ObstacleController {
 
     private final ObstacleModel obstacleModel;
 
@@ -12,19 +12,8 @@ public class ObstacleController implements ILevelElement {
     {
         this.obstacleModel = model;        
     }
-
-    public void draw(Graphics2D graphics2d, int windowWidth)
-    {
-        var obstacles = obstacleModel.getObstacleList();
-
-        for (var obstacle : obstacles) {
-            graphics2d.setColor(obstacle.getColor());
-            graphics2d.fillRect(obstacle.getX(), obstacle.getY(), obstacle.getWidth(), obstacle.getHeight());
-        }
-    }
-
-    public void repaint(int windowWidth)
-    {
+   
+    public void repaint(int windowWidth) {
         int speed = 5;
 
         var obstacles = obstacleModel.getObstacleList();
@@ -32,9 +21,22 @@ public class ObstacleController implements ILevelElement {
         for (var obstacle : obstacles) {
             obstacle.setX(obstacle.getX() - speed);
 
-            if (obstacle.getX() <= 0) {
-                obstacle.setX(obstacle.getX() + windowWidth);
+            if (obstacle.getX() <= -150) {
+                obstacle.setX(obstacle.getX() + windowWidth + 200);
             }
+        }
+    }
+
+    public void draw(Graphics2D graphics2d, JPanel panel) {
+        var obstacles = obstacleModel.getObstacleList();
+
+        for (var obstacle : obstacles) {
+            graphics2d.drawImage(obstacle.getImage(), 
+            obstacle.getX(), 
+            obstacle.getY(), 
+            obstacle.getWidth(), 
+            obstacle.getHeight(), 
+            panel); 
         }
     }
 }

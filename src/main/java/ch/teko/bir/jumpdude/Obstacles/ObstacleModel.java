@@ -12,7 +12,7 @@ public class ObstacleModel {
     private final BufferedImage image;
 
     public ObstacleModel(int groundY){
-        spriteSheet = SpriteLoader.load("/sprites/obstacle/spikes.png", 1, 1);
+        spriteSheet = SpriteLoader.load("sprites/obstacle/spikes.png", 1, 1);
         image = spriteSheet.getSpriteAtIndex(0);
         generateObstacles(groundY);
     }
@@ -31,7 +31,7 @@ public class ObstacleModel {
     {
         int height = 50;
         obstacleList.add(new Obstacle(Color.CYAN, 200, groundY - height, 50, height));
-        height = 30;
+        height = 60;
         obstacleList.add(new Obstacle(Color.CYAN, 500, groundY - height, 30, height));
         height = 50;
         obstacleList.add(new Obstacle(Color.CYAN, 700, groundY - height, 30, height));

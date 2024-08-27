@@ -18,7 +18,7 @@ public class GroundModel {
 
     public GroundModel()         
     {
-        spriteSheet = SpriteLoader.load("/sprites/ground/basic.png", 1, 1);
+        spriteSheet = SpriteLoader.load("sprites/ground/basic.png", 1, 1);
         image = spriteSheet.getSpriteAtIndex(0);
         groundHeight = image.getHeight();
         generateGroundBricks(groundY);

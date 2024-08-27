@@ -4,17 +4,22 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import ch.teko.bir.jumpdude.CollisionElement;
+import ch.teko.bir.jumpdude.CollisionHelper.CollisionHelper;
 import ch.teko.bir.jumpdude.SoundHandling.PlaySound;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteEngine;
 
-public class PlayerController {
+public class PlayerController extends CollisionElement {
     
     private final Player player;
     private int initialPlayerYPosition;
 
-    public PlayerController()
+    private final CollisionHelper collisionHelper;
+
+    public PlayerController(CollisionHelper collistionHelper)
     {
         player = new Player();
+        this.collisionHelper = collistionHelper;
     }
 
     public void draw(Graphics2D graphics2d, int windowWidth, int windowHeight, int groundY, SpriteEngine spriteEngine, JPanel panel)
@@ -34,6 +39,11 @@ public class PlayerController {
     {
         var playerState = player.getState();
 
+        if (collisionHelper.CheckIfPlayerHitsObstacle(player.hitbox))
+        {
+            player.setState(PlayerState.Hitting);
+        }
+
         switch (playerState) {
             case Running:
                 setRunPlayerPosition(windowWidth, spriteWidth);
@@ -46,6 +56,9 @@ public class PlayerController {
                 break;
             case Falling:
                 executeFalling();
+            case Hitting:
+            // TODO
+                break;
             default:
                 break;
         }
@@ -120,5 +133,20 @@ public class PlayerController {
         {
             player.setState(PlayerState.Running);
         }
+    }
+
+    @Override
+    public void repaint(int windowWidth) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void draw(Graphics2D graphics2d, JPanel panel) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    protected void handleCollision(CollisionElement collisionElement) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

@@ -4,64 +4,42 @@
  */
 package ch.teko.bir.jumpdude.Player;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
+import com.sun.javafx.scene.text.TextLayout;
 
-import javax.imageio.ImageIO;
-
-import ch.teko.bir.jumpdude.CollisionElement;
 import ch.teko.bir.jumpdude.Hitbox.Hitbox;
+import ch.teko.bir.jumpdude.SpriteHandling.SpriteLoader;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheet;
-import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheetBuilder;
 
 /**
  *
  * @author Sarah
  */
-public class Player extends CollisionElement{
+public class Player {
     private SpriteSheet spriteSheet;
     private Position position;
     private int maxJumpHeight = 300;
     private int maxDoubleJumpingHeight = 200;
     private PlayerState state = PlayerState.Running;
-    private final String runningSpritePath = "/sprites/pink-man/run.png";
-    private final String jumpingSpritePath = "/sprites/pink-man/jump.png";
-    private final String FallingSpritePath = "/sprites/pink-man/fall.png";
-    private final String doubleJumpingingSpritePath = "/sprites/pink-man/doubleJump.png";
+    private final String runningSpritePath = "sprites/pink-man/run.png";
+    private final String jumpingSpritePath = "sprites/pink-man/jump.png";
+    private final String FallingSpritePath = "sprites/pink-man/fall.png";
+    private final String doubleJumpingingSpritePath = "sprites/pink-man/doubleJump.png";
+
+    public Hitbox hitbox;
 
     public Player()
     {
-        loadSprite(runningSpritePath, 12, 12);
+        spriteSheet = SpriteLoader.load(runningSpritePath, 12, 12);
+        hitbox = new Hitbox(position, spriteSheet.getWidth, spriteSheet.getHeight)
     }
 
     public Player(Hitbox hitbox)
     {
-        this.hitbox = hitbox;
-        loadSprite(runningSpritePath, 12, 12);
-    }
-
-    public boolean collides(CollisionElement collisionElement) {
-        return hitbox.intersects(collisionElement.hitbox);
+        spriteSheet = SpriteLoader.load(runningSpritePath, 12, 12);
     }
 
     public SpriteSheet getSpriteSheet() {
         return spriteSheet;
-    }
-
-    private void loadSprite(String spritePath, int cols, int withSpriteCount)
-    {
-        var playerSprite = this.getClass().getResource(spritePath);
-        BufferedImage sheet;
-        try {
-            sheet = ImageIO.read(playerSprite);
-            spriteSheet = new SpriteSheetBuilder().
-            withSheet(sheet).
-            withColumns(cols).
-            withSpriteCount(withSpriteCount).
-            build();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void setSpriteSheet(SpriteSheet spriteSheet) {
@@ -96,10 +74,10 @@ public class Player extends CollisionElement{
         this.state = state;
         
         switch (this.state) {
-            case Running -> loadSprite(runningSpritePath, 12, 12);
-            case Jumping -> loadSprite(jumpingSpritePath, 1, 1);
-            case DoubleJumping -> loadSprite(doubleJumpingingSpritePath, 6, 6);
-            case Falling -> loadSprite(FallingSpritePath, 1, 1);
+            case Running -> spriteSheet = SpriteLoader.load(runningSpritePath, 12, 12);
+            case Jumping -> spriteSheet = SpriteLoader.load(jumpingSpritePath, 1, 1);
+            case DoubleJumping -> spriteSheet = SpriteLoader.load(doubleJumpingingSpritePath, 6, 6);
+            case Falling -> spriteSheet = SpriteLoader.load(FallingSpritePath, 1, 1);
             default -> {
             }
         }

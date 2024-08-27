@@ -81,7 +81,7 @@ public class MainPanel extends JPanel implements ActionListener {
     
     private void drawObstacles()
     {
-        obstacleController.draw(graphics2d, panelModel.getWindowWidth());
+        obstacleController.draw(graphics2d, this);
     }
     
     @Override

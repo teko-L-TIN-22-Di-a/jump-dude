@@ -32,7 +32,7 @@ public class PlayerController {
         
         doMovementFromState(windowWidth, playerSprite.getWidth());
 
-        graphics2d.drawImage(playerSprite, player.getPosition().getX(), player.getPosition().getY(), 100, 100, panel);
+        graphics2d.drawImage(playerSprite, player.getPosition().getX(), player.getPosition().getY(), player.getWidth(), player.getHeight(), panel);
         graphics2d.dispose();
     }
 
@@ -58,8 +58,7 @@ public class PlayerController {
             case Falling:
                 executeFalling();
             case Hitting:
-            // TODO
-                break;
+                executeHitting();
             default:
                 break;
         }
@@ -133,5 +132,10 @@ public class PlayerController {
         {
             player.setState(PlayerState.Running);
         }
+    }
+
+    private void executeHitting()
+    {
+        
     }
 }

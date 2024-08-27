@@ -1,5 +1,7 @@
 ch.teko.bir.jumpdude
+ch.teko.bir.jumpdude.CollisionHelper
 ch.teko.bir.jumpdude.Ground
+ch.teko.bir.jumpdude.Hitbox
 ch.teko.bir.jumpdude.KeyListener
 ch.teko.bir.jumpdude.Obstacles
 ch.teko.bir.jumpdude.Player

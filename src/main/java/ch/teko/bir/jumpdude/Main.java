@@ -38,7 +38,6 @@ public class Main {
         JFrame window = new JFrame("Jump Dude");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(1000, 800);
-        //window.add(new MainPanel(panelModel, playerController, obstacleModel));
         window.add(new MenuPanel());
         window.addKeyListener(new MainKeyListener(playerController));
         window.setVisible(true);

@@ -16,10 +16,14 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -118,19 +122,21 @@ public class ScoresPanel extends JPanel {
     private ScoresTableModel loadData()
     {       
         String jsonUser1 = "{ \"rank\": \"1st\", \"score\": \"10min\", \"name\": \"kek\"}";
-        String jsonUser2 = "{ \"rank\": \"2nd\", \"score\": \"10min\", \"name\": \"kek\"}";
+        var jsonStream = getClass().getClassLoader().getResourceAsStream("scores.json");
+
+        String text = new BufferedReader(
+            new InputStreamReader(jsonStream, StandardCharsets.UTF_8))
+                .lines()
+                .collect(Collectors.joining("\n"));
+
         ObjectMapper mapper = new ObjectMapper();
-        Score score1 = null;
-        Score score2 = null;
+        Scores scores = null;
         try {
-            score1 = mapper.readValue(jsonUser1, Score.class);
-            score2 = mapper.readValue(jsonUser2, Score.class);
+            scores = mapper.readValue(text, Scores.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        List<Score> scores = new ArrayList<Score>();
-        scores.add(score1);
-        scores.add(score2);
+         
         return new ScoresTableModel(scores);
     }
 

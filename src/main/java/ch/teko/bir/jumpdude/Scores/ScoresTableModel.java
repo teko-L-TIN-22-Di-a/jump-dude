@@ -1,18 +1,15 @@
 package ch.teko.bir.jumpdude.Scores;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.table.AbstractTableModel;
 
 public class ScoresTableModel extends AbstractTableModel {
 
-    private List<Score> scoreData = new ArrayList<Score>();
+    private Scores scoreData = new Scores();
     private String[] columnNames =  {"Rank", "Score", "Name"};
 
     public ScoresTableModel() {}
 
-    public ScoresTableModel(List<Score> scoreData) {
+    public ScoresTableModel(Scores scoreData) {
         this.scoreData = scoreData;
     }
 
@@ -28,13 +25,13 @@ public class ScoresTableModel extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return scoreData.size();
+        return scoreData.scores.size();
     }
 
     @Override
     public Object getValueAt(int row, int column) {
         Object scoreAttribute = null;
-        Score score = scoreData.get(row);
+        Score score = scoreData.scores.get(row);
         switch(column) {
             case 0: scoreAttribute = score.getRank(); break;
             case 1: scoreAttribute = score.getScore(); break;
@@ -45,7 +42,7 @@ public class ScoresTableModel extends AbstractTableModel {
     }
 
     public void addScore(Score score) {
-        scoreData.add(score);
+        scoreData.scores.add(score);
         fireTableDataChanged();
     }
 }

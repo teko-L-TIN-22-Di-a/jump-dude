@@ -31,6 +31,7 @@ import ch.teko.bir.jumpdude.CollisionHelper.CollisionHelper;
 import ch.teko.bir.jumpdude.KeyListener.MainKeyListener;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleModel;
 import ch.teko.bir.jumpdude.Player.PlayerController;
+import ch.teko.bir.jumpdude.Scores.ScoresPanel;
 
 public class MenuPanel extends JPanel {
 

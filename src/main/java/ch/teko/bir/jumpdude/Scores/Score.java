@@ -2,16 +2,32 @@ package ch.teko.bir.jumpdude.Scores;
 
 public class Score {
 
-    private String rank;
-    private String score;
+    private Integer rank;
+    private Integer score;
     private String name;
 
-    public String getRank()
+    public Score()
+    {
+
+    }
+
+    public Score(String name, int score)
+    {
+        this.name = name;
+        this.score = score;
+    }
+
+    public Integer getRank()
     {
         return rank;
     }
 
-    public String getScore()
+    public void setRank(int value)
+    {
+        rank = value;
+    }
+
+    public Integer getScore()
     {
         return score;
     }

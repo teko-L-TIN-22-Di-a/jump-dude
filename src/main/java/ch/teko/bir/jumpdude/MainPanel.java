@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 import ch.teko.bir.jumpdude.Ground.GroundController;
@@ -22,6 +23,7 @@ import ch.teko.bir.jumpdude.Ground.GroundModel;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleController;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleModel;
 import ch.teko.bir.jumpdude.Player.PlayerController;
+import ch.teko.bir.jumpdude.Scores.ScoresPanelFactory;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteEngine;
 
 public class MainPanel extends JPanel implements ActionListener {
@@ -80,7 +82,15 @@ public class MainPanel extends JPanel implements ActionListener {
     private void startStopWatch() {
         stopWatch = new Timer(1000, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                elapsedTime += 1000;
+                if (playerController.getPlayerGotHit())
+                {
+                    ScoresPanelFactory.createScoresWindow("test", elapsedTime);
+                    playerController.setGameOver();
+                    closeWindow();
+                }
+                {
+                    elapsedTime += 1000;
+                }
             }
         });
         stopWatch.start();
@@ -93,7 +103,7 @@ public class MainPanel extends JPanel implements ActionListener {
         
         panelModel.setWindowWidth(super.getSize().width);
         setBackground(Color.BLUE);
-          
+        
         updateTimeLabel();
         drawGround();
         drawObstacles();
@@ -101,7 +111,7 @@ public class MainPanel extends JPanel implements ActionListener {
     }
     
     private void drawPlayer()
-    { 
+    {
         this.playerController.draw(graphics2d, this.getWidth(), this.getHeight(), panelModel.getGroundY(), spriteEngine, this);
     }
     
@@ -125,14 +135,30 @@ public class MainPanel extends JPanel implements ActionListener {
         String time = String.format("%02d:%02d", minutes, seconds);
         graphics2d.drawString(time, 850, 50);
     }
+
+    
+    private void closeWindow()
+    {
+        var window = SwingUtilities.getWindowAncestor(this);
+        window.dispose();
+    }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == levelTimer)
         {
-            obstacleController.repaint(panelModel.getWindowWidth());
-            groundController.repaint(panelModel.getWindowWidth());
-            repaint();
+            if (playerController.getPlayerGotHit())
+            {
+                obstacleController.setIdleSpeed();
+                groundController.setIdleSpeed();
+                obstacleController.repaint(panelModel.getWindowWidth());
+                groundController.repaint(panelModel.getWindowWidth());
+                repaint();
+            }else {                
+                obstacleController.repaint(panelModel.getWindowWidth());
+                groundController.repaint(panelModel.getWindowWidth());
+                repaint();
+            }
         }
     }
 }

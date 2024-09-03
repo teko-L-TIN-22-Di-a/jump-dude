@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 public class ObstacleController {
 
+    private int speed = 5;
     private final ObstacleModel obstacleModel;
 
     public ObstacleController(ObstacleModel model)
@@ -13,9 +14,12 @@ public class ObstacleController {
         this.obstacleModel = model;        
     }
    
-    public void repaint(int windowWidth) {
-        int speed = 5;
+    public void setIdleSpeed()
+    {
+        speed = 0;
+    }
 
+    public void repaint(int windowWidth) {
         var obstacles = obstacleModel.getObstacleList();
         
         for (var obstacle : obstacles) {

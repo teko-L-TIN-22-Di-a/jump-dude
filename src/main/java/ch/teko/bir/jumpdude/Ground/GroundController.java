@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 public class GroundController {
     private final GroundModel groundModel;
+    private int speed = 5;
 
     public GroundController(GroundModel model)
     {
@@ -29,8 +30,6 @@ public class GroundController {
 
     public void repaint(int windowWidth)
     {
-        int speed = 5;
-
         var bricks = groundModel.getGroundBrickList();
         
         for (var brick : bricks) {
@@ -40,5 +39,9 @@ public class GroundController {
                 brick.setX(brick.getX() + windowWidth + 200);
             }
         }
+    }
+
+    public void setIdleSpeed() {
+        speed = 0;
     }
 }

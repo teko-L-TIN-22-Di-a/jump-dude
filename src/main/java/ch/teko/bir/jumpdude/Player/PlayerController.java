@@ -136,6 +136,14 @@ public class PlayerController {
 
     private void executeHitting()
     {
-        
+                
+    }
+
+    public boolean getPlayerGotHit() {
+        return player.getState() == PlayerState.Hitting;
+    }
+
+    public void setGameOver() {
+        player.setState(PlayerState.GameOver);
     }
 }

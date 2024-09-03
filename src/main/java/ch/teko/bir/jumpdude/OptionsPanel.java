@@ -110,22 +110,7 @@ public class OptionsPanel extends JPanel {
 
     private void createMenuWindow()
     {
-        var panelModel = new PanelModel();
-        var obstacleModel = new ObstacleModel(panelModel.getGroundY());
-        var playerController = new PlayerController(new CollisionHelper(obstacleModel));
-        
-        var url = Main.class.getResource("/sprites/pink-man/jump.png");
-        var kit = Toolkit.getDefaultToolkit();
-        var img = kit.createImage(url);
-
-        JFrame window = new JFrame("Jump Dude");
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setSize(1000, 800);
-        window.add(new MenuPanel());
-        window.addKeyListener(new MainKeyListener(playerController));
-        window.setVisible(true);
-        window.setIconImage(img);
-        window.setResizable(false);
+        MenuWindowFactory.createMenuWindow();
     }
 
     private void closeMenuWindow(ActionEvent e)

@@ -5,5 +5,6 @@ public enum PlayerState {
     Jumping,
     DoubleJumping,
     Falling,
-    Hitting
+    Hitting,
+    GameOver
 }

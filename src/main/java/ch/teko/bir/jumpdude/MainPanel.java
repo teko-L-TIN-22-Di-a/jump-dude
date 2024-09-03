@@ -20,6 +20,7 @@ import javax.swing.Timer;
 
 import ch.teko.bir.jumpdude.Ground.GroundController;
 import ch.teko.bir.jumpdude.Ground.GroundModel;
+import ch.teko.bir.jumpdude.Menu.MenuPanel;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleController;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleModel;
 import ch.teko.bir.jumpdude.Player.PlayerController;
@@ -35,15 +36,15 @@ public class MainPanel extends JPanel implements ActionListener {
     private SpriteEngine spriteEngine;    
     private Graphics2D graphics2d;
     
-    private final PanelModel panelModel;
+    private final MainPanelModel panelModel;
     private final ObstacleController obstacleController;
     private final GroundController groundController;
     
     private Font font;
 
-    public MainPanel(PanelModel model, PlayerController playerController, ObstacleModel obstacleModel)         
+    public MainPanel(MainPanelModel model, PlayerController playerController, ObstacleModel obstacleModel)         
     {
-        panelModel = model;
+        this.panelModel = model;
         
         this.playerController = playerController;
         this.obstacleController = new ObstacleController(obstacleModel);
@@ -84,7 +85,7 @@ public class MainPanel extends JPanel implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 if (playerController.getPlayerGotHit())
                 {
-                    ScoresPanelFactory.createScoresWindow("test", elapsedTime);
+                    ScoresPanelFactory.createScoresWindow(playerController.getPlayerName(), elapsedTime);
                     playerController.setGameOver();
                     closeWindow();
                 }

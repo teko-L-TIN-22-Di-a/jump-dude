@@ -13,27 +13,25 @@ import com.google.gson.stream.JsonReader;
 
 public class ScoresController {
 
-    private String filePath = "C:\\temp\\ranking.json";
+    private final String filePath = "C:\\temp\\ranking.json";
 
     public ScoresTableModel loadJson()
     {        
-        //var scoresStream = getClass().getClassLoader().getResourceAsStream("scores.json");
-        
         CreateFileIfNotExists(filePath);
         Score[] scores = null;
 
         var jsonFile = new File(filePath);
         try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(jsonFile));
-            StringBuilder stringBuilder = new StringBuilder();
-            String line = bufferedReader.readLine();
-        
-            while (line != null) {
-                stringBuilder.append(line);
-                stringBuilder.append(System.lineSeparator());
-                line = bufferedReader.readLine();
+            StringBuilder stringBuilder;
+            try (java.io.BufferedReader bufferedReader = new BufferedReader(new FileReader(jsonFile))) {
+                stringBuilder = new StringBuilder();
+                var line = bufferedReader.readLine();
+                while (line != null) {
+                    stringBuilder.append(line);
+                    stringBuilder.append(System.lineSeparator());
+                    line = bufferedReader.readLine();
+                }
             }
-            bufferedReader.close();
         
             var scoresJson = stringBuilder.toString();
             System.out.println(scoresJson);

@@ -15,11 +15,11 @@ public class PlayerController {
     private final CollisionHelper collisionHelper;
     private static int spacingCorrection = 100;
 
-    public PlayerController(CollisionHelper collistionHelper)
+    public PlayerController(String playerName, CollisionHelper collistionHelper)
     {
         var groundY = 650;
         initialPlayerYPosition = groundY - spacingCorrection;
-        player = new Player(initialPlayerYPosition);
+        player = new Player(playerName, initialPlayerYPosition);
         setRunPlayerPosition(500, 100);
         this.collisionHelper = collistionHelper;
     }
@@ -145,5 +145,9 @@ public class PlayerController {
 
     public void setGameOver() {
         player.setState(PlayerState.GameOver);
+    }
+
+    public String getPlayerName() {
+        return player.getName();
     }
 }

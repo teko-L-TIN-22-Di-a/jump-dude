@@ -2,7 +2,7 @@ package ch.teko.bir.jumpdude;
 
 import java.awt.Color;
 
-public class PanelModel {
+public class MainPanelModel {
 
     private int windowWidth = 0;  
     private int levelTimer = 10;
@@ -13,7 +13,7 @@ public class PanelModel {
     private int groundY = 650;
     private int groundHeight = 200;
 
-    public PanelModel()         
+    public MainPanelModel()         
     {
 
     }

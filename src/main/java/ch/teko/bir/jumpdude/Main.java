@@ -3,6 +3,8 @@ package ch.teko.bir.jumpdude;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import ch.teko.bir.jumpdude.Menu.MenuWindowFactory;
+
 /**
  *
  * @author Sarah
@@ -14,10 +16,10 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        initializeLevel();
+        initzializeMenu();
     }
     
-    private static void initializeLevel(){
+    private static void initzializeMenu(){
         MenuWindowFactory.createMenuWindow();
     }
 }

@@ -16,8 +16,6 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringReader;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -30,12 +28,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.JTableHeader;
 
-import com.google.gson.Gson;
-import com.google.gson.Strictness;
-import com.google.gson.stream.JsonReader;
-
-import ch.teko.bir.jumpdude.MenuPanel;
-import ch.teko.bir.jumpdude.MenuWindowFactory;
+import ch.teko.bir.jumpdude.Menu.MenuPanel;
+import ch.teko.bir.jumpdude.Menu.MenuWindowFactory;
 
 public class ScoresPanel extends JPanel {
 
@@ -43,6 +37,7 @@ public class ScoresPanel extends JPanel {
     private final Color COLOR = Color.CYAN;
     private ScoresTableModel model;
     private ScoresController controller;
+    private Score currentScore = null;
     
     public ScoresPanel()
     {
@@ -51,6 +46,7 @@ public class ScoresPanel extends JPanel {
 
     public ScoresPanel(Score score)
     {
+        this.currentScore = score;
         Initialize();
         model.addScore(score);
     }
@@ -60,7 +56,7 @@ public class ScoresPanel extends JPanel {
         controller = new ScoresController();
         setBackground(COLOR);
 
-        InputStream fontInputStream = MenuPanel.class.getResourceAsStream("/fonts/BACKTO1982.TTF");
+        var fontInputStream = MenuPanel.class.getResourceAsStream("/fonts/BACKTO1982.TTF");
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, fontInputStream);
             font = font.deriveFont(Font.BOLD, 40f);
@@ -82,7 +78,7 @@ public class ScoresPanel extends JPanel {
 
     private void loadTitle() 
     {
-        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        var gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
         gridBagConstraints.fill = GridBagConstraints.VERTICAL;
@@ -113,7 +109,7 @@ public class ScoresPanel extends JPanel {
         table.setRowHeight(50);
         setTableHeaders(table.getTableHeader(), tableFont, scrollPane.getWidth());
 
-        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        var gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
@@ -140,13 +136,13 @@ public class ScoresPanel extends JPanel {
             }
         });
 
-        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        var gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new Insets(10, 10, 10, 10);
 
-        JPanel buttons = new JPanel(new GridBagLayout());
+        var buttons = new JPanel(new GridBagLayout());
         buttons.setBackground(COLOR);
         buttons.add(startButton, gridBagConstraints);
 
@@ -166,7 +162,14 @@ public class ScoresPanel extends JPanel {
     private void createMenuWindow()
     {
         controller.saveJson(model.getScoreData());
-        MenuWindowFactory.createMenuWindow();
+        if (this.currentScore == null)
+        {
+            MenuWindowFactory.createMenuWindow();
+        }
+        else{
+            MenuWindowFactory.createMenuWindow(this.currentScore.getName());
+
+        }
     }
 
     private void closeMenuWindow(ActionEvent e)

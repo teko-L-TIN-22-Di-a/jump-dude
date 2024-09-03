@@ -1,4 +1,4 @@
-package ch.teko.bir.jumpdude;
+package ch.teko.bir.jumpdude.Options;
 
 /**
  *
@@ -12,7 +12,6 @@ import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -21,16 +20,13 @@ import java.io.InputStream;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-import ch.teko.bir.jumpdude.CollisionHelper.CollisionHelper;
-import ch.teko.bir.jumpdude.KeyListener.MainKeyListener;
-import ch.teko.bir.jumpdude.Obstacles.ObstacleModel;
-import ch.teko.bir.jumpdude.Player.PlayerController;
+import ch.teko.bir.jumpdude.Menu.MenuPanel;
+import ch.teko.bir.jumpdude.Menu.MenuWindowFactory;
 
 public class OptionsPanel extends JPanel {
 
@@ -110,22 +106,7 @@ public class OptionsPanel extends JPanel {
 
     private void createMenuWindow()
     {
-        var panelModel = new PanelModel();
-        var obstacleModel = new ObstacleModel(panelModel.getGroundY());
-        var playerController = new PlayerController(new CollisionHelper(obstacleModel));
-        
-        var url = Main.class.getResource("/sprites/pink-man/jump.png");
-        var kit = Toolkit.getDefaultToolkit();
-        var img = kit.createImage(url);
-
-        JFrame window = new JFrame("Jump Dude");
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setSize(1000, 800);
-        window.add(new MenuPanel());
-        window.addKeyListener(new MainKeyListener(playerController));
-        window.setVisible(true);
-        window.setIconImage(img);
-        window.setResizable(false);
+        MenuWindowFactory.createMenuWindow();
     }
 
     private void closeMenuWindow(ActionEvent e)

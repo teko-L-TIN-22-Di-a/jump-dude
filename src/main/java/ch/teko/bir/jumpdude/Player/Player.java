@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ch.teko.bir.jumpdude.Player;
 
 import ch.teko.bir.jumpdude.Hitbox.Hitbox;
@@ -13,6 +9,7 @@ import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheet;
  * @author Sarah
  */
 public class Player {
+    private String name = "player1";
     private SpriteSheet spriteSheet;
     private Position position;
     private int maxJumpHeight = 300;
@@ -28,13 +25,19 @@ public class Player {
 
     public Hitbox hitbox;
 
-    public Player(int y)
+    public Player(String playerName, int y)
     {
+        this.name = playerName;
         this.position = new Position(100, y);
         spriteSheet = SpriteLoader.load(runningSpritePath, 12, 12);
         var hitboxWidth = width - 30;
         var hitboxHeight = height - 30;
         hitbox = new Hitbox(this.position, hitboxWidth, hitboxHeight);
+    }
+
+    public String getName()
+    {
+        return name;
     }
 
     public SpriteSheet getSpriteSheet() {

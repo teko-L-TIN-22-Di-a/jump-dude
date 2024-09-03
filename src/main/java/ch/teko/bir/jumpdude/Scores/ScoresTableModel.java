@@ -1,5 +1,9 @@
 package ch.teko.bir.jumpdude.Scores;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import javax.swing.table.AbstractTableModel;
 
 public class ScoresTableModel extends AbstractTableModel {
@@ -11,6 +15,11 @@ public class ScoresTableModel extends AbstractTableModel {
 
     public ScoresTableModel(Score[] scoreData) {
         this.scoreData = scoreData;
+    }
+
+    public Score[] getScoreData()
+    {
+        return scoreData;
     }
 
     @Override
@@ -42,13 +51,33 @@ public class ScoresTableModel extends AbstractTableModel {
     }
 
     public void addScore(Score score) {
-        var newArrayLength = scoreData.length + 1;
+        var newArrayLength = scoreData.length+1;
         var newScoreData = new Score[newArrayLength];
-   
-        System.arraycopy(scoreData, 0, newScoreData, 0, newArrayLength); 
-   
-        newScoreData[newArrayLength] = score; 
-        scoreData = newScoreData;
+        
+        System.arraycopy(scoreData, 0, newScoreData, 0, scoreData.length); 
+        
+        newScoreData[newArrayLength-1] = score; 
+        scoreData = reOrderScores(newScoreData);        
         fireTableDataChanged();
+    }
+
+    private Score[] reOrderScores(Score[] scores)
+    {
+        List<Score> orderedScores = Arrays.asList(scores);
+        Collections.sort(orderedScores, new ScoreComparator());
+
+        orderedScores = updateRanking(orderedScores); 
+        Score[] test = new Score[orderedScores.size()];
+        return orderedScores.toArray(test);
+    }
+
+    private List<Score> updateRanking(List<Score> scores)
+    {
+        int i = 1;
+        for (var score : scores) {
+            score.setRank(i);
+            i++;
+        }
+        return scores;
     }
 }

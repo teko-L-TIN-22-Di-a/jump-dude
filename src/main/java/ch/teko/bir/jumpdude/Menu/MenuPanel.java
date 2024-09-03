@@ -1,4 +1,4 @@
-package ch.teko.bir.jumpdude;
+package ch.teko.bir.jumpdude.Menu;
 
 /**
  *
@@ -15,8 +15,8 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.io.IOException;
-import java.io.InputStream;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -24,38 +24,54 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
-import ch.teko.bir.jumpdude.CollisionHelper.CollisionHelper;
-import ch.teko.bir.jumpdude.KeyListener.MainKeyListener;
-import ch.teko.bir.jumpdude.Obstacles.ObstacleModel;
-import ch.teko.bir.jumpdude.Player.PlayerController;
-import ch.teko.bir.jumpdude.Scores.ScoresPanel;
+import ch.teko.bir.jumpdude.Main;
+import ch.teko.bir.jumpdude.MainWindowFactory;
+import ch.teko.bir.jumpdude.Options.OptionsPanel;
+import ch.teko.bir.jumpdude.Scores.ScoresPanelFactory;
+import javafx.scene.input.KeyEvent;
 
 public class MenuPanel extends JPanel {
 
     private Font font;
+    private JTextField nameField;
+    private String playerName = "enter name";
 
     public MenuPanel()
     {
-        setBackground(Color.CYAN);
+        Initialize();
+    }
 
-        InputStream fontInputStream = MenuPanel.class.getResourceAsStream("/fonts/BACKTO1982.TTF");
+    public MenuPanel(String playerName)
+    {
+        this.playerName = playerName;
+        Initialize();
+    }
+
+    private void Initialize()
+    {
+        setBackground(Color.CYAN);
+        loadFont();
+        setBorder(new EmptyBorder(10, 10, 10, 10));
+        setLayout(new GridBagLayout());
+        loadTitle();
+        loadNameTextField();       
+        loadButtons();
+    }
+
+    private void loadFont()
+    {
+        var fontInputStream = MenuPanel.class.getResourceAsStream("/fonts/BACKTO1982.TTF");
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, fontInputStream);
             font = font.deriveFont(Font.BOLD, 40f);
-        } catch (FontFormatException ex) {
-        } catch (IOException ex) {
+        } catch (FontFormatException | IOException ex) {
         }
-
-        setBorder(new EmptyBorder(10, 10, 10, 10));
-        setLayout(new GridBagLayout());
-
-        loadTitle();        
-        loadButtons();
     }
-        
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -63,7 +79,7 @@ public class MenuPanel extends JPanel {
 
     private void loadTitle() 
     {
-        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        var gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
         gridBagConstraints.fill = GridBagConstraints.VERTICAL;
@@ -75,13 +91,33 @@ public class MenuPanel extends JPanel {
         add(title, gridBagConstraints);
     }
 
+    private void loadNameTextField() {
+        var nameLabel = new JLabel("Name:");
+        nameLabel.setFont(font);
+        nameField = new JTextField(playerName, 8);
+           nameField.addKeyListener(new KeyAdapter() {
+            public void keyTyped(KeyEvent e) { 
+                if (nameField.getText().length() >= 10 ) // limit textfield to 3 characters
+                    e.consume(); 
+            }  
+        });
+        nameField.selectAll();
+        nameField.setFont(font);
+        
+        var gridBagConstraintsPanel = new GridBagConstraints();
+        gridBagConstraintsPanel.gridwidth = GridBagConstraints.REMAINDER;
+        gridBagConstraintsPanel.anchor = GridBagConstraints.CENTER;
+        gridBagConstraintsPanel.fill = GridBagConstraints.HORIZONTAL;
+        add(nameField, gridBagConstraintsPanel);
+    }
+
     private void loadButtons()
     {
         var startButton = createButton("Start", font);
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                createLevelWindow();
+                createMainWindow();
                 closeMenuWindow(e);
             }
         });
@@ -104,13 +140,13 @@ public class MenuPanel extends JPanel {
             }
         });
 
-        GridBagConstraints gridBagConstraints = new GridBagConstraints();
+        var gridBagConstraints = new GridBagConstraints();
         gridBagConstraints.gridwidth = GridBagConstraints.REMAINDER;
         gridBagConstraints.anchor = GridBagConstraints.CENTER;
         gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new Insets(10, 10, 10, 10);
 
-        JPanel buttons = new JPanel(new GridBagLayout());
+        var buttons = new JPanel(new GridBagLayout());
         buttons.setBackground(Color.cyan);
         buttons.add(startButton, gridBagConstraints);
         buttons.add(scroesButton, gridBagConstraints);
@@ -129,52 +165,18 @@ public class MenuPanel extends JPanel {
         return button;
     }
 
-    private void createLevelWindow()
+    private void createMainWindow()
     {
-        var panelModel = new PanelModel();
-        var obstacleModel = new ObstacleModel(panelModel.getGroundY());
-        var playerController = new PlayerController(new CollisionHelper(obstacleModel));
-        
-        var url = Main.class.getResource("/sprites/pink-man/jump.png");
-        var kit = Toolkit.getDefaultToolkit();
-        var img = kit.createImage(url);
-
-        JFrame window = new JFrame("Jump Dude");
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setSize(1000, 800);
-        window.add(new MainPanel(panelModel, playerController, obstacleModel));
-        window.addKeyListener(new MainKeyListener(playerController));
-        window.setVisible(true);
-        window.setIconImage(img);
-        window.setResizable(false);
+        MainWindowFactory.createMainWindow(nameField.getText());
     }
 
     private void createScoresWindow()
     {
-        var panelModel = new PanelModel();
-        var obstacleModel = new ObstacleModel(panelModel.getGroundY());
-        var playerController = new PlayerController(new CollisionHelper(obstacleModel));
-        
-        var url = Main.class.getResource("/sprites/pink-man/jump.png");
-        var kit = Toolkit.getDefaultToolkit();
-        var img = kit.createImage(url);
-
-        JFrame window = new JFrame("Jump Dude");
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setSize(1000, 800);
-        window.add(new ScoresPanel());
-        window.addKeyListener(new MainKeyListener(playerController));
-        window.setVisible(true);
-        window.setIconImage(img);
-        window.setResizable(false);
+        ScoresPanelFactory.createScoresWindow();
     }
 
     private void createOptionsWindow()
-    {
-        var panelModel = new PanelModel();
-        var obstacleModel = new ObstacleModel(panelModel.getGroundY());
-        var playerController = new PlayerController(new CollisionHelper(obstacleModel));
-        
+    {        
         var url = Main.class.getResource("/sprites/pink-man/jump.png");
         var kit = Toolkit.getDefaultToolkit();
         var img = kit.createImage(url);
@@ -183,7 +185,6 @@ public class MenuPanel extends JPanel {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(1000, 800);
         window.add(new OptionsPanel());
-        window.addKeyListener(new MainKeyListener(playerController));
         window.setVisible(true);
         window.setIconImage(img);
         window.setResizable(false);

@@ -35,12 +35,14 @@ public class Main {
         var kit = Toolkit.getDefaultToolkit();
         var img = kit.createImage(url);
 
-        JFrame level = new JFrame("Jump Dude");
-        level.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        level.setSize(1000, 800);
-        level.add(new MainPanel(panelModel, playerController, obstacleModel));
-        level.addKeyListener(new MainKeyListener(playerController));
-        level.setVisible(true);
-        level.setIconImage(img);
+        JFrame window = new JFrame("Jump Dude");
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setSize(1000, 800);
+        //window.add(new MainPanel(panelModel, playerController, obstacleModel));
+        window.add(new MenuPanel());
+        window.addKeyListener(new MainKeyListener(playerController));
+        window.setVisible(true);
+        window.setIconImage(img);
+        window.setResizable(false);
     }
 }

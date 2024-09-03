@@ -5,10 +5,14 @@ package ch.teko.bir.jumpdude;
  * @author Sarah
  */
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.InputStream;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -21,7 +25,10 @@ import ch.teko.bir.jumpdude.Player.PlayerController;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteEngine;
 
 public class MainPanel extends JPanel implements ActionListener {
-    private PlayerController playerController = null;    
+    private Timer levelTimer;
+    private PlayerController playerController = null;
+    private Timer stopWatch;
+    private int elapsedTime = 0;
     
     private SpriteEngine spriteEngine;    
     private Graphics2D graphics2d;
@@ -30,18 +37,32 @@ public class MainPanel extends JPanel implements ActionListener {
     private final ObstacleController obstacleController;
     private final GroundController groundController;
     
+    private Font font;
+
     public MainPanel(PanelModel model, PlayerController playerController, ObstacleModel obstacleModel)         
-    {        
+    {
         panelModel = model;
         
         this.playerController = playerController;
         this.obstacleController = new ObstacleController(obstacleModel);
         this.groundController = new GroundController(new GroundModel());
 
+        loadFont();
         createSpriteEngine();
         createLevelTimer();
+        startStopWatch();
     }
 
+    private void loadFont()
+    {
+        InputStream fontInputStream = MenuPanel.class.getResourceAsStream("/fonts/BACKTO1982.TTF");
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, fontInputStream);
+            font = font.deriveFont(Font.BOLD, 20f);
+        } catch (FontFormatException ex) {
+        } catch (IOException ex) {
+        }
+    }
     private void createSpriteEngine() {
         spriteEngine = new SpriteEngine(60);
         
@@ -52,8 +73,17 @@ public class MainPanel extends JPanel implements ActionListener {
     }
 
     private void createLevelTimer() {
-        Timer levelTimer = new Timer(panelModel.getLevelTimer(), this);
+        levelTimer = new Timer(panelModel.getLevelTimer(), this);
         levelTimer.start();
+    }
+    
+    private void startStopWatch() {
+        stopWatch = new Timer(1000, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                elapsedTime += 1000;
+            }
+        });
+        stopWatch.start();
     }
     
     @Override
@@ -63,10 +93,11 @@ public class MainPanel extends JPanel implements ActionListener {
         
         panelModel.setWindowWidth(super.getSize().width);
         setBackground(Color.BLUE);
-        
+          
+        updateTimeLabel();
         drawGround();
         drawObstacles();
-        drawPlayer();      
+        drawPlayer();
     }
     
     private void drawPlayer()
@@ -84,10 +115,24 @@ public class MainPanel extends JPanel implements ActionListener {
         obstacleController.draw(graphics2d, this);
     }
     
+    private void updateTimeLabel()
+    {
+        graphics2d.setColor(Color.black);
+        graphics2d.setFont(font);
+
+        int minutes = (elapsedTime % 3600000) / 60000;
+        int seconds = (elapsedTime % 60000) / 1000;
+        String time = String.format("%02d:%02d", minutes, seconds);
+        graphics2d.drawString(time, 850, 50);
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
-        obstacleController.repaint(panelModel.getWindowWidth());
-        groundController.repaint(panelModel.getWindowWidth());
-        repaint();
+        if (e.getSource() == levelTimer)
+        {
+            obstacleController.repaint(panelModel.getWindowWidth());
+            groundController.repaint(panelModel.getWindowWidth());
+            repaint();
+        }
     }
 }

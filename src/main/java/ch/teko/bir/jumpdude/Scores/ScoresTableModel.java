@@ -4,12 +4,12 @@ import javax.swing.table.AbstractTableModel;
 
 public class ScoresTableModel extends AbstractTableModel {
 
-    private Scores scoreData = new Scores();
+    private Score[] scoreData = null;
     private String[] columnNames =  {"Rank", "Score", "Name"};
 
     public ScoresTableModel() {}
 
-    public ScoresTableModel(Scores scoreData) {
+    public ScoresTableModel(Score[] scoreData) {
         this.scoreData = scoreData;
     }
 
@@ -25,13 +25,13 @@ public class ScoresTableModel extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return scoreData.scores.size();
+        return scoreData.length;
     }
 
     @Override
     public Object getValueAt(int row, int column) {
         Object scoreAttribute = null;
-        Score score = scoreData.scores.get(row);
+        Score score = scoreData[row];
         switch(column) {
             case 0: scoreAttribute = score.getRank(); break;
             case 1: scoreAttribute = score.getScore(); break;
@@ -42,7 +42,13 @@ public class ScoresTableModel extends AbstractTableModel {
     }
 
     public void addScore(Score score) {
-        scoreData.scores.add(score);
+        var newArrayLength = scoreData.length + 1;
+        var newScoreData = new Score[newArrayLength];
+   
+        System.arraycopy(scoreData, 0, newScoreData, 0, newArrayLength); 
+   
+        newScoreData[newArrayLength] = score; 
+        scoreData = newScoreData;
         fireTableDataChanged();
     }
 }

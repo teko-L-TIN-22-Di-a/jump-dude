@@ -16,21 +16,15 @@ import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.io.StringReader;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -38,14 +32,16 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.JTableHeader;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.Strictness;
+import com.google.gson.stream.JsonReader;
 
-import ch.teko.bir.jumpdude.Main;
-import ch.teko.bir.jumpdude.MenuPanel;
-import ch.teko.bir.jumpdude.PanelModel;
 import ch.teko.bir.jumpdude.CollisionHelper.CollisionHelper;
 import ch.teko.bir.jumpdude.KeyListener.MainKeyListener;
+import ch.teko.bir.jumpdude.Main;
+import ch.teko.bir.jumpdude.MenuPanel;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleModel;
+import ch.teko.bir.jumpdude.PanelModel;
 import ch.teko.bir.jumpdude.Player.PlayerController;
 
 public class ScoresPanel extends JPanel {
@@ -120,23 +116,28 @@ public class ScoresPanel extends JPanel {
     }
 
     private ScoresTableModel loadData()
-    {       
-        String jsonUser1 = "{ \"rank\": \"1st\", \"score\": \"10min\", \"name\": \"kek\"}";
-        var jsonStream = getClass().getClassLoader().getResourceAsStream("scores.json");
-
-        String text = new BufferedReader(
-            new InputStreamReader(jsonStream, StandardCharsets.UTF_8))
-                .lines()
-                .collect(Collectors.joining("\n"));
-
-        ObjectMapper mapper = new ObjectMapper();
-        Scores scores = null;
+    {        
+        var scoresStream = getClass().getClassLoader().getResourceAsStream("scores.json");
+        
+        byte[] buffer = new byte[1000];
+        StringBuilder stringBuilder = new StringBuilder();
         try {
-            scores = mapper.readValue(text, Scores.class);
-        } catch (IOException e) {
-            e.printStackTrace();
+            while (scoresStream.read(buffer) != -1) {
+                stringBuilder.append(new String(buffer));
+                buffer = new byte[10];
+                scoresStream.close();
+            }
+        } catch (IOException ex) {
         }
-         
+        
+        var scoresJson = stringBuilder.toString();
+        System.out.println(scoresJson);
+        
+        Gson gson = new Gson();
+        JsonReader reader = new JsonReader(new StringReader(scoresJson));
+        Score[] scores = gson.fromJson(reader, Score[].class);
+        reader.setStrictness(Strictness.LENIENT);
+
         return new ScoresTableModel(scores);
     }
 

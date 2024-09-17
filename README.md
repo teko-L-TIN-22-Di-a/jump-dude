@@ -25,6 +25,10 @@ Im [Konzept](./docs/markdown/concept.md) ist die Grund Idee beschrieben, welche 
 
 Der Entwicklungsprozess wurde unter [Entwicklungsprozess](./docs/markdown/development-process.md) beschrieben.
 
+## Komponenten
+
+Die Dokumentation der wichtigen Klassen wurde unter [Overview Components](./docs/components/overview-components.md) festgehalten.
+
 ## JavaDocs
 
 [jump dude JavaDocs](https://teko-l-tin-22-di-a.github.io/jump-dude/)

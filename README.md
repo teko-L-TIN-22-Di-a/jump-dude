@@ -19,7 +19,7 @@ Optional: Items welche den Schaden von bereits berührten Hindernissen reduziere
 
 ## Konzept
 
-Im [Konzept](./docs/markdown/concept.md) ist die Grund Idee beschrieben, welche verfolgt wird.
+Im [Konzept](./docs/concept.md) ist die Grundidee beschrieben, welche verfolgt wird.
 
 ## Entwicklungsprozess
 

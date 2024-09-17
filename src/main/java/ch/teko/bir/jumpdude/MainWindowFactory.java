@@ -11,11 +11,11 @@ import ch.teko.bir.jumpdude.Player.PlayerController;
 
 public class MainWindowFactory {
     
-    public static void createMainWindow(String playerName)
+    public static void createMainWindow()
     {
         var panelModel = new MainPanelModel();
         var obstacleModel = new ObstacleModel(panelModel.getGroundY());
-        var playerController = new PlayerController(playerName, new CollisionHelper(obstacleModel));
+        var playerController = new PlayerController(new CollisionHelper(obstacleModel));
         
         var url = Main.class.getResource("/sprites/pink-man/jump.png");
         var kit = Toolkit.getDefaultToolkit();

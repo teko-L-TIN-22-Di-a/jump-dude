@@ -1,5 +1,7 @@
 package ch.teko.bir.jumpdude.Player;
 
+import ch.teko.bir.jumpdude.Position;
+
 public class Jump {
     private static final int JUMP_SPEED = 5;
 

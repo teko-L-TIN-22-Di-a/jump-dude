@@ -8,6 +8,7 @@ public enum PlayerState {
     SecondDoubleJumping,
     FallingAfterSecondDoubleJumping,
     Falling,
+    Flying,
     Hitting,
     GameOver
 }

@@ -30,6 +30,7 @@ import javax.swing.border.EmptyBorder;
 
 import ch.teko.bir.jumpdude.Main;
 import ch.teko.bir.jumpdude.MainWindowFactory;
+import ch.teko.bir.jumpdude.Options.Options;
 import ch.teko.bir.jumpdude.Options.OptionsPanel;
 import ch.teko.bir.jumpdude.Scores.ScoresPanelFactory;
 import javafx.scene.input.KeyEvent;
@@ -38,16 +39,9 @@ public class MenuPanel extends JPanel {
 
     private Font font;
     private JTextField nameField;
-    private String playerName = "enter name";
 
     public MenuPanel()
     {
-        Initialize();
-    }
-
-    public MenuPanel(String playerName)
-    {
-        this.playerName = playerName;
         Initialize();
     }
 
@@ -94,7 +88,7 @@ public class MenuPanel extends JPanel {
     private void loadNameTextField() {
         var nameLabel = new JLabel("Name:");
         nameLabel.setFont(font);
-        nameField = new JTextField(playerName, 8);
+        nameField = new JTextField(Options.PLAYER_NAME, 8);
            nameField.addKeyListener(new KeyAdapter() {
             public void keyTyped(KeyEvent e) { 
                 if (nameField.getText().length() >= 10 ) // limit textfield to 3 characters
@@ -167,7 +161,8 @@ public class MenuPanel extends JPanel {
 
     private void createMainWindow()
     {
-        MainWindowFactory.createMainWindow(nameField.getText());
+        Options.PLAYER_NAME = nameField.getText();
+        MainWindowFactory.createMainWindow();
     }
 
     private void createScoresWindow()

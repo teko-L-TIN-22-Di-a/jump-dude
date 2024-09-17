@@ -1,6 +1,8 @@
 package ch.teko.bir.jumpdude.Player;
 
 import ch.teko.bir.jumpdude.Hitbox.Hitbox;
+import ch.teko.bir.jumpdude.Options.Options;
+import ch.teko.bir.jumpdude.Position;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteLoader;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheet;
 
@@ -17,22 +19,27 @@ public class Player {
     private final int width = 100;
     private final int height = 100;
     private PlayerState state = PlayerState.Running;
+
     private final String runningSpritePath = "sprites/pink-man/run.png";
     private final String jumpingSpritePath = "sprites/pink-man/jump.png";
     private final String fallingSpritePath = "sprites/pink-man/fall.png";
     private final String doubleJumpingingSpritePath = "sprites/pink-man/doubleJump.png";
-    private final String HittingSpritePath = "sprites/pink-man/hit.png";
+    private final String hittingSpritePath = "sprites/pink-man/hit.png";
+    private final String flyingSpritePath = "sprites/pink-man/fly.png";
 
     public Hitbox hitbox;
+    private final int hitboxDifference = 30;
 
-    public Player(String playerName, int y)
+    public Player(int groundY)
     {
-        this.name = playerName;
-        this.position = new Position(100, y);
+        this.name = Options.PLAYER_NAME;
+        this.position = new Position(100, groundY);
         spriteSheet = SpriteLoader.load(runningSpritePath, 12, 12);
-        var hitboxWidth = width - 35;
-        var hitboxHeight = height - 35;
-        hitbox = new Hitbox(this.position, hitboxWidth, hitboxHeight);
+
+        var hitboxPosition = new Position(100, groundY);
+        var hitboxWidth = width - hitboxDifference;
+        var hitboxHeight = height - hitboxDifference;
+        hitbox = new Hitbox(hitboxPosition, hitboxWidth, hitboxHeight);
     }
 
     public String getName()
@@ -54,6 +61,8 @@ public class Player {
     public void updatePosition(int x, int y) {
         this.position.setX(x);
         this.position.setY(y);
+        this.hitbox.setX(x+(hitboxDifference/2));
+        this.hitbox.setY(y+(hitboxDifference/2));
     }
     
     public int getMaxJumpHeight() {
@@ -89,7 +98,8 @@ public class Player {
             case Jumping -> spriteSheet = SpriteLoader.load(jumpingSpritePath, 1, 1);
             case FirstDoubleJumping, SecondDoubleJumping -> spriteSheet = SpriteLoader.load(doubleJumpingingSpritePath, 6, 6);
             case Falling, FallingAfterFirstDoubleJumping, FallingAfterSecondDoubleJumping -> spriteSheet = SpriteLoader.load(fallingSpritePath, 1, 1);
-            case Hitting -> spriteSheet =  SpriteLoader.load(HittingSpritePath, 7, 7);
+            case Flying -> spriteSheet = SpriteLoader.load(flyingSpritePath, 1, 1);
+            case Hitting -> spriteSheet =  SpriteLoader.load(hittingSpritePath, 7, 7);
             default -> {
             }
         }

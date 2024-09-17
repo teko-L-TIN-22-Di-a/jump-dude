@@ -36,10 +36,16 @@ public class ScoresController {
             var scoresJson = stringBuilder.toString();
             System.out.println(scoresJson);
             
-            Gson gson = new Gson();
-            JsonReader reader = new JsonReader(new StringReader(scoresJson));
-            scores = gson.fromJson(reader, Score[].class);
-            reader.setStrictness(Strictness.LENIENT);
+            if (!stringBuilder.isEmpty())
+            {
+                Gson gson = new Gson();
+                JsonReader reader = new JsonReader(new StringReader(scoresJson));
+                scores = gson.fromJson(reader, Score[].class);
+                reader.setStrictness(Strictness.LENIENT);
+            }
+            else {
+                scores = new Score[] {new Score("kek", 1000)};
+            }
         } catch (Exception e) {
         }
         return new ScoresTableModel(scores);

@@ -162,14 +162,7 @@ public class ScoresPanel extends JPanel {
     private void createMenuWindow()
     {
         controller.saveJson(model.getScoreData());
-        if (this.currentScore == null)
-        {
-            MenuWindowFactory.createMenuWindow();
-        }
-        else{
-            MenuWindowFactory.createMenuWindow(this.currentScore.getName());
-
-        }
+        MenuWindowFactory.createMenuWindow();
     }
 
     private void closeMenuWindow(ActionEvent e)

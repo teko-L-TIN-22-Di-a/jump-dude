@@ -1,4 +1,4 @@
-package ch.teko.bir.jumpdude.Player;
+package ch.teko.bir.jumpdude;
 
 public class Position {
 

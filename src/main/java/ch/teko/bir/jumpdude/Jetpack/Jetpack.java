@@ -1,4 +1,4 @@
-package ch.teko.bir.jumpdude.Obstacles;
+package ch.teko.bir.jumpdude.Jetpack;
 
 import java.awt.image.BufferedImage;
 
@@ -7,8 +7,8 @@ import ch.teko.bir.jumpdude.Position;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteLoader;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheet;
 
-public class Obstacle {
-
+public class Jetpack {
+    
     public Position position;
     private int width = 0;
     private int height = 0;
@@ -17,14 +17,14 @@ public class Obstacle {
     private final BufferedImage image;
 
     public Hitbox hitbox;
-    private final int hitboxDifference = 20;
+    private int hitboxDifference = 20;
 
-    public Obstacle(int x, int y, int width, int height){
+    public Jetpack(int x, int y, int width, int height){
         this.position = new Position(x, y);
         this.width = width;
         this.height = height;
         
-        this.spriteSheet = SpriteLoader.load("sprites/obstacle/spikes.png", 1, 1);
+        this.spriteSheet = SpriteLoader.load("sprites/jetpack/jetpack.png", 1, 1);
         this.image = spriteSheet.getSpriteAtIndex(0);
 
         var hitboxPosition = new Position(x, y);
@@ -37,16 +37,16 @@ public class Obstacle {
         return position.getX();
     }
     public void setX(int x) {
-        this.position.setX(x);
-        this.hitbox.setX(x+(hitboxDifference/2));
+        position.setX(x);
+        hitbox.setX(x);
     }
 
     public int getY() {
         return position.getY();
     }
     public void setY(int y) {
-        this.position.setY(y);
-        this.hitbox.setY(y+(hitboxDifference/2));
+        position.setY(y);
+        hitbox.setY(y);
     }
 
     public int getWidth() {
@@ -54,7 +54,6 @@ public class Obstacle {
     }
     public void setWidth(int width) {
         this.width = width;
-        this.hitbox.setWidth(width - hitboxDifference);
     }
  
     public int getHeight() {
@@ -62,7 +61,6 @@ public class Obstacle {
     }
     public void setHeight(int height) {
         this.height = height;
-        this.hitbox.setHeight(height - hitboxDifference);
     }
 
     public SpriteSheet getSpriteSheet() {

@@ -19,7 +19,6 @@ import java.io.InputStream;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -40,8 +39,7 @@ public class OptionsPanel extends JPanel {
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, fontInputStream);
             font = font.deriveFont(Font.BOLD, 40f);
-        } catch (FontFormatException ex) {
-        } catch (IOException ex) {
+        } catch (FontFormatException | IOException ex) {
         }
 
         setBorder(new EmptyBorder(10, 10, 10, 10));

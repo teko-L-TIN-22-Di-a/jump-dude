@@ -20,9 +20,11 @@ import javax.swing.Timer;
 
 import ch.teko.bir.jumpdude.Ground.GroundController;
 import ch.teko.bir.jumpdude.Ground.GroundModel;
+import ch.teko.bir.jumpdude.Jetpack.JetpackController;
 import ch.teko.bir.jumpdude.Menu.MenuPanel;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleController;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleModel;
+import ch.teko.bir.jumpdude.Options.Options;
 import ch.teko.bir.jumpdude.Player.PlayerController;
 import ch.teko.bir.jumpdude.Scores.ScoresPanelFactory;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteEngine;
@@ -39,6 +41,7 @@ public class MainPanel extends JPanel implements ActionListener {
     private final MainPanelModel panelModel;
     private final ObstacleController obstacleController;
     private final GroundController groundController;
+    private final JetpackController jetpackController;
     
     private Font font;
 
@@ -49,6 +52,7 @@ public class MainPanel extends JPanel implements ActionListener {
         this.playerController = playerController;
         this.obstacleController = new ObstacleController(obstacleModel);
         this.groundController = new GroundController(new GroundModel());
+        this.jetpackController = new JetpackController(model.getGroundY());
 
         GameSpeedController.setInitialSpeed();
 
@@ -87,7 +91,7 @@ public class MainPanel extends JPanel implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 if (playerController.getPlayerGotHit())
                 {
-                    ScoresPanelFactory.createScoresWindow(playerController.getPlayerName(), elapsedTime);
+                    ScoresPanelFactory.createScoresWindow(Options.PLAYER_NAME, elapsedTime);
                     playerController.setGameOver();
                     closeWindow();
                 }
@@ -110,7 +114,10 @@ public class MainPanel extends JPanel implements ActionListener {
         updateTimeLabel();
         drawGround();
         drawObstacles();
+        drawJetPack();
         drawPlayer();
+        
+        graphics2d.dispose();
     }
     
     private void drawPlayer()
@@ -125,7 +132,7 @@ public class MainPanel extends JPanel implements ActionListener {
     
     private void drawObstacles()
     {
-        obstacleController.draw(graphics2d, this);
+       obstacleController.draw(graphics2d, this);
     }
     
     private void updateTimeLabel()
@@ -139,6 +146,10 @@ public class MainPanel extends JPanel implements ActionListener {
         graphics2d.drawString(time, 850, 50);
     }
 
+    private void drawJetPack()
+    {
+        jetpackController.draw(graphics2d, this);
+    }
     
     private void closeWindow()
     {
@@ -153,15 +164,13 @@ public class MainPanel extends JPanel implements ActionListener {
             if (playerController.getPlayerGotHit())
             {
                 GameSpeedController.setIdleSpeed();
-                obstacleController.repaint(panelModel.getWindowWidth());
-                groundController.repaint(panelModel.getWindowWidth());
-                repaint();
             }else {
                 increaseSpeedEvery10Seconds();
-                obstacleController.repaint(panelModel.getWindowWidth());
-                groundController.repaint(panelModel.getWindowWidth());
-                repaint();
             }
+            obstacleController.repaint(panelModel.getWindowWidth());
+            groundController.repaint(panelModel.getWindowWidth());
+            jetpackController.repaint(panelModel.getWindowWidth());
+            repaint();
         }
     }
 

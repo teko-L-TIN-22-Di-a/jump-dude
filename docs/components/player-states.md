@@ -1,6 +1,6 @@
 # Player States
 
-In der Klasse (PlayerState.java)[.\src\main\java\ch\teko\bir\jumpdude\Player\PlayerState.java] gibt es unterschiedliche Stati die die Klasse `Player` haben kann.
+In der Klasse [PlayerState.java](../../src/main/java/ch/teko/bir/jumpdude/Player/PlayerState.java) gibt es unterschiedliche Stati die die Klasse `Player` haben kann.
 
 ## Beschreibung der einzelnen Stati
 
@@ -17,3 +17,5 @@ Im Gui passiert bei den 3 Falling `Falling`, `FallingAfterFirstDoubleJumping`, `
 Der Status `Falling` wird nur dann ausgeführt, wenn **kein** Double Jump ausgeführt wurde.
 
 Der Status `Hitting` ist dazu da um anzugeben ob der Player ein Obstacle berührt hat damit die Hitting Sprites geladen werden können für einen kurzen Moment. Anschliessend wird das Game beendet und der Player wechselt in den `GameOver` Stati.
+
+Der Status `Flying` wird nur dann wenn das Jetpack genommen wurde. Aktuell kommt man vom Flying nicht wieder zum `Running` State.

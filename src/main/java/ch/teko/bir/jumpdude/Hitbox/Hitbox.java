@@ -34,6 +34,13 @@ public class Hitbox {
         position.setY(y);
     }
 
+    public void setHeight(int value) {
+        this.height = value;
+    }
+    public void setWidth(int value) {
+        this.width = value;
+    }
+
     // returns whether bounds of this Hitbox intersects the bounds of the given Hitbox
     public boolean intersects(Hitbox hitbox) {
         int x = position.getX();

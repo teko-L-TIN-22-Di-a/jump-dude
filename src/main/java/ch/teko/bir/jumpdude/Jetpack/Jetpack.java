@@ -1,4 +1,4 @@
-package ch.teko.bir.jumpdude.Obstacles;
+package ch.teko.bir.jumpdude.Jetpack;
 
 import java.awt.image.BufferedImage;
 
@@ -7,8 +7,8 @@ import ch.teko.bir.jumpdude.Player.Position;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteLoader;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheet;
 
-public class Obstacle {
-
+public class Jetpack {
+    
     public Position position;
     private int width = 0;
     private int height = 0;
@@ -18,16 +18,16 @@ public class Obstacle {
 
     public Hitbox hitbox;
 
-    public Obstacle(int x, int y, int width, int height){
+    public Jetpack(int x, int y, int width, int height){
         this.position = new Position(x, y);
         this.width = width;
         this.height = height;
         
-        this.spriteSheet = SpriteLoader.load("sprites/obstacle/spikes.png", 1, 1);
+        this.spriteSheet = SpriteLoader.load("sprites/jetpack/jetpack.png", 1, 1);
         this.image = spriteSheet.getSpriteAtIndex(0);
 
         var hitboxWidth = width - 10;
-        var hitboxHeight = (int)(height * 0.8);
+        var hitboxHeight = height - 10;
         hitbox = new Hitbox(this.position, hitboxWidth, hitboxHeight);
     }
     
@@ -52,7 +52,6 @@ public class Obstacle {
     }
     public void setWidth(int width) {
         this.width = width;
-        this.hitbox.setWidth(width);
     }
  
     public int getHeight() {
@@ -60,7 +59,6 @@ public class Obstacle {
     }
     public void setHeight(int height) {
         this.height = height;
-        this.hitbox.setHeight(height);
     }
 
     public SpriteSheet getSpriteSheet() {

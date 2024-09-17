@@ -21,7 +21,8 @@ public class Player {
     private final String jumpingSpritePath = "sprites/pink-man/jump.png";
     private final String fallingSpritePath = "sprites/pink-man/fall.png";
     private final String doubleJumpingingSpritePath = "sprites/pink-man/doubleJump.png";
-    private final String HittingSpritePath = "sprites/pink-man/hit.png";
+    private final String hittingSpritePath = "sprites/pink-man/hit.png";
+    private final String flyingSpritePath = "sprites/pink-man/fly.png";
 
     public Hitbox hitbox;
 
@@ -89,7 +90,8 @@ public class Player {
             case Jumping -> spriteSheet = SpriteLoader.load(jumpingSpritePath, 1, 1);
             case FirstDoubleJumping, SecondDoubleJumping -> spriteSheet = SpriteLoader.load(doubleJumpingingSpritePath, 6, 6);
             case Falling, FallingAfterFirstDoubleJumping, FallingAfterSecondDoubleJumping -> spriteSheet = SpriteLoader.load(fallingSpritePath, 1, 1);
-            case Hitting -> spriteSheet =  SpriteLoader.load(HittingSpritePath, 7, 7);
+            case Flying -> spriteSheet = SpriteLoader.load(flyingSpritePath, 1, 1);
+            case Hitting -> spriteSheet =  SpriteLoader.load(hittingSpritePath, 7, 7);
             default -> {
             }
         }

@@ -19,7 +19,7 @@ public class Player {
     private PlayerState state = PlayerState.Running;
     private final String runningSpritePath = "sprites/pink-man/run.png";
     private final String jumpingSpritePath = "sprites/pink-man/jump.png";
-    private final String FallingSpritePath = "sprites/pink-man/fall.png";
+    private final String fallingSpritePath = "sprites/pink-man/fall.png";
     private final String doubleJumpingingSpritePath = "sprites/pink-man/doubleJump.png";
     private final String HittingSpritePath = "sprites/pink-man/hit.png";
 
@@ -87,8 +87,8 @@ public class Player {
         switch (this.state) {
             case Running -> spriteSheet = SpriteLoader.load(runningSpritePath, 12, 12);
             case Jumping -> spriteSheet = SpriteLoader.load(jumpingSpritePath, 1, 1);
-            case DoubleJumping -> spriteSheet = SpriteLoader.load(doubleJumpingingSpritePath, 6, 6);
-            case Falling -> spriteSheet = SpriteLoader.load(FallingSpritePath, 1, 1);
+            case FirstDoubleJumping, SecondDoubleJumping -> spriteSheet = SpriteLoader.load(doubleJumpingingSpritePath, 6, 6);
+            case Falling, FallingAfterFirstDoubleJumping, FallingAfterSecondDoubleJumping -> spriteSheet = SpriteLoader.load(fallingSpritePath, 1, 1);
             case Hitting -> spriteSheet =  SpriteLoader.load(HittingSpritePath, 7, 7);
             default -> {
             }

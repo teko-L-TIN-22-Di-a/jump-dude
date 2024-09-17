@@ -3,7 +3,7 @@ package ch.teko.bir.jumpdude.Obstacles;
 import java.awt.image.BufferedImage;
 
 import ch.teko.bir.jumpdude.Hitbox.Hitbox;
-import ch.teko.bir.jumpdude.Player.Position;
+import ch.teko.bir.jumpdude.Position;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteLoader;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheet;
 

@@ -10,6 +10,7 @@ import ch.teko.bir.jumpdude.GameSpeedController;
 public class ObstacleController {
     
     private final ObstacleModel obstacleModel;
+    private boolean flyingState;
 
     public ObstacleController(ObstacleModel model)
     {
@@ -19,8 +20,26 @@ public class ObstacleController {
     public void repaint(int windowWidth) {
         var obstacles = getObstacles();
 
+        if (flyingState)
+        {
+            makeThemDisappear(obstacles);
+        }
+        else
+        {
+            for (var obstacle : obstacles) {
+                obstacle.setX(obstacle.getX() - GameSpeedController.getRunningSpeed());
+            }
+        }
+    }
+
+    private void makeThemDisappear(ArrayList<Obstacle> obstacles)
+    {
         for (var obstacle : obstacles) {
-            obstacle.setX(obstacle.getX() - GameSpeedController.getSpeed());
+            obstacle.setY(obstacle.getY() + GameSpeedController.getFlyingSpeed());
+
+            if (obstacle.getY() >= 1500) {
+                obstacle.setY(0);
+            }
         }
     }
 
@@ -29,12 +48,26 @@ public class ObstacleController {
         var obstacles = obstacleModel.getObstacleList();
 
         for (Obstacle obstacle : obstacles) {
-            if (obstacle.getX() <= -150) {
-                var newRandomObstacle = RandomObstacleGenerator.generateRandom(obstacleModel.getGroundY());
-                obstacle.setHeight(newRandomObstacle.getHeight());
-                obstacle.setWidth(newRandomObstacle.getWidth());
-                obstacle.setX(newRandomObstacle.getX());
-                obstacle.setY(newRandomObstacle.getY());
+            if (!flyingState)
+            {
+                if (obstacle.getX() <= -150) {
+                    var newRandomObstacle = RandomObstacleGenerator.generateRandomGround(obstacleModel.getGroundY());
+                    obstacle.setHeight(newRandomObstacle.getHeight());
+                    obstacle.setWidth(newRandomObstacle.getWidth());
+                    obstacle.setX(newRandomObstacle.getX());
+                    obstacle.setY(newRandomObstacle.getY());
+                }
+            }
+            else
+            {
+                if (obstacle.getY() >= 1200)
+                {
+                    var newRandomObstacle = RandomObstacleGenerator.generateRandomSky(obstacleModel.getGroundY());
+                    obstacle.updateSky(newRandomObstacle.getX(), 
+                    newRandomObstacle.getY(),
+                    newRandomObstacle.getHeight(),
+                    newRandomObstacle.getWidth());
+                }
             }
         }
         
@@ -53,6 +86,14 @@ public class ObstacleController {
             panel); 
             
             obstacle.hitbox.draw(graphics2d, panel);
+        }
+    }
+
+    public void setFlyingState(boolean state) {
+        flyingState = state;
+        var obstacles = obstacleModel.getObstacleList();
+        for (var obstacle : obstacles) {
+            obstacle.setFlyingState();
         }
     }
 }

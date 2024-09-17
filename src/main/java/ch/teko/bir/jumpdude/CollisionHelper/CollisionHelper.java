@@ -1,21 +1,24 @@
 package ch.teko.bir.jumpdude.CollisionHelper;
 
 import ch.teko.bir.jumpdude.Hitbox.Hitbox;
+import ch.teko.bir.jumpdude.Jetpack.JetpackModel;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleModel;
 
 /**
- * Is the Middleware from Obstacle and Player. 
+ * Is the Middleware from Obstacle and Player and Jetpack. 
  * It's main job is to detect if a Player hits a obstacle.
  * The idea is, to remove the direct dependency between player and obstacle.
  **/
 public class CollisionHelper {
 
-    public CollisionHelper(ObstacleModel obstacleModel)
+    public ObstacleModel obstacleModel;
+    public JetpackModel jetpackModel;
+
+    public CollisionHelper(ObstacleModel obstacleModel, JetpackModel jetpackModel)
     {
         this.obstacleModel = obstacleModel;
-    }
-    
-    public ObstacleModel obstacleModel;
+        this.jetpackModel = jetpackModel;
+    }    
 
     public boolean CheckIfPlayerHitsObstacle(Hitbox playerHitbox)
     {
@@ -30,5 +33,13 @@ public class CollisionHelper {
             }
         }
         return false;
+    }
+
+    public boolean CheckIfPlayerHitsJetpack(Hitbox playerHitbox)
+    {
+        var jetpack = jetpackModel.getJetpack();
+
+        var hitJetpack = jetpack.hitbox.intersects(playerHitbox);
+        return hitJetpack;
     }
 }

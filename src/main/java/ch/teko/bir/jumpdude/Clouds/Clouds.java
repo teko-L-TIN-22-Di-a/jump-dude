@@ -1,14 +1,14 @@
-package ch.teko.bir.jumpdude.Jetpack;
+package ch.teko.bir.jumpdude.Clouds;
 
 import java.awt.image.BufferedImage;
 
-import ch.teko.bir.jumpdude.Hitbox.Hitbox;
 import ch.teko.bir.jumpdude.Position;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteLoader;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheet;
 
-public class Jetpack{
-    
+//* Only Grapical, no Hitbox needed. */
+public class Clouds {
+
     public Position position;
     private int width = 0;
     private int height = 0;
@@ -16,37 +16,27 @@ public class Jetpack{
     private final SpriteSheet spriteSheet;
     private final BufferedImage image;
 
-    public Hitbox hitbox;
-    private int hitboxDifference = 20;
-
-    public Jetpack(int x, int y, int width, int height){
+    public Clouds(int x, int y, int width, int height){
         this.position = new Position(x, y);
         this.width = width;
         this.height = height;
         
-        this.spriteSheet = SpriteLoader.load("sprites/jetpack/jetpack.png", 1, 1);
+        this.spriteSheet = SpriteLoader.load("sprites/clouds/clouds.png", 1, 1);
         this.image = spriteSheet.getSpriteAtIndex(0);
-
-        var hitboxPosition = new Position(x, y);
-        var hitboxWidth = width - hitboxDifference;
-        var hitboxHeight = height - hitboxDifference;
-        hitbox = new Hitbox(hitboxPosition, hitboxWidth, hitboxHeight);
     }
     
     public int getX() {
         return position.getX();
     }
     public void setX(int x) {
-        position.setX(x);
-        hitbox.setX(x);
+        this.position.setX(x);
     }
 
     public int getY() {
         return position.getY();
     }
     public void setY(int y) {
-        position.setY(y);
-        hitbox.setY(y);
+        this.position.setY(y);
     }
 
     public int getWidth() {
@@ -69,5 +59,5 @@ public class Jetpack{
 
     public BufferedImage getImage() {
         return image;
-    } 
+    }
 }

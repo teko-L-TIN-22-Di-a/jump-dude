@@ -1,24 +1,43 @@
 package ch.teko.bir.jumpdude;
 
 public class GameSpeedController {
-    private static int GAME_SPEED = 5;
+    private static int RUNNING_SPEED = 5;
+    private static int FLYING_SPEED = 5;
 
-    public static void increaseSpeed()
+    public static void increaseRunningSpeed()
     {
-        GAME_SPEED += 5;
+        RUNNING_SPEED += 5;
     }
 
-    public static int getSpeed()
+    public static int getRunningSpeed()
     {
-        return GAME_SPEED;
+        return RUNNING_SPEED;
     }
 
-    public static void setIdleSpeed() {
-        GAME_SPEED = 0;
+    public static void setRunningSpeedToIdle() {
+        RUNNING_SPEED = 0;
     }
 
-    public static void setInitialSpeed()
+    public static void setInitialRunningSpeed()
     {
-        GAME_SPEED = 5;
+        RUNNING_SPEED = 5;
+    }
+    public static void increaseFlyingSpeed()
+    {
+        FLYING_SPEED += 5;
+    }
+
+    public static int getFlyingSpeed()
+    {
+        return FLYING_SPEED;
+    }
+
+    public static void setFlyingSpeedToIdle() {
+        FLYING_SPEED = 0;
+    }
+
+    public static void setInitialFlyingSpeed()
+    {
+        FLYING_SPEED = 5;
     }
 }

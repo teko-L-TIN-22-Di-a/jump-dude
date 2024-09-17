@@ -18,9 +18,11 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
+import ch.teko.bir.jumpdude.Clouds.CloudsController;
 import ch.teko.bir.jumpdude.Ground.GroundController;
 import ch.teko.bir.jumpdude.Ground.GroundModel;
 import ch.teko.bir.jumpdude.Jetpack.JetpackController;
+import ch.teko.bir.jumpdude.Jetpack.JetpackModel;
 import ch.teko.bir.jumpdude.Menu.MenuPanel;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleController;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleModel;
@@ -42,19 +44,21 @@ public class MainPanel extends JPanel implements ActionListener {
     private final ObstacleController obstacleController;
     private final GroundController groundController;
     private final JetpackController jetpackController;
+    private CloudsController cloudsController;
     
     private Font font;
 
-    public MainPanel(MainPanelModel model, PlayerController playerController, ObstacleModel obstacleModel)         
+    public MainPanel(MainPanelModel model, PlayerController playerController, ObstacleModel obstacleModel, JetpackModel jetpackModel)         
     {
         this.panelModel = model;
         
         this.playerController = playerController;
         this.obstacleController = new ObstacleController(obstacleModel);
         this.groundController = new GroundController(new GroundModel());
-        this.jetpackController = new JetpackController(model.getGroundY());
+        this.jetpackController = new JetpackController(jetpackModel);        
+        this.cloudsController = new CloudsController();
 
-        GameSpeedController.setInitialSpeed();
+        GameSpeedController.setInitialRunningSpeed();
 
         loadFont();
         createSpriteEngine();
@@ -115,8 +119,8 @@ public class MainPanel extends JPanel implements ActionListener {
         drawGround();
         drawObstacles();
         drawJetPack();
+        drawClouds();        
         drawPlayer();
-        
         graphics2d.dispose();
     }
     
@@ -150,7 +154,12 @@ public class MainPanel extends JPanel implements ActionListener {
     {
         jetpackController.draw(graphics2d, this);
     }
-    
+
+    private void drawClouds()
+    {
+        cloudsController.draw(graphics2d, this);
+    }
+        
     private void closeWindow()
     {
         var window = SwingUtilities.getWindowAncestor(this);
@@ -163,13 +172,23 @@ public class MainPanel extends JPanel implements ActionListener {
         {
             if (playerController.getPlayerGotHit())
             {
-                GameSpeedController.setIdleSpeed();
-            }else {
+                GameSpeedController.setRunningSpeedToIdle();
+            }
+            else if (playerController.getPlayerIsFlying())
+            {
+                GameSpeedController.setRunningSpeedToIdle();
+                obstacleController.setFlyingState(true);
+                groundController.setFlying(true);
+                jetpackController.removeJetPack();
+                cloudsController.setFlyingState(true);
+            }
+            else {
                 increaseSpeedEvery10Seconds();
             }
             obstacleController.repaint(panelModel.getWindowWidth());
             groundController.repaint(panelModel.getWindowWidth());
             jetpackController.repaint(panelModel.getWindowWidth());
+            cloudsController.repaint();
             repaint();
         }
     }
@@ -183,7 +202,7 @@ public class MainPanel extends JPanel implements ActionListener {
             var test = seconds % 5;
             if (test == 0)
             {
-                GameSpeedController.increaseSpeed();
+                GameSpeedController.increaseRunningSpeed();
             }
         }
     }

@@ -1,5 +1,6 @@
 # Overview Components
 
+* [Options](./options.md)
 * [Player States](./player-states.md)
 * [Hitboxes](./hitboxes.md)
-* [Options](./options.md)
+* [Collision Handling](./collision-handling.md)

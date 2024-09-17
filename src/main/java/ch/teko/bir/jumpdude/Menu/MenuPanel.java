@@ -182,6 +182,7 @@ public class MenuPanel extends JPanel {
         var img = kit.createImage(url);
 
         JFrame window = new JFrame("Jump Dude");
+        window.setName("options");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(1000, 800);
         window.add(new OptionsPanel());
@@ -192,8 +193,7 @@ public class MenuPanel extends JPanel {
 
     private void closeMenuWindow(ActionEvent e)
     {
-        JComponent comp = (JComponent) e.getSource();
-        var win = SwingUtilities.getWindowAncestor(comp);
-        win.dispose();
+        var window = SwingUtilities.getWindowAncestor(this);
+        window.dispose();
     }
 }

@@ -3,22 +3,20 @@ package ch.teko.bir.jumpdude.Obstacles;
 import java.util.ArrayList;
 
 public class ObstacleModel {
+    private final int groundY;
 
     public ObstacleModel(int groundY){
-        generateObstacles(groundY);
+        this.groundY = groundY;
+        generateInitialObstacles();
     }
 
     private ArrayList<Obstacle> obstacleList = new ArrayList<>();
-    
-    public void setObstacleList(ArrayList<Obstacle> obstacleList) {
-        this.obstacleList = obstacleList;
-    }
 
     public ArrayList<Obstacle> getObstacleList() {
         return obstacleList;
     }
 
-    private void generateObstacles(int groundY)
+    private void generateInitialObstacles()
     {
         int height = 100;
         obstacleList.add(new Obstacle(900, groundY - height, 80, height));
@@ -26,5 +24,13 @@ public class ObstacleModel {
         obstacleList.add(new Obstacle(800, groundY - height, 70, height));
         height = 80;
         obstacleList.add(new Obstacle(1500, groundY - height, 40, height));
+    }
+
+    public int getGroundY() {
+        return groundY;
+    }
+
+    public void AddToObstacles(Obstacle obstacle) {
+        obstacleList.add(obstacle);
     }
 }

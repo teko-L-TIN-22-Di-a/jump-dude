@@ -20,7 +20,7 @@ public class CollisionHelper {
     public boolean CheckIfPlayerHitsObstacle(Hitbox playerHitbox)
     {
         var obstacles = obstacleModel.getObstacleList();
-        var hitObstacle = false;
+        Boolean hitObstacle;
 
         for (var obstacle : obstacles) {
             hitObstacle = obstacle.hitbox.intersects(playerHitbox);

@@ -111,8 +111,7 @@ public class OptionsPanel extends JPanel {
 
     private void closeMenuWindow(ActionEvent e)
     {
-        JComponent comp = (JComponent) e.getSource();
-        var win = SwingUtilities.getWindowAncestor(comp);
-        win.dispose();
+        var window = SwingUtilities.getWindowAncestor(this);
+        window.dispose();
     }
 }

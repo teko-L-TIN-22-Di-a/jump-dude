@@ -22,6 +22,7 @@ public class MainWindowFactory {
         var img = kit.createImage(url);
 
         JFrame window = new JFrame("Jump Dude");
+        window.setName("main");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(1000, 800);
         window.add(new MainPanel(panelModel, playerController, obstacleModel));

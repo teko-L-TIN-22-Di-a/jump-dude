@@ -62,8 +62,7 @@ public class MainPanel extends JPanel implements ActionListener {
         try {
             font = Font.createFont(Font.TRUETYPE_FONT, fontInputStream);
             font = font.deriveFont(Font.BOLD, 20f);
-        } catch (FontFormatException ex) {
-        } catch (IOException ex) {
+        } catch (FontFormatException | IOException ex) {
         }
     }
     private void createSpriteEngine() {

@@ -149,8 +149,7 @@ public class MainPanel extends JPanel implements ActionListener {
         {
             if (playerController.getPlayerGotHit())
             {
-                obstacleController.setIdleSpeed();
-                groundController.setIdleSpeed();
+                GameSpeedController.setIdleSpeed();
                 obstacleController.repaint(panelModel.getWindowWidth());
                 groundController.repaint(panelModel.getWindowWidth());
                 repaint();

@@ -5,26 +5,22 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-public class ObstacleController {
+import ch.teko.bir.jumpdude.GameSpeedController;
 
-    private int speed = 5;
+public class ObstacleController {
+    
     private final ObstacleModel obstacleModel;
 
     public ObstacleController(ObstacleModel model)
     {
         this.obstacleModel = model;        
     }
-   
-    public void setIdleSpeed()
-    {
-        speed = 0;
-    }
 
     public void repaint(int windowWidth) {
         var obstacles = getObstacles();
 
         for (var obstacle : obstacles) {
-            obstacle.setX(obstacle.getX() - speed);
+            obstacle.setX(obstacle.getX() - GameSpeedController.getSpeed());
         }
     }
 

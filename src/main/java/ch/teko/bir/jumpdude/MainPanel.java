@@ -115,6 +115,8 @@ public class MainPanel extends JPanel implements ActionListener {
         drawObstacles();
         drawJetPack();
         drawPlayer();
+        
+        graphics2d.dispose();
     }
     
     private void drawPlayer()

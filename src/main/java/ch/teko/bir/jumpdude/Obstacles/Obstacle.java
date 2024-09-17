@@ -17,6 +17,7 @@ public class Obstacle {
     private final BufferedImage image;
 
     public Hitbox hitbox;
+    private final int hitboxDifference = 20;
 
     public Obstacle(int x, int y, int width, int height){
         this.position = new Position(x, y);
@@ -26,25 +27,26 @@ public class Obstacle {
         this.spriteSheet = SpriteLoader.load("sprites/obstacle/spikes.png", 1, 1);
         this.image = spriteSheet.getSpriteAtIndex(0);
 
-        var hitboxWidth = width - 10;
-        var hitboxHeight = (int)(height * 0.8);
-        hitbox = new Hitbox(this.position, hitboxWidth, hitboxHeight);
+        var hitboxPosition = new Position(x, y);
+        var hitboxWidth = width - hitboxDifference;
+        var hitboxHeight = height - hitboxDifference;
+        hitbox = new Hitbox(hitboxPosition, hitboxWidth, hitboxHeight);
     }
     
     public int getX() {
         return position.getX();
     }
     public void setX(int x) {
-        position.setX(x);
-        hitbox.setX(x);
+        this.position.setX(x);
+        this.hitbox.setX(x+(hitboxDifference/2));
     }
 
     public int getY() {
         return position.getY();
     }
     public void setY(int y) {
-        position.setY(y);
-        hitbox.setY(y);
+        this.position.setY(y);
+        this.hitbox.setY(y+(hitboxDifference/2));
     }
 
     public int getWidth() {

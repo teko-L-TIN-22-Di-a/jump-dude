@@ -51,6 +51,8 @@ public class ObstacleController {
             obstacle.getWidth(), 
             obstacle.getHeight(), 
             panel); 
+            
+            obstacle.hitbox.draw(graphics2d, panel);
         }
     }
 }

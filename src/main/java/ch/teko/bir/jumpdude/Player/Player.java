@@ -17,6 +17,7 @@ public class Player {
     private final int width = 100;
     private final int height = 100;
     private PlayerState state = PlayerState.Running;
+
     private final String runningSpritePath = "sprites/pink-man/run.png";
     private final String jumpingSpritePath = "sprites/pink-man/jump.png";
     private final String fallingSpritePath = "sprites/pink-man/fall.png";
@@ -25,15 +26,18 @@ public class Player {
     private final String flyingSpritePath = "sprites/pink-man/fly.png";
 
     public Hitbox hitbox;
+    private final int hitboxDifference = 30;
 
-    public Player(String playerName, int y)
+    public Player(String playerName, int groundY)
     {
         this.name = playerName;
-        this.position = new Position(100, y);
+        this.position = new Position(100, groundY);
         spriteSheet = SpriteLoader.load(runningSpritePath, 12, 12);
-        var hitboxWidth = width - 35;
-        var hitboxHeight = height - 35;
-        hitbox = new Hitbox(this.position, hitboxWidth, hitboxHeight);
+
+        var hitboxPosition = new Position(100, groundY);
+        var hitboxWidth = width - hitboxDifference;
+        var hitboxHeight = height - hitboxDifference;
+        hitbox = new Hitbox(hitboxPosition, hitboxWidth, hitboxHeight);
     }
 
     public String getName()
@@ -55,6 +59,8 @@ public class Player {
     public void updatePosition(int x, int y) {
         this.position.setX(x);
         this.position.setY(y);
+        this.hitbox.setX(x+(hitboxDifference/2));
+        this.hitbox.setY(y+(hitboxDifference/2));
     }
     
     public int getMaxJumpHeight() {

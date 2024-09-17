@@ -26,8 +26,8 @@ public class Jetpack {
         this.spriteSheet = SpriteLoader.load("sprites/jetpack/jetpack.png", 1, 1);
         this.image = spriteSheet.getSpriteAtIndex(0);
 
-        var hitboxWidth = width - 10;
-        var hitboxHeight = height - 10;
+        var hitboxWidth = width;
+        var hitboxHeight = height;
         hitbox = new Hitbox(this.position, hitboxWidth, hitboxHeight);
     }
     

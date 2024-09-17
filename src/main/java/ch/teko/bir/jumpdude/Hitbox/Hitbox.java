@@ -1,6 +1,9 @@
 package ch.teko.bir.jumpdude.Hitbox;
 
-// https://www.stefanonsoftware.com/post/gamedev-hit-detection
+import java.awt.Color;
+import java.awt.Graphics2D;
+
+import javax.swing.JPanel;
 
 import ch.teko.bir.jumpdude.Player.Position;
 
@@ -39,6 +42,11 @@ public class Hitbox {
     }
     public void setWidth(int value) {
         this.width = value;
+    }
+
+    public void draw(Graphics2D graphics2d, JPanel panel) {
+        graphics2d.setColor(Color.red);
+        graphics2d.drawRect(this.position.getX(), this.position.getY(), this.width, this.height);
     }
 
     // returns whether bounds of this Hitbox intersects the bounds of the given Hitbox

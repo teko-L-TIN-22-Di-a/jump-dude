@@ -33,7 +33,7 @@ public class PlayerController {
         doMovementFromState(windowWidth, playerSprite.getWidth());
 
         graphics2d.drawImage(playerSprite, player.getPosition().getX(), player.getPosition().getY(), player.getWidth(), player.getHeight(), panel);
-        graphics2d.dispose();
+        this.player.hitbox.draw(graphics2d, panel);
     }
 
     private void doMovementFromState(int windowWidth, int spriteWidth)

@@ -14,7 +14,7 @@ public class RandomObstacleGenerator {
 
     private static int getRandomHeight()
     {
-        return getRandomBetween(50, 180);
+        return getRandomBetween(50, 120);
     }
 
     private static int getRandomBetween(int low, int high)
@@ -31,6 +31,6 @@ public class RandomObstacleGenerator {
     
     private static int getRandomWidth()
     {
-        return getRandomBetween(30, 100);
+        return getRandomBetween(30, 80);
     }
 }

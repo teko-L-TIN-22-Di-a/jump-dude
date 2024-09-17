@@ -52,13 +52,17 @@ public class PlayerController {
             case Jumping:
                 executeJumping();                    
                 break;
-            case DoubleJumping:
+            case FirstDoubleJumping, SecondDoubleJumping:
                 executeDoubleJumping();
+                break;
+            case FallingAfterFirstDoubleJumping, FallingAfterSecondDoubleJumping:
+                FallingAfterDoubleJumping();
                 break;
             case Falling:
                 executeFalling();
+                break;
             case Hitting:
-                executeHitting();
+                break;
             default:
                 break;
         }
@@ -79,20 +83,38 @@ public class PlayerController {
             playJumpSound();
             executeJumping();
         }
-        else if (player.getState() == PlayerState.Jumping)
+        else if (player.getState() == PlayerState.Jumping || player.getState() == PlayerState.Falling)
         {
-            player.setState(PlayerState.DoubleJumping);
+            player.setState(PlayerState.FirstDoubleJumping);
+            executeDoubleJumping();
+        }
+        else if (player.getState() == PlayerState.FallingAfterFirstDoubleJumping)
+        {
+            player.setState(PlayerState.SecondDoubleJumping);
             executeDoubleJumping();
         }
     }
 
     public void Falling()
     {
-        if (player.getState() == PlayerState.Jumping || player.getState() == PlayerState.DoubleJumping)
+        if (player.getState() == PlayerState.Jumping)
         {
             player.setState(PlayerState.Falling);
             executeFalling();
         }
+    }
+
+    public void FallingAfterDoubleJumping()
+    {
+        if (player.getState() == PlayerState.FirstDoubleJumping)
+        {
+            player.setState(PlayerState.FallingAfterFirstDoubleJumping);
+        }
+        if (player.getState() == PlayerState.SecondDoubleJumping)
+        {
+            player.setState(PlayerState.FallingAfterSecondDoubleJumping);
+        }
+        executeFalling();
     }
 
     private void executeJumping()
@@ -119,7 +141,14 @@ public class PlayerController {
 
         if (player.getMaxDoubleJumpingHeight() >= newPlayerPosition.getY())
         {
-            player.setState(PlayerState.Falling);
+            if (player.getState() == PlayerState.FirstDoubleJumping)
+            {
+                player.setState(PlayerState.FallingAfterFirstDoubleJumping);
+            }
+            else
+            {
+                player.setState(PlayerState.FallingAfterSecondDoubleJumping);
+            }
         }
     }
 
@@ -132,11 +161,6 @@ public class PlayerController {
         {
             player.setState(PlayerState.Running);
         }
-    }
-
-    private void executeHitting()
-    {
-                
     }
 
     public boolean getPlayerGotHit() {

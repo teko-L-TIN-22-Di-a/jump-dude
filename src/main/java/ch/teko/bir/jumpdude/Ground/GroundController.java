@@ -4,9 +4,10 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import ch.teko.bir.jumpdude.GameSpeedController;
+
 public class GroundController {
     private final GroundModel groundModel;
-    private int speed = 5;
 
     public GroundController(GroundModel model)
     {
@@ -33,15 +34,11 @@ public class GroundController {
         var bricks = groundModel.getGroundBrickList();
         
         for (var brick : bricks) {
-            brick.setX(brick.getX() - speed);
+            brick.setX(brick.getX() - GameSpeedController.getSpeed());
 
             if (brick.getX() <= -150) {
                 brick.setX(brick.getX() + windowWidth + 200);
             }
         }
-    }
-
-    public void setIdleSpeed() {
-        speed = 0;
     }
 }

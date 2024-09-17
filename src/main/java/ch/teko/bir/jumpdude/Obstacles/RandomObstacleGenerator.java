@@ -26,7 +26,7 @@ public class RandomObstacleGenerator {
 
     private static int getRandomXValue()
     {
-        return getRandomBetween(800, 1500);
+        return getRandomBetween(950, 1300);
     }
     
     private static int getRandomWidth()

@@ -3,7 +3,10 @@ package ch.teko.bir.jumpdude.Player;
 public enum PlayerState {
     Running,
     Jumping,
-    DoubleJumping,
+    FirstDoubleJumping,
+    FallingAfterFirstDoubleJumping,
+    SecondDoubleJumping,
+    FallingAfterSecondDoubleJumping,
     Falling,
     Hitting,
     GameOver

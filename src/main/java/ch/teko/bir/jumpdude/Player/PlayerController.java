@@ -103,6 +103,34 @@ public class PlayerController {
         }
     }
 
+    public void FlyRight()
+    {
+        if (player.getState() == PlayerState.Flying)
+        {
+            executeFlyingRight();
+        }
+    }
+    
+    private void executeFlyingRight()
+    {
+        var newPlayerPosition = Flying.Right(player.getPosition());
+        player.updatePosition(newPlayerPosition.getX(), newPlayerPosition.getY());
+    }
+    
+    public void FlyLeft()
+    {
+        if (player.getState() == PlayerState.Flying)
+        {
+            executeFlyingLeft();
+        }
+    }
+    
+    private void executeFlyingLeft()
+    {
+        var newPlayerPosition = Flying.Left(player.getPosition());
+        player.updatePosition(newPlayerPosition.getX(), newPlayerPosition.getY());
+    }
+
     public void Falling()
     {
         if (player.getState() == PlayerState.Jumping)

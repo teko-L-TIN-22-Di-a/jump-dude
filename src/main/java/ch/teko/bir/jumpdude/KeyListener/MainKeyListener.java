@@ -22,8 +22,14 @@ public class MainKeyListener extends JFrame implements KeyListener {
 
     private void executeActionWhenArrowUpIsPressed(KeyEvent e)
     {
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
+        if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {
             playerController.Jumping();
+        }
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_A) {
+            playerController.FlyRight();
+        }
+        if (e.getKeyCode() == KeyEvent.VK_LEFT|| e.getKeyCode() == KeyEvent.VK_D) {
+            playerController.FlyLeft();
         }
     }
 

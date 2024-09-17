@@ -9,7 +9,7 @@ import javax.swing.table.AbstractTableModel;
 public class ScoresTableModel extends AbstractTableModel {
 
     private Score[] scoreData = null;
-    private String[] columnNames =  {"Rank", "Score", "Name"};
+    private final String[] columnNames =  {"Rank", "Score", "Name"};
 
     public ScoresTableModel() {}
 

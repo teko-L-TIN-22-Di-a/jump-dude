@@ -1,6 +1,7 @@
 package ch.teko.bir.jumpdude.Player;
 
 import ch.teko.bir.jumpdude.Hitbox.Hitbox;
+import ch.teko.bir.jumpdude.Options.Options;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteLoader;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheet;
 
@@ -28,9 +29,9 @@ public class Player {
     public Hitbox hitbox;
     private final int hitboxDifference = 30;
 
-    public Player(String playerName, int groundY)
+    public Player(int groundY)
     {
-        this.name = playerName;
+        this.name = Options.PLAYER_NAME;
         this.position = new Position(100, groundY);
         spriteSheet = SpriteLoader.load(runningSpritePath, 12, 12);
 

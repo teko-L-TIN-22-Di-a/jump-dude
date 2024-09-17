@@ -24,6 +24,7 @@ import ch.teko.bir.jumpdude.Jetpack.JetpackController;
 import ch.teko.bir.jumpdude.Menu.MenuPanel;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleController;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleModel;
+import ch.teko.bir.jumpdude.Options.Options;
 import ch.teko.bir.jumpdude.Player.PlayerController;
 import ch.teko.bir.jumpdude.Scores.ScoresPanelFactory;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteEngine;
@@ -90,7 +91,7 @@ public class MainPanel extends JPanel implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 if (playerController.getPlayerGotHit())
                 {
-                    ScoresPanelFactory.createScoresWindow(playerController.getPlayerName(), elapsedTime);
+                    ScoresPanelFactory.createScoresWindow(Options.PLAYER_NAME, elapsedTime);
                     playerController.setGameOver();
                     closeWindow();
                 }

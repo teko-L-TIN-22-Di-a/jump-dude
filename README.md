@@ -25,6 +25,8 @@ Im [Konzept](./docs/concept.md) ist die Grundidee beschrieben, welche verfolgt w
 
 Der Entwicklungsprozess wurde unter [Entwicklungsprozess](./docs/markdown/development-process.md) beschrieben.
 
+Überischt aller Tasks mit Status sind im Projekt zu finden. [Open Issues](https://github.com/orgs/teko-L-TIN-22-Di-a/projects/6)
+
 ## Komponenten
 
 Die Dokumentation der wichtigen Komponenten wurde unter [Overview Components](./docs/components/overview-components.md) festgehalten.

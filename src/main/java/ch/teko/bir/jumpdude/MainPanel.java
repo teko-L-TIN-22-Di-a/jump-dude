@@ -50,6 +50,8 @@ public class MainPanel extends JPanel implements ActionListener {
         this.obstacleController = new ObstacleController(obstacleModel);
         this.groundController = new GroundController(new GroundModel());
 
+        GameSpeedController.setInitialSpeed();
+
         loadFont();
         createSpriteEngine();
         createLevelTimer();
@@ -65,6 +67,7 @@ public class MainPanel extends JPanel implements ActionListener {
         } catch (FontFormatException | IOException ex) {
         }
     }
+    
     private void createSpriteEngine() {
         spriteEngine = new SpriteEngine(60);
         
@@ -153,10 +156,25 @@ public class MainPanel extends JPanel implements ActionListener {
                 obstacleController.repaint(panelModel.getWindowWidth());
                 groundController.repaint(panelModel.getWindowWidth());
                 repaint();
-            }else {                
+            }else {
+                increaseSpeedEvery10Seconds();
                 obstacleController.repaint(panelModel.getWindowWidth());
                 groundController.repaint(panelModel.getWindowWidth());
                 repaint();
+            }
+        }
+    }
+
+    private void increaseSpeedEvery10Seconds()
+    {
+        int seconds = elapsedTime / 60000;
+
+        if (seconds > 4)
+        {
+            var test = seconds % 5;
+            if (test == 0)
+            {
+                GameSpeedController.increaseSpeed();
             }
         }
     }

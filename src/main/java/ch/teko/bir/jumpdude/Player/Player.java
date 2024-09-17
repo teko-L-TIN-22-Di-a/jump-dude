@@ -30,8 +30,8 @@ public class Player {
         this.name = playerName;
         this.position = new Position(100, y);
         spriteSheet = SpriteLoader.load(runningSpritePath, 12, 12);
-        var hitboxWidth = width - 30;
-        var hitboxHeight = height - 30;
+        var hitboxWidth = width - 35;
+        var hitboxHeight = height - 35;
         hitbox = new Hitbox(this.position, hitboxWidth, hitboxHeight);
     }
 

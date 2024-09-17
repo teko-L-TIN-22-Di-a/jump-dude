@@ -5,7 +5,7 @@ public class GameSpeedController {
 
     public static void increaseSpeed()
     {
-        GAME_SPEED += 2;
+        GAME_SPEED += 1;
     }
 
     public static int getSpeed()
@@ -15,5 +15,10 @@ public class GameSpeedController {
 
     public static void setIdleSpeed() {
         GAME_SPEED = 0;
+    }
+
+    public static void setInitialSpeed()
+    {
+        GAME_SPEED = 5;
     }
 }

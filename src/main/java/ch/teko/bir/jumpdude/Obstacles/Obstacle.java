@@ -26,10 +26,9 @@ public class Obstacle {
         this.spriteSheet = SpriteLoader.load("sprites/obstacle/spikes.png", 1, 1);
         this.image = spriteSheet.getSpriteAtIndex(0);
 
-        hitbox = new Hitbox(this.position, 
-                            this.image.getWidth(), 
-                            this.image.getHeight());
-
+        var hitboxWidth = this.image.getWidth() - 20;
+        var hitboxHeight = this.image.getHeight() - 20;
+        hitbox = new Hitbox(this.position, hitboxWidth, hitboxHeight);
     }
     
     public int getX() {

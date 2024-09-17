@@ -21,6 +21,7 @@ import javax.swing.Timer;
 import ch.teko.bir.jumpdude.Ground.GroundController;
 import ch.teko.bir.jumpdude.Ground.GroundModel;
 import ch.teko.bir.jumpdude.Jetpack.JetpackController;
+import ch.teko.bir.jumpdude.Jetpack.JetpackModel;
 import ch.teko.bir.jumpdude.Menu.MenuPanel;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleController;
 import ch.teko.bir.jumpdude.Obstacles.ObstacleModel;
@@ -45,16 +46,16 @@ public class MainPanel extends JPanel implements ActionListener {
     
     private Font font;
 
-    public MainPanel(MainPanelModel model, PlayerController playerController, ObstacleModel obstacleModel)         
+    public MainPanel(MainPanelModel model, PlayerController playerController, ObstacleModel obstacleModel, JetpackModel jetpackModel)         
     {
         this.panelModel = model;
         
         this.playerController = playerController;
         this.obstacleController = new ObstacleController(obstacleModel);
         this.groundController = new GroundController(new GroundModel());
-        this.jetpackController = new JetpackController(model.getGroundY());
+        this.jetpackController = new JetpackController(jetpackModel);
 
-        GameSpeedController.setInitialSpeed();
+        GameSpeedController.setInitialRunningSpeed();
 
         loadFont();
         createSpriteEngine();
@@ -163,8 +164,13 @@ public class MainPanel extends JPanel implements ActionListener {
         {
             if (playerController.getPlayerGotHit())
             {
-                GameSpeedController.setIdleSpeed();
-            }else {
+                GameSpeedController.setRunningSpeedToIdle();
+            }
+            else if (playerController.getPlayerIsFlying())
+            {
+                GameSpeedController.setRunningSpeedToIdle();
+            }
+            else {
                 increaseSpeedEvery10Seconds();
             }
             obstacleController.repaint(panelModel.getWindowWidth());
@@ -183,7 +189,7 @@ public class MainPanel extends JPanel implements ActionListener {
             var test = seconds % 5;
             if (test == 0)
             {
-                GameSpeedController.increaseSpeed();
+                GameSpeedController.increaseRunningSpeed();
             }
         }
     }

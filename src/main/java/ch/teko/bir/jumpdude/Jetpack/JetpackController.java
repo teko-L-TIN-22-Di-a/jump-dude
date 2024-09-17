@@ -10,14 +10,14 @@ public class JetpackController {
 
     private JetpackModel model;
 
-    public JetpackController(int groundY)
+    public JetpackController(JetpackModel jetpackModel)
     {
-        this.model = new JetpackModel(groundY);
+        this.model = jetpackModel;
     }
 
     public void repaint(int windowWidth) {
         var jetpack = getJetpack(windowWidth);
-        jetpack.setX(jetpack.getX() - GameSpeedController.getSpeed());
+        jetpack.setX(jetpack.getX() - GameSpeedController.getRunningSpeed());
     }
 
     private Jetpack getJetpack(int windowWidth)

@@ -10,27 +10,27 @@ public class ObstacleModel {
         generateInitialObstacles();
     }
 
-    private ArrayList<Obstacle> obstacleList = new ArrayList<>();
+    private ArrayList<GroundObstacle> obstacleList = new ArrayList<>();
 
-    public ArrayList<Obstacle> getObstacleList() {
+    public ArrayList<GroundObstacle> getObstacleList() {
         return obstacleList;
     }
 
     private void generateInitialObstacles()
     {
         int height = 100;
-        obstacleList.add(new Obstacle(900, groundY - height, 80, height));
+        obstacleList.add(new GroundObstacle(900, groundY - height, 80, height));
         height = 80;
-        obstacleList.add(new Obstacle(800, groundY - height, 70, height));
+        obstacleList.add(new GroundObstacle(800, groundY - height, 70, height));
         height = 80;
-        obstacleList.add(new Obstacle(1500, groundY - height, 40, height));
+        obstacleList.add(new GroundObstacle(1500, groundY - height, 40, height));
     }
 
     public int getGroundY() {
         return groundY;
     }
 
-    public void AddToObstacles(Obstacle obstacle) {
+    public void AddToObstacles(GroundObstacle obstacle) {
         obstacleList.add(obstacle);
     }
 }

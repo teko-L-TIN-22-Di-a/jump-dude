@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import ch.teko.bir.jumpdude.CollisionHelper.CollisionHelper;
+import static ch.teko.bir.jumpdude.Player.Flying.Up;
 import ch.teko.bir.jumpdude.SoundHandling.PlaySound;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteEngine;
 
@@ -44,6 +45,10 @@ public class PlayerController {
         {
             player.setState(PlayerState.Hitting);
         }
+        if (collisionHelper.CheckIfPlayerHitsJetpack(player.hitbox))
+        {
+            player.setState(PlayerState.Flying);
+        }
 
         switch (playerState) {
             case Running:
@@ -60,6 +65,9 @@ public class PlayerController {
                 break;
             case Falling:
                 executeFalling();
+                break;
+            case Flying:
+                executeFlying();
                 break;
             case Hitting:
                 break;
@@ -163,8 +171,19 @@ public class PlayerController {
         }
     }
 
+    private void executeFlying()
+    {
+        var newPlayerPosition = Up(player.getPosition());
+
+        player.updatePosition(newPlayerPosition.getX(), newPlayerPosition.getY());
+    }
+
     public boolean getPlayerGotHit() {
         return player.getState() == PlayerState.Hitting;
+    }
+
+    public boolean getPlayerIsFlying() {
+        return player.getState() == PlayerState.Flying;
     }
 
     public void setGameOver() {

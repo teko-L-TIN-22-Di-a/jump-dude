@@ -4,12 +4,12 @@ import java.util.Random;
 
 public class RandomObstacleGenerator {
 
-    public static Obstacle generateRandom(int groundY)
+    public static GroundObstacle generateRandom(int groundY)
     {
         var height = getRandomHeight();
         var spawnPoint = getRandomXValue();
         var width = getRandomWidth();
-        return new Obstacle(spawnPoint, groundY - height, width, height);
+        return new GroundObstacle(spawnPoint, groundY - height, width, height);
     }
 
     private static int getRandomHeight()

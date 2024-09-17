@@ -7,7 +7,7 @@ import ch.teko.bir.jumpdude.Position;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteLoader;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheet;
 
-public class Obstacle {
+public class GroundObstacle {
 
     public Position position;
     private int width = 0;
@@ -19,7 +19,7 @@ public class Obstacle {
     public Hitbox hitbox;
     private final int hitboxDifference = 20;
 
-    public Obstacle(int x, int y, int width, int height){
+    public GroundObstacle(int x, int y, int width, int height){
         this.position = new Position(x, y);
         this.width = width;
         this.height = height;

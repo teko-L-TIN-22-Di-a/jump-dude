@@ -20,15 +20,15 @@ public class ObstacleController {
         var obstacles = getObstacles();
 
         for (var obstacle : obstacles) {
-            obstacle.setX(obstacle.getX() - GameSpeedController.getSpeed());
+            obstacle.setX(obstacle.getX() - GameSpeedController.getRunningSpeed());
         }
     }
 
-    private ArrayList<Obstacle> getObstacles()
+    private ArrayList<GroundObstacle> getObstacles()
     {
         var obstacles = obstacleModel.getObstacleList();
 
-        for (Obstacle obstacle : obstacles) {
+        for (GroundObstacle obstacle : obstacles) {
             if (obstacle.getX() <= -150) {
                 var newRandomObstacle = RandomObstacleGenerator.generateRandom(obstacleModel.getGroundY());
                 obstacle.setHeight(newRandomObstacle.getHeight());

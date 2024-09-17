@@ -34,7 +34,7 @@ public class GroundController {
         var bricks = groundModel.getGroundBrickList();
         
         for (var brick : bricks) {
-            brick.setX(brick.getX() - GameSpeedController.getSpeed());
+            brick.setX(brick.getX() - GameSpeedController.getRunningSpeed());
 
             if (brick.getX() <= -150) {
                 brick.setX(brick.getX() + windowWidth + 200);

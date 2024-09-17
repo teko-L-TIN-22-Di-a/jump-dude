@@ -15,6 +15,7 @@ public class MenuWindowFactory {
         var img = kit.createImage(url);
 
         JFrame window = new JFrame("Jump Dude");
+        window.setName("menu");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(1000, 800);
         window.add(new MenuPanel());
@@ -30,6 +31,7 @@ public class MenuWindowFactory {
         var img = kit.createImage(url);
 
         JFrame window = new JFrame("Jump Dude");
+        window.setName("menu");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(1000, 800);
         window.add(new MenuPanel(playerName));

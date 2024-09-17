@@ -20,6 +20,7 @@ public class ScoresPanelFactory {
         var img = kit.createImage(url);
 
         JFrame window = new JFrame("Jump Dude");
+        window.setName("scores");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(1000, 800);
         window.add(new ScoresPanel());
@@ -35,6 +36,7 @@ public class ScoresPanelFactory {
         var img = kit.createImage(url);
 
         JFrame window = new JFrame("Jump Dude");
+        window.setName("scores");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(1000, 800);
         window.add(new ScoresPanel(new Score(playerName, score)));

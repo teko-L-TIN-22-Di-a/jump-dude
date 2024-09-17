@@ -7,19 +7,20 @@ import ch.teko.bir.jumpdude.Position;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteLoader;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheet;
 
-public class GroundObstacle {
+public class Obstacle {
 
     public Position position;
     private int width = 0;
     private int height = 0;
 
-    private final SpriteSheet spriteSheet;
-    private final BufferedImage image;
+    private SpriteSheet spriteSheet;
+    private BufferedImage image;
 
     public Hitbox hitbox;
     private final int hitboxDifference = 20;
+    private boolean flyingState = false;
 
-    public GroundObstacle(int x, int y, int width, int height){
+    public Obstacle(int x, int y, int width, int height){
         this.position = new Position(x, y);
         this.width = width;
         this.height = height;
@@ -32,7 +33,30 @@ public class GroundObstacle {
         var hitboxHeight = height - hitboxDifference;
         hitbox = new Hitbox(hitboxPosition, hitboxWidth, hitboxHeight);
     }
+
+    public void updateSky(int x, int y, int width, int height)
+    {
+        this.spriteSheet = SpriteLoader.load("sprites/obstacle/bird.png", 1, 1);
+        this.image = spriteSheet.getSpriteAtIndex(0);
+
+        this.position.setX(x);
+        this.hitbox.setX(x+(hitboxDifference/2));
+
+        this.position.setY(y);
+        this.hitbox.setY(y+(hitboxDifference/2));
+
+        this.width = width;
+        this.hitbox.setWidth(width - hitboxDifference);
     
+        this.height = height;
+        this.hitbox.setHeight(height - hitboxDifference);
+    }
+    
+    public void setFlyingState()
+    {
+        flyingState = true;
+    }
+
     public int getX() {
         return position.getX();
     }

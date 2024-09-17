@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
+import ch.teko.bir.jumpdude.Clouds.CloudsController;
 import ch.teko.bir.jumpdude.Ground.GroundController;
 import ch.teko.bir.jumpdude.Ground.GroundModel;
 import ch.teko.bir.jumpdude.Jetpack.JetpackController;
@@ -43,6 +44,7 @@ public class MainPanel extends JPanel implements ActionListener {
     private final ObstacleController obstacleController;
     private final GroundController groundController;
     private final JetpackController jetpackController;
+    private CloudsController cloudsController;
     
     private Font font;
 
@@ -53,7 +55,8 @@ public class MainPanel extends JPanel implements ActionListener {
         this.playerController = playerController;
         this.obstacleController = new ObstacleController(obstacleModel);
         this.groundController = new GroundController(new GroundModel());
-        this.jetpackController = new JetpackController(jetpackModel);
+        this.jetpackController = new JetpackController(jetpackModel);        
+        this.cloudsController = new CloudsController();
 
         GameSpeedController.setInitialRunningSpeed();
 
@@ -116,8 +119,8 @@ public class MainPanel extends JPanel implements ActionListener {
         drawGround();
         drawObstacles();
         drawJetPack();
+        drawClouds();        
         drawPlayer();
-        
         graphics2d.dispose();
     }
     
@@ -151,7 +154,12 @@ public class MainPanel extends JPanel implements ActionListener {
     {
         jetpackController.draw(graphics2d, this);
     }
-    
+
+    private void drawClouds()
+    {
+        cloudsController.draw(graphics2d, this);
+    }
+        
     private void closeWindow()
     {
         var window = SwingUtilities.getWindowAncestor(this);
@@ -169,9 +177,10 @@ public class MainPanel extends JPanel implements ActionListener {
             else if (playerController.getPlayerIsFlying())
             {
                 GameSpeedController.setRunningSpeedToIdle();
-                obstacleController.setFlying(true);
+                obstacleController.setFlyingState(true);
                 groundController.setFlying(true);
                 jetpackController.removeJetPack();
+                cloudsController.setFlyingState(true);
             }
             else {
                 increaseSpeedEvery10Seconds();
@@ -179,6 +188,7 @@ public class MainPanel extends JPanel implements ActionListener {
             obstacleController.repaint(panelModel.getWindowWidth());
             groundController.repaint(panelModel.getWindowWidth());
             jetpackController.repaint(panelModel.getWindowWidth());
+            cloudsController.repaint();
             repaint();
         }
     }

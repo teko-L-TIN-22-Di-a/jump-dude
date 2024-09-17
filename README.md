@@ -27,7 +27,7 @@ Der Entwicklungsprozess wurde unter [Entwicklungsprozess](./docs/markdown/develo
 
 ## Komponenten
 
-Die Dokumentation der wichtigen Klassen wurde unter [Overview Components](./docs/components/overview-components.md) festgehalten.
+Die Dokumentation der wichtigen Komponenten wurde unter [Overview Components](./docs/components/overview-components.md) festgehalten.
 
 ## JavaDocs
 
@@ -35,7 +35,7 @@ Die Dokumentation der wichtigen Klassen wurde unter [Overview Components](./docs
 
 ## Used assets
 
-Sounds: [Pixabay](https://pixabay.com/sound-effects/search/)
-Player Sprites: [Pixel Adventure](https://pixelfrog-assets.itch.io/pixel-adventure-1)
-Sprites Handling: [Load a sprites image in java](https://stackoverflow.com/questions/35472233/load-a-sprites-image-in-java)
-Jetpack Sptite: [vecteezy](https://www.vecteezy.com/vector-art/21660057-jetpack-in-pixel-art-style)
+* Sounds: [Pixabay](https://pixabay.com/sound-effects/search/)
+* Player Sprites: [Pixel Adventure](https://pixelfrog-assets.itch.io/pixel-adventure-1)
+* Sprites Handling: [Load a sprites image in java](https://stackoverflow.com/questions/35472233/load-a-sprites-image-in-java)
+* Jetpack Sptite: [vecteezy](https://www.vecteezy.com/vector-art/21660057-jetpack-in-pixel-art-style)

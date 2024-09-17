@@ -1,6 +1,7 @@
 package ch.teko.bir.jumpdude.Ground;
 
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -8,6 +9,8 @@ import ch.teko.bir.jumpdude.GameSpeedController;
 
 public class GroundController {
     private final GroundModel groundModel;
+    private boolean flyingState = false;;
+    private boolean bricksVisible = true;
 
     public GroundController(GroundModel model)
     {
@@ -33,12 +36,35 @@ public class GroundController {
     {
         var bricks = groundModel.getGroundBrickList();
         
-        for (var brick : bricks) {
-            brick.setX(brick.getX() - GameSpeedController.getRunningSpeed());
+        if (flyingState && bricksVisible)
+        {
+            makeThemDisappear(bricks);
+        }
+        else
+        {
+            for (var brick : bricks) {
+                brick.setX(brick.getX() - GameSpeedController.getRunningSpeed());
 
-            if (brick.getX() <= -150) {
-                brick.setX(brick.getX() + windowWidth + 200);
+                if (brick.getX() <= -150) {
+                    brick.setX(brick.getX() + windowWidth + 200);
+                }
             }
         }
+    }
+
+    private void makeThemDisappear(ArrayList<Ground> bricks)
+    {
+        for (var brick : bricks) {
+            brick.setY(brick.getY() + GameSpeedController.getFlyingSpeed());
+
+            if (brick.getY() <= -1200) {
+                bricksVisible = false;
+            }
+        }
+    }
+
+    public void setFlying(boolean state)
+    {
+        flyingState = state;
     }
 }

@@ -2,7 +2,7 @@ package ch.teko.bir.jumpdude.Jetpack;
 
 public class JetpackModel {
 
-    private final Jetpack jetpack; 
+    private Jetpack jetpack; 
     private final int groundY;
         
     public JetpackModel(int groundY){
@@ -12,5 +12,10 @@ public class JetpackModel {
 
     public Jetpack getJetpack() {
         return jetpack;
+    }
+
+    public void disposeJetpack()
+    {
+        jetpack = new Jetpack(0,0, 0, 0);
     }
 }

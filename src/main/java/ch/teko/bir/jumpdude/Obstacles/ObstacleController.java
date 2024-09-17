@@ -10,6 +10,8 @@ import ch.teko.bir.jumpdude.GameSpeedController;
 public class ObstacleController {
     
     private final ObstacleModel obstacleModel;
+    private boolean flyingState;
+    private boolean obstaclesVisible = true;
 
     public ObstacleController(ObstacleModel model)
     {
@@ -19,8 +21,26 @@ public class ObstacleController {
     public void repaint(int windowWidth) {
         var obstacles = getObstacles();
 
+        if (flyingState && obstaclesVisible)
+        {
+            makeThemDisappear(obstacles);
+        }
+        else
+        {
+            for (var obstacle : obstacles) {
+                obstacle.setX(obstacle.getX() - GameSpeedController.getRunningSpeed());
+            }
+        }
+    }
+
+    private void makeThemDisappear(ArrayList<GroundObstacle> obstacles)
+    {
         for (var obstacle : obstacles) {
-            obstacle.setX(obstacle.getX() - GameSpeedController.getRunningSpeed());
+            obstacle.setY(obstacle.getY() + GameSpeedController.getFlyingSpeed());
+
+            if (obstacle.getY() <= -1200) {
+                obstaclesVisible = false;
+            }
         }
     }
 
@@ -54,5 +74,9 @@ public class ObstacleController {
             
             obstacle.hitbox.draw(graphics2d, panel);
         }
+    }
+
+    public void setFlying(boolean state) {
+        flyingState = state;
     }
 }

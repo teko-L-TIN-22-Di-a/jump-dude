@@ -169,6 +169,9 @@ public class MainPanel extends JPanel implements ActionListener {
             else if (playerController.getPlayerIsFlying())
             {
                 GameSpeedController.setRunningSpeedToIdle();
+                obstacleController.setFlying(true);
+                groundController.setFlying(true);
+                jetpackController.removeJetPack();
             }
             else {
                 increaseSpeedEvery10Seconds();

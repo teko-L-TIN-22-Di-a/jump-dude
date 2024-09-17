@@ -45,4 +45,8 @@ public class JetpackController {
 
         jetpack.hitbox.draw(graphics2d, panel);
     }
+
+    public void removeJetPack() {
+        model.disposeJetpack();
+    }
 }

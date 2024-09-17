@@ -7,7 +7,7 @@ import ch.teko.bir.jumpdude.Position;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteLoader;
 import ch.teko.bir.jumpdude.SpriteHandling.SpriteSheet;
 
-public class Jetpack {
+public class Jetpack{
     
     public Position position;
     private int width = 0;
@@ -69,5 +69,5 @@ public class Jetpack {
 
     public BufferedImage getImage() {
         return image;
-    }
+    } 
 }

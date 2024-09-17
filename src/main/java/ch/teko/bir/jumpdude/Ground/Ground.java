@@ -1,10 +1,10 @@
 package ch.teko.bir.jumpdude.Ground;
 
-public class Ground {
-
-    public Ground(){
-
-    }
+public class Ground {    
+    private int x = 0;
+    private int y = 0;
+    private int width = 0;
+    private int height = 0;
 
     public Ground(int x, int y, int width, int height)
     {
@@ -13,11 +13,6 @@ public class Ground {
         this.width = width;
         this.height = height;
     }
-    
-    private int x = 0;
-    private int y = 0;
-    private int width = 0;
-    private int height = 0;
 
     public int getX() {
         return x;

@@ -54,7 +54,7 @@ public class Obstacle {
     }
     public void setWidth(int width) {
         this.width = width;
-        this.hitbox.setWidth(width);
+        this.hitbox.setWidth(width - hitboxDifference);
     }
  
     public int getHeight() {
@@ -62,7 +62,7 @@ public class Obstacle {
     }
     public void setHeight(int height) {
         this.height = height;
-        this.hitbox.setHeight(height);
+        this.hitbox.setHeight(height - hitboxDifference);
     }
 
     public SpriteSheet getSpriteSheet() {

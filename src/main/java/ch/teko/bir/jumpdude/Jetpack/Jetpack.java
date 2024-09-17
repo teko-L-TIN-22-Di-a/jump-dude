@@ -17,6 +17,7 @@ public class Jetpack {
     private final BufferedImage image;
 
     public Hitbox hitbox;
+    private int hitboxDifference = 20;
 
     public Jetpack(int x, int y, int width, int height){
         this.position = new Position(x, y);
@@ -26,9 +27,10 @@ public class Jetpack {
         this.spriteSheet = SpriteLoader.load("sprites/jetpack/jetpack.png", 1, 1);
         this.image = spriteSheet.getSpriteAtIndex(0);
 
-        var hitboxWidth = width;
-        var hitboxHeight = height;
-        hitbox = new Hitbox(this.position, hitboxWidth, hitboxHeight);
+        var hitboxPosition = new Position(x, y);
+        var hitboxWidth = width - hitboxDifference;
+        var hitboxHeight = height - hitboxDifference;
+        hitbox = new Hitbox(hitboxPosition, hitboxWidth, hitboxHeight);
     }
     
     public int getX() {

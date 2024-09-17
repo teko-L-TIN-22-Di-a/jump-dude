@@ -42,5 +42,7 @@ public class JetpackController {
         jetpack.getWidth(), 
         jetpack.getHeight(), 
         panel);
+
+        jetpack.hitbox.draw(graphics2d, panel);
     }
 }

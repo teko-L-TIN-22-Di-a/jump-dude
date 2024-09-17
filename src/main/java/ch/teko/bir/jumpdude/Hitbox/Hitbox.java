@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
+import ch.teko.bir.jumpdude.Options.Options;
 import ch.teko.bir.jumpdude.Player.Position;
 
 public class Hitbox {
@@ -45,8 +46,11 @@ public class Hitbox {
     }
 
     public void draw(Graphics2D graphics2d, JPanel panel) {
-        graphics2d.setColor(Color.red);
-        graphics2d.drawRect(this.position.getX(), this.position.getY(), this.width, this.height);
+        if (Options.DRAW_HITBOXES)
+        {
+            graphics2d.setColor(Color.red);
+            graphics2d.drawRect(this.position.getX(), this.position.getY(), this.width, this.height);
+        }
     }
 
     // returns whether bounds of this Hitbox intersects the bounds of the given Hitbox

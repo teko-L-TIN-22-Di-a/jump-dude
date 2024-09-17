@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import ch.teko.bir.jumpdude.Options.Options;
-import ch.teko.bir.jumpdude.Player.Position;
+import ch.teko.bir.jumpdude.Position;
 
 public class Hitbox {
 

@@ -1,6 +1,6 @@
 # Player States
 
-In der Klasse [PlayerState.java](..\..\src\main\java\ch\teko\bir\jumpdude\Player\PlayerState.java) gibt es unterschiedliche Stati die die Klasse `Player` haben kann.
+In der Klasse [PlayerState.java](../../src/main/java/ch/teko/bir/jumpdude/Player/PlayerState.java) gibt es unterschiedliche Stati die die Klasse `Player` haben kann.
 
 ## Beschreibung der einzelnen Stati
 

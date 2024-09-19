@@ -189,5 +189,6 @@ public class MenuPanel extends JPanel {
     {
         var window = SwingUtilities.getWindowAncestor(this);
         window.dispose();
+        System.gc();
     }
 }

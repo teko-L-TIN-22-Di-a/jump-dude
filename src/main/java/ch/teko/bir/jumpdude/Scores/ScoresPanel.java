@@ -169,5 +169,6 @@ public class ScoresPanel extends JPanel {
     {
         var window = SwingUtilities.getWindowAncestor(this);
         window.dispose();
+        System.gc();
     }
 }

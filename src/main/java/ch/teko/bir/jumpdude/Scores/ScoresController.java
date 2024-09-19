@@ -18,7 +18,6 @@ public class ScoresController {
     public ScoresTableModel loadJson()
     {        
         CreateFileIfNotExists(filePath);
-        Score[] scores = null;
 
         var jsonFile = new File(filePath);
         try {
@@ -35,18 +34,25 @@ public class ScoresController {
         
             var scoresJson = stringBuilder.toString();
             System.out.println(scoresJson);
-            
-            if (!stringBuilder.isEmpty())
-            {
-                Gson gson = new Gson();
-                JsonReader reader = new JsonReader(new StringReader(scoresJson));
-                scores = gson.fromJson(reader, Score[].class);
-                reader.setStrictness(Strictness.LENIENT);
-            }
-            else {
-                scores = new Score[] {new Score("kek", 1000)};
-            }
+
+            return parseJson(scoresJson);        
         } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public ScoresTableModel parseJson(String scoresJson)
+    {
+        Score[] scores = null;
+        if (!scoresJson.isEmpty())
+        {
+            Gson gson = new Gson();
+            JsonReader reader = new JsonReader(new StringReader(scoresJson));
+            scores = gson.fromJson(reader, Score[].class);
+            reader.setStrictness(Strictness.LENIENT);
+        }
+        else {
+            scores = new Score[] {new Score("kek", 1000)};
         }
         return new ScoresTableModel(scores);
     }

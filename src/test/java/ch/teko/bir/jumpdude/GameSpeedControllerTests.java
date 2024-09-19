@@ -7,11 +7,11 @@ import org.junit.jupiter.api.BeforeEach;
 public class GameSpeedControllerTests {
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
     }
 
     @Test
-    void TestFlyingGamespeedValue() {
+    public void TestFlyingGamespeedValue() {
       var currentSpeed = GameSpeedController.getFlyingSpeed();
       var expectedSpeed = currentSpeed+5;
 
@@ -21,11 +21,11 @@ public class GameSpeedControllerTests {
     }
 
     @Test
-    void TestRunningGamespeedValue() {
+    public void TestRunningGamespeedValue() {
       var currentSpeed = GameSpeedController.getRunningSpeed();
       var expectedSpeed = currentSpeed+5;
 
-      GameSpeedController.increaseFlyingSpeed();
+      GameSpeedController.increaseRunningSpeed();
 
       assertEquals(expectedSpeed, GameSpeedController.getRunningSpeed());
     }

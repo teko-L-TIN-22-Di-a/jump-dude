@@ -35,6 +35,10 @@ Die Dokumentation der wichtigen Komponenten wurde unter [Overview Components](./
 
 [jump dude JavaDocs](https://teko-l-tin-22-di-a.github.io/jump-dude/)
 
+## run tests
+
+Build the project and run all tests with `./mvnw package` or `mvnw.cmd package` for Windows.
+
 ## Used assets
 
 * Sounds: [Pixabay](https://pixabay.com/sound-effects/search/)

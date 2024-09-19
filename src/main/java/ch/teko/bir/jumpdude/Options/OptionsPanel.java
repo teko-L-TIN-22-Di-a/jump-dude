@@ -45,7 +45,7 @@ public class OptionsPanel extends JPanel {
         setBorder(new EmptyBorder(10, 10, 10, 10));
         setLayout(new GridBagLayout());
 
-        loadTitle();        
+        loadTitle();
         loadButton();
     }
         
@@ -111,5 +111,6 @@ public class OptionsPanel extends JPanel {
     {
         var window = SwingUtilities.getWindowAncestor(this);
         window.dispose();
+        System.gc();
     }
 }

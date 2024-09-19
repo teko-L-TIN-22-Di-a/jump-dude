@@ -16,11 +16,11 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,7 +33,6 @@ import ch.teko.bir.jumpdude.MainWindowFactory;
 import ch.teko.bir.jumpdude.Options.Options;
 import ch.teko.bir.jumpdude.Options.OptionsPanel;
 import ch.teko.bir.jumpdude.Scores.ScoresPanelFactory;
-import javafx.scene.input.KeyEvent;
 
 public class MenuPanel extends JPanel {
 
@@ -190,5 +189,6 @@ public class MenuPanel extends JPanel {
     {
         var window = SwingUtilities.getWindowAncestor(this);
         window.dispose();
+        System.gc();
     }
 }

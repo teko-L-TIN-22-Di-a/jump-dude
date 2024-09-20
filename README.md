@@ -1,8 +1,10 @@
-# jump-dude
+# Jump Dude
 
 [![Java CI with Maven](https://github.com/teko-L-TIN-22-Di-a/jump-dude/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/teko-L-TIN-22-Di-a/jump-dude/actions/workflows/build.yml)
 
 [![Deploy Javadoc](https://github.com/teko-L-TIN-22-Di-a/jump-dude/actions/workflows/publish-javadocs.yml/badge.svg)](https://github.com/teko-L-TIN-22-Di-a/jump-dude/actions/workflows/publish-javadocs.yml)
+
+![Jump Dude](./docs/videos/final-version.gif)
 
 ## Einleitung
 

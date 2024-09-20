@@ -31,3 +31,7 @@ Nach dem rumprobieren hatte ich dann die Idee einen Jump zu implementieren, welc
 
 Nun leider musste ich dieses Feature wieder entfernen, da es mit dem Double Jump nicht funktionierte. Bei einem längeren Key Press wurde dann direkt ein double jump erkannt. Dabei wollte ich aber keine spezielle Implementation machen und habe mich deshalb für das double jump feature entschieden.  
 [Double Jump](./videos/double-jump.mp4)
+
+## Finale Version
+
+[Final version](./videos/final-version.mp4)

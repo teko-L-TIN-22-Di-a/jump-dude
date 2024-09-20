@@ -10,4 +10,4 @@ Es soll ebenfalls Statusbasiert sein. Heisst, die Komponenten enthalten einen St
 Im unteren Diagram sind einige Komponenten ersichtlich die das Spiel sicherlich benötigt.
 Die Darstellung ist sehr Abstrakt und ist kein Klassendiagramm. Eine Komponente kann aus mehreren Klassen bestehen.
 
-![diagram](diagram.svg)
+![diagram](./images/diagram.svg)

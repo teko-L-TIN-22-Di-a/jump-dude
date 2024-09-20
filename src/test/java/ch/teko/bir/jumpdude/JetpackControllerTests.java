@@ -13,13 +13,14 @@ public class JetpackControllerTests {
 
     @BeforeEach
     public void setUp() {
-        testee = new JetpackController(model);
     }
 
     @Test
     public void emptyScoresJsoShouldInsertDefaultScore() {
+        testee = new JetpackController(model);
+
         var jetpack = model.getJetpack();
-        var expectedXValue = jetpack.getX() + GameSpeedController.getRunningSpeed();
+        var expectedXValue = jetpack.getX() - GameSpeedController.getRunningSpeed();
         testee.repaint(100);
 
         assertEquals(expectedXValue, jetpack.getX());

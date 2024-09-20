@@ -4,7 +4,7 @@
 
 [![Deploy Javadoc](https://github.com/teko-L-TIN-22-Di-a/jump-dude/actions/workflows/publish-javadocs.yml/badge.svg)](https://github.com/teko-L-TIN-22-Di-a/jump-dude/actions/workflows/publish-javadocs.yml)
 
-[Jump Dude](./docs/videos/final-version.gif)
+![Jump Dude](./docs/videos/final-version.gif)
 
 ## Einleitung
 

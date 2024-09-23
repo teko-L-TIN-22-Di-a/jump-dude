@@ -17,7 +17,7 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.DELPOY_JUMPDUDE_JAVADOC }}
           javadoc-branch: javadoc
-          java-version: 21
+          java-version: 22
           target-folder: '' # url will be https://<username>.github.io/<repo>/javadoc, This can be left as nothing to generate javadocs in the root folder.
           project: maven
           custom-command: mvn javadoc:javadoc

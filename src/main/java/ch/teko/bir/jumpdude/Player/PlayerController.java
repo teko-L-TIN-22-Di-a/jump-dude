@@ -25,6 +25,15 @@ public class PlayerController {
         this.collisionHelper = collistionHelper;
     }
 
+    
+    /** 
+     * @param graphics2d
+     * @param windowWidth
+     * @param windowHeight
+     * @param groundY
+     * @param spriteEngine
+     * @param panel
+     */
     public void draw(Graphics2D graphics2d, int windowWidth, int windowHeight, int groundY, SpriteEngine spriteEngine, JPanel panel)
     {
         var playerSpriteSheet = player.getSpriteSheet();

@@ -19,6 +19,11 @@ public class Hitbox {
         this.height = height;
     }
 
+    
+    /** 
+     * @param dx
+     * @param dy
+     */
     public void offset(int dx, int dy) {
         this.position.addToX(dx);
         this.position.addToY(dy);

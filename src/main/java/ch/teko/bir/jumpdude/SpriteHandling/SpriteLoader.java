@@ -7,6 +7,13 @@ import javax.imageio.ImageIO;
 
 public class SpriteLoader {
         
+    
+    /** 
+     * @param spritePath
+     * @param cols
+     * @param withSpriteCount
+     * @return SpriteSheet
+     */
     public static SpriteSheet load(String spritePath, int cols, int withSpriteCount)
     {
         var sprite = SpriteLoader.class.getClassLoader().getResource(spritePath);

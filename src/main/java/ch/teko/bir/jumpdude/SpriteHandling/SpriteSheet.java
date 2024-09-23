@@ -14,6 +14,10 @@ public class SpriteSheet {
         this.sprites = new ArrayList<>(sprites);
     }
 
+    
+    /** 
+     * @return int
+     */
     public int count() {
         return sprites.size();
     }

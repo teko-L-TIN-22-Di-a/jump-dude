@@ -20,6 +20,11 @@ public class CollisionHelper {
         this.jetpackModel = jetpackModel;
     }    
 
+    
+    /** 
+     * @param playerHitbox
+     * @return boolean
+     */
     public boolean CheckIfPlayerHitsObstacle(Hitbox playerHitbox)
     {
         var obstacles = obstacleModel.getObstacleList();

@@ -17,6 +17,10 @@ public class Score {
         this.score = score;
     }
 
+    
+    /** 
+     * @return Integer
+     */
     public Integer getRank()
     {
         return rank;

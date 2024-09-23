@@ -27,6 +27,11 @@ public class CloudsController {
         clouds.add(new Clouds(800, -900, 200, 100));
     }
 
+    
+    /** 
+     * @param graphics2d
+     * @param panel
+     */
     public void draw(Graphics2D graphics2d, JPanel panel)
     {
         for (var cloud : clouds) {

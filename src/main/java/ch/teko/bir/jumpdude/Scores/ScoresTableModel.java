@@ -17,6 +17,10 @@ public class ScoresTableModel extends AbstractTableModel {
         this.scoreData = scoreData;
     }
 
+    
+    /** 
+     * @return Score[]
+     */
     public Score[] getScoreData()
     {
         return scoreData;

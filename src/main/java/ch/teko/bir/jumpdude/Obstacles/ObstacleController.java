@@ -19,6 +19,10 @@ public class ObstacleController {
         this.gameSpeedController = gameSpeedController;   
     }
 
+    
+    /** 
+     * @param windowWidth
+     */
     public void repaint(int windowWidth) {
         var obstacles = getObstacles();
 

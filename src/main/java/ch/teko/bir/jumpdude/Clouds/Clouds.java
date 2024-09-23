@@ -25,6 +25,10 @@ public class Clouds {
         this.image = spriteSheet.getSpriteAtIndex(0);
     }
     
+    
+    /** 
+     * @return int
+     */
     public int getX() {
         return position.getX();
     }

@@ -19,6 +19,10 @@ public class MainPanelModel {
 
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getGroundY() {
         return groundY;
     }

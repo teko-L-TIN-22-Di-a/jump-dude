@@ -115,6 +115,10 @@ public class MainPanel extends JPanel implements ActionListener {
         stopWatch.start();
     }
     
+    
+    /** 
+     * @param g
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

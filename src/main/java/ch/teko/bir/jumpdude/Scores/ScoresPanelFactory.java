@@ -29,6 +29,11 @@ public class ScoresPanelFactory {
         window.setResizable(false);
     }
 
+    
+    /** 
+     * @param playerName
+     * @param score
+     */
     public static void createScoresWindow(String playerName, int score)
     {        
         var url = Main.class.getResource("/sprites/pink-man/jump.png");

@@ -9,6 +9,10 @@ public class GameSpeedController {
         RUNNING_SPEED += 1;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getRunningSpeed()
     {
         return RUNNING_SPEED;

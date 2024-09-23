@@ -19,6 +19,12 @@ public class GroundController {
         this.gameSpeedController = gameSpeedController;
     }
 
+    
+    /** 
+     * @param graphics2d
+     * @param windowWidth
+     * @param panel
+     */
     public void draw(Graphics2D graphics2d, int windowWidth, JPanel panel)
     {        
         var groundSprite = groundModel.getImage();

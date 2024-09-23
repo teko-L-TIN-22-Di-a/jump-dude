@@ -14,6 +14,10 @@ public class Ground {
         this.height = height;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getX() {
         return x;
     }

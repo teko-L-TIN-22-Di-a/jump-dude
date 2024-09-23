@@ -33,6 +33,10 @@ public class Jetpack{
         hitbox = new Hitbox(hitboxPosition, hitboxWidth, hitboxHeight);
     }
     
+    
+    /** 
+     * @return int
+     */
     public int getX() {
         return position.getX();
     }

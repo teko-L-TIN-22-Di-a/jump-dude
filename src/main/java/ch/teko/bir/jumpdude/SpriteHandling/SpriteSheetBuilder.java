@@ -19,6 +19,11 @@ public class SpriteSheetBuilder {
     private int spriteWidth, spriteHeight;
     private int spriteCount;
 
+    
+    /** 
+     * @param img
+     * @return SpriteSheetBuilder
+     */
     public SpriteSheetBuilder withSheet(BufferedImage img) {
         spriteSheet = img;
         return this;

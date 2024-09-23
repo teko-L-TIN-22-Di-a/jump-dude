@@ -4,6 +4,11 @@ import java.util.Random;
 
 public class RandomObstacleGenerator {
 
+    
+    /** 
+     * @param groundY
+     * @return Obstacle
+     */
     public static Obstacle generateRandomGround(int groundY)
     {
         var height = getRandomHeight();

@@ -71,6 +71,10 @@ public class ScoresPanel extends JPanel {
         loadButton();        
     }
         
+    
+    /** 
+     * @param g
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

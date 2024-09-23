@@ -17,6 +17,10 @@ public class JetpackController {
         this.gameSpeedController = gameSpeedController;
     }
 
+    
+    /** 
+     * @param windowWidth
+     */
     public void repaint(int windowWidth) {
         var jetpack = getJetpack(windowWidth);
         jetpack.setX(jetpack.getX() - gameSpeedController.getRunningSpeed());

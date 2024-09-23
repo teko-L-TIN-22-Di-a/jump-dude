@@ -33,6 +33,7 @@ import ch.teko.bir.jumpdude.SpriteHandling.SpriteEngine;
 
 public class MainPanel extends JPanel implements ActionListener {
     private Timer levelTimer;
+    private Timer speedTimer;
     private PlayerController playerController = null;
     private Timer stopWatch;
     private int elapsedTime = 0;
@@ -45,6 +46,7 @@ public class MainPanel extends JPanel implements ActionListener {
     private final GroundController groundController;
     private final JetpackController jetpackController;
     private CloudsController cloudsController;
+    private GameSpeedController gameSpeedController;
     
     private Font font;
 
@@ -53,12 +55,13 @@ public class MainPanel extends JPanel implements ActionListener {
         this.panelModel = model;
         
         this.playerController = playerController;
-        this.obstacleController = new ObstacleController(obstacleModel);
-        this.groundController = new GroundController(new GroundModel());
-        this.jetpackController = new JetpackController(jetpackModel);        
-        this.cloudsController = new CloudsController();
+        this.gameSpeedController = new GameSpeedController();
+        this.obstacleController = new ObstacleController(obstacleModel, gameSpeedController);
+        this.groundController = new GroundController(new GroundModel(), gameSpeedController);
+        this.jetpackController = new JetpackController(jetpackModel, gameSpeedController);        
+        this.cloudsController = new CloudsController(gameSpeedController);
 
-        GameSpeedController.setInitialRunningSpeed();
+        this.gameSpeedController.setInitialRunningSpeed();
 
         loadFont();
         createSpriteEngine();
@@ -88,6 +91,11 @@ public class MainPanel extends JPanel implements ActionListener {
     private void createLevelTimer() {
         levelTimer = new Timer(panelModel.getLevelTimer(), this);
         levelTimer.start();
+    }
+
+    private void createSpeedTimer() {
+        speedTimer = new Timer(panelModel.getSpeedTimer(), this);
+        speedTimer.start();
     }
     
     private void startStopWatch() {
@@ -173,18 +181,15 @@ public class MainPanel extends JPanel implements ActionListener {
         {
             if (playerController.getPlayerGotHit())
             {
-                GameSpeedController.setRunningSpeedToIdle();
+                this.gameSpeedController.setRunningSpeedToIdle();
             }
             else if (playerController.getPlayerIsFlying())
             {
-                GameSpeedController.setRunningSpeedToIdle();
+                this.gameSpeedController.setRunningSpeedToIdle();
                 obstacleController.setFlyingState(true);
                 groundController.setFlying(true);
                 jetpackController.removeJetPack();
                 cloudsController.setFlyingState(true);
-            }
-            else {
-                increaseSpeedEvery10Seconds();
             }
             obstacleController.repaint(panelModel.getWindowWidth());
             groundController.repaint(panelModel.getWindowWidth());
@@ -192,18 +197,22 @@ public class MainPanel extends JPanel implements ActionListener {
             cloudsController.repaint();
             repaint();
         }
+        else if (e.getSource() == speedTimer)
+        {
+            increaseSpeedEvery10Seconds();
+        }
     }
 
     private void increaseSpeedEvery10Seconds()
     {
-        int seconds = elapsedTime / 60000;
+        int seconds = elapsedTime / 1000;
 
-        if (seconds > 4)
+        if (seconds > 10)
         {
-            var test = seconds % 5;
+            var test = seconds % 10;
             if (test == 0)
             {
-                GameSpeedController.increaseRunningSpeed();
+                this.gameSpeedController.increaseRunningSpeed();
             }
         }
     }

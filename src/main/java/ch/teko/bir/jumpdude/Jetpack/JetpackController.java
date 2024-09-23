@@ -9,15 +9,17 @@ import ch.teko.bir.jumpdude.GameSpeedController;
 public class JetpackController {
 
     private JetpackModel model;
+    private GameSpeedController gameSpeedController;
 
-    public JetpackController(JetpackModel jetpackModel)
+    public JetpackController(JetpackModel jetpackModel, GameSpeedController gameSpeedController)
     {
         this.model = jetpackModel;
+        this.gameSpeedController = gameSpeedController;
     }
 
     public void repaint(int windowWidth) {
         var jetpack = getJetpack(windowWidth);
-        jetpack.setX(jetpack.getX() - GameSpeedController.getRunningSpeed());
+        jetpack.setX(jetpack.getX() - gameSpeedController.getRunningSpeed());
     }
 
     private Jetpack getJetpack(int windowWidth)

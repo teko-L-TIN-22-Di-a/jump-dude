@@ -6,13 +6,16 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import ch.teko.bir.jumpdude.GameSpeedController;
+import net.bytebuddy.utility.privilege.GetMethodAction;
 
 public class CloudsController {
     private ArrayList<Clouds> clouds = new ArrayList<Clouds>();
     private boolean flyingState = false;
+    private GameSpeedController gameSpeedController;
 
-    public CloudsController()
+    public CloudsController(GameSpeedController gameSpeedController)
     {
+        this.gameSpeedController = gameSpeedController;
         generateClouds();
     }
 
@@ -41,7 +44,7 @@ public class CloudsController {
         if (flyingState)
         {
             for (var cloud : clouds) {
-                cloud.setY(cloud.getY() + GameSpeedController.getFlyingSpeed());
+                cloud.setY(cloud.getY() + gameSpeedController.getFlyingSpeed());
     
                 if (cloud.getY() >= 1200) {
                     cloud.setY(-100);

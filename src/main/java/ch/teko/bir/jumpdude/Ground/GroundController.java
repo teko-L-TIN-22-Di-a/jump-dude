@@ -11,10 +11,12 @@ public class GroundController {
     private final GroundModel groundModel;
     private boolean flyingState = false;;
     private boolean bricksVisible = true;
+    private GameSpeedController gameSpeedController;
 
-    public GroundController(GroundModel model)
+    public GroundController(GroundModel model, GameSpeedController gameSpeedController)
     {
         groundModel = model;
+        this.gameSpeedController = gameSpeedController;
     }
 
     public void draw(Graphics2D graphics2d, int windowWidth, JPanel panel)
@@ -43,7 +45,7 @@ public class GroundController {
         else
         {
             for (var brick : bricks) {
-                brick.setX(brick.getX() - GameSpeedController.getRunningSpeed());
+                brick.setX(brick.getX() - gameSpeedController.getRunningSpeed());
 
                 if (brick.getX() <= -150) {
                     brick.setX(brick.getX() + windowWidth + 200);
@@ -55,7 +57,7 @@ public class GroundController {
     private void makeThemDisappear(ArrayList<Ground> bricks)
     {
         for (var brick : bricks) {
-            brick.setY(brick.getY() + GameSpeedController.getFlyingSpeed());
+            brick.setY(brick.getY() + gameSpeedController.getFlyingSpeed());
 
             if (brick.getY() <= -1200) {
                 bricksVisible = false;

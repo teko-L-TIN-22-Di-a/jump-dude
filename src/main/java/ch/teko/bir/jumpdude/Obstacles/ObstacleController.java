@@ -11,10 +11,12 @@ public class ObstacleController {
     
     private final ObstacleModel obstacleModel;
     private boolean flyingState;
+    private GameSpeedController gameSpeedController;
 
-    public ObstacleController(ObstacleModel model)
+    public ObstacleController(ObstacleModel model, GameSpeedController gameSpeedController)
     {
-        this.obstacleModel = model;        
+        this.obstacleModel = model; 
+        this.gameSpeedController = gameSpeedController;   
     }
 
     public void repaint(int windowWidth) {
@@ -27,7 +29,7 @@ public class ObstacleController {
         else
         {
             for (var obstacle : obstacles) {
-                obstacle.setX(obstacle.getX() - GameSpeedController.getRunningSpeed());
+                obstacle.setX(obstacle.getX() - this.gameSpeedController.getRunningSpeed());
             }
         }
     }
@@ -35,7 +37,7 @@ public class ObstacleController {
     private void makeThemDisappear(ArrayList<Obstacle> obstacles)
     {
         for (var obstacle : obstacles) {
-            obstacle.setY(obstacle.getY() + GameSpeedController.getFlyingSpeed());
+            obstacle.setY(obstacle.getY() + this.gameSpeedController.getFlyingSpeed());
 
             if (obstacle.getY() >= 1500) {
                 obstacle.setY(0);

@@ -15,6 +15,10 @@ public class ScoresController {
 
     private final String filePath = "C:\\temp\\ranking.json";
 
+    
+    /** 
+     * @return ScoresTableModel
+     */
     public ScoresTableModel loadJson()
     {        
         CreateFileIfNotExists(filePath);
@@ -41,6 +45,11 @@ public class ScoresController {
         return null;
     }
 
+    
+    /** 
+     * @param scoresJson
+     * @return ScoresTableModel
+     */
     public ScoresTableModel parseJson(String scoresJson)
     {
         Score[] scores = null;

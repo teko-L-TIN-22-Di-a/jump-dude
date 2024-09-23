@@ -71,6 +71,10 @@ public class ScoresPanel extends JPanel {
         loadButton();        
     }
         
+    
+    /** 
+     * @param g
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -117,6 +121,12 @@ public class ScoresPanel extends JPanel {
         add(scrollPane, gridBagConstraints);
     }
 
+    
+    /** 
+     * @param tableHeader
+     * @param tableFont
+     * @param scrollPaneWidth
+     */
     private void setTableHeaders(JTableHeader tableHeader, Font tableFont, int scrollPaneWidth)
     {       
         tableHeader.setFont(tableFont);

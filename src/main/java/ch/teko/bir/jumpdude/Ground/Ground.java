@@ -14,9 +14,17 @@ public class Ground {
         this.height = height;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getX() {
         return x;
     }
+    
+    /** 
+     * @param x
+     */
     public void setX(int x) {
         this.x = x;
     }

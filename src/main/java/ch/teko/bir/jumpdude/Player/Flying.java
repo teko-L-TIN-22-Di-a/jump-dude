@@ -14,6 +14,11 @@ class Flying {
     private static final int RIGHT_LIMIT = 900;
     private static final int LEFT_LIMIT = -5;
 
+    
+    /** 
+     * @param playerPositions
+     * @return Position
+     */
     public static Position Up(Position playerPositions) {
         if (playerPositions.getY() > FLY_LIMIT)
         {
@@ -23,6 +28,11 @@ class Flying {
         return playerPositions;
     }
 
+    
+    /** 
+     * @param playerPositions
+     * @return Position
+     */
     public static Position Right(Position playerPositions) {
         if (playerPositions.getX() < RIGHT_LIMIT)
         {

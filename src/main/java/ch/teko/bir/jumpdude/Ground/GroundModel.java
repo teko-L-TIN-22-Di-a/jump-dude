@@ -26,10 +26,18 @@ public class GroundModel {
 
     private ArrayList<Ground> groundBrickList = new ArrayList<>();
     
+    
+    /** 
+     * @param groundBrickList
+     */
     public void setGroundBrickList(ArrayList<Ground> groundBrickList) {
         this.groundBrickList = groundBrickList;
     }
 
+    
+    /** 
+     * @return ArrayList of Ground
+     */
     public ArrayList<Ground> getGroundBrickList() {
         return groundBrickList;
     }

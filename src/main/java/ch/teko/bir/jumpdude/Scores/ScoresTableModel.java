@@ -17,11 +17,20 @@ public class ScoresTableModel extends AbstractTableModel {
         this.scoreData = scoreData;
     }
 
+    
+    /** 
+     * @return Score[]
+     */
     public Score[] getScoreData()
     {
         return scoreData;
     }
 
+    
+    /** 
+     * @param column
+     * @return String
+     */
     @Override
     public String getColumnName(int column) {
         return columnNames[column];

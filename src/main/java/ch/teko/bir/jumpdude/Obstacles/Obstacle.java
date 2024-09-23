@@ -34,6 +34,13 @@ public class Obstacle {
         hitbox = new Hitbox(hitboxPosition, hitboxWidth, hitboxHeight);
     }
 
+    
+    /** 
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     */
     public void updateSky(int x, int y, int width, int height)
     {
         this.spriteSheet = SpriteLoader.load("sprites/obstacle/bird.png", 1, 1);
@@ -57,6 +64,10 @@ public class Obstacle {
         flyingState = true;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getX() {
         return position.getX();
     }

@@ -12,6 +12,10 @@ public class JetpackModel {
         System.gc();
     }
 
+    
+    /** 
+     * @return Jetpack
+     */
     public Jetpack getJetpack() {
         return jetpack;
     }

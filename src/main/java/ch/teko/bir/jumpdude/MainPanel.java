@@ -115,6 +115,10 @@ public class MainPanel extends JPanel implements ActionListener {
         stopWatch.start();
     }
     
+    
+    /** 
+     * @param g
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -175,6 +179,10 @@ public class MainPanel extends JPanel implements ActionListener {
         System.gc();
     }
     
+    
+    /** 
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == levelTimer)

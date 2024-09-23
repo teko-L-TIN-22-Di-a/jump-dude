@@ -14,10 +14,19 @@ public class SpriteSheet {
         this.sprites = new ArrayList<>(sprites);
     }
 
+    
+    /** 
+     * @return int
+     */
     public int count() {
         return sprites.size();
     }
 
+    
+    /** 
+     * @param progress
+     * @return BufferedImage
+     */
     public BufferedImage getSprite(double progress) {
         int frame = (int) (count() * progress);
         return sprites.get(frame);

@@ -12,6 +12,10 @@ public class ObstacleModel {
 
     private ArrayList<Obstacle> obstacleList = new ArrayList<>();
 
+    
+    /** 
+     * @return ArrayList of Obstacle
+     */
     public ArrayList<Obstacle> getObstacleList() {
         return obstacleList;
     }

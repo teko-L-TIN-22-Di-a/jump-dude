@@ -17,11 +17,19 @@ public class Score {
         this.score = score;
     }
 
+    
+    /** 
+     * @return Integer
+     */
     public Integer getRank()
     {
         return rank;
     }
 
+    
+    /** 
+     * @param value
+     */
     public void setRank(int value)
     {
         rank = value;

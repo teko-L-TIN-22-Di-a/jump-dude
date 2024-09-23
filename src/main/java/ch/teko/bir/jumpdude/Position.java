@@ -10,9 +10,17 @@ public class Position {
     private int X;
     private int Y;
 
+    
+    /** 
+     * @return int
+     */
     public int getX() {
         return X;
     }
+    
+    /** 
+     * @param x
+     */
     public void setX(int x) {
         X = x;
     }

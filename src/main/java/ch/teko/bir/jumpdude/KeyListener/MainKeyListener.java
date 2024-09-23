@@ -15,11 +15,19 @@ public class MainKeyListener extends JFrame implements KeyListener {
         this.playerController = playerController;
     }
 
+    
+    /** 
+     * @param e
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         executeActionWhenArrowUpIsPressed(e);
     }
 
+    
+    /** 
+     * @param e
+     */
     private void executeActionWhenArrowUpIsPressed(KeyEvent e)
     {
         if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_W) {

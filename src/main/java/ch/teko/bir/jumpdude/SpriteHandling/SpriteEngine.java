@@ -25,10 +25,18 @@ public class SpriteEngine {
         listeners = new ArrayList<>(20);
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getFramesPerSecond() {
         return framesPerSecond;
     }
 
+    
+    /** 
+     * @return double
+     */
     public double getCycleProgress() {
         return cycleProgress;
     }

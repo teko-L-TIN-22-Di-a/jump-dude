@@ -42,11 +42,19 @@ public class Player {
         hitbox = new Hitbox(hitboxPosition, hitboxWidth, hitboxHeight);
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getName()
     {
         return name;
     }
 
+    
+    /** 
+     * @return SpriteSheet
+     */
     public SpriteSheet getSpriteSheet() {
         return spriteSheet;
     }

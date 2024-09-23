@@ -49,6 +49,10 @@ public class OptionsPanel extends JPanel {
         loadButton();
     }
         
+    
+    /** 
+     * @param g
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -92,6 +96,12 @@ public class OptionsPanel extends JPanel {
         add(buttons, gridBagConstraints);
     }
 
+    
+    /** 
+     * @param text
+     * @param font
+     * @return JButton
+     */
     private JButton createButton(String text, Font font)
     {
         var button = new JButton(text);

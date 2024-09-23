@@ -139,7 +139,7 @@
         <configuration>
           <source>22</source>
           <target>22</target>
-          <additionalparam>-Xdoclint:none</additionalparam>
+          <additionalOptions>-Xdoclint:none</additionalOptions>
         </configuration>
       </plugin>
     </plugins>

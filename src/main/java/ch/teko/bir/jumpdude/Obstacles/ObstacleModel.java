@@ -14,7 +14,7 @@ public class ObstacleModel {
 
     
     /** 
-     * @return ArrayList<Obstacle>
+     * @return ArrayList of Obstacle
      */
     public ArrayList<Obstacle> getObstacleList() {
         return obstacleList;

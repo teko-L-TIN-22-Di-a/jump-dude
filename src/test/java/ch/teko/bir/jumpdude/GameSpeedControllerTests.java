@@ -12,21 +12,24 @@ public class GameSpeedControllerTests {
 
     @Test
     public void TestFlyingGamespeedValue() {
-      var currentSpeed = GameSpeedController.getFlyingSpeed();
+      var gameSpeedController = new GameSpeedController();
+      var currentSpeed = gameSpeedController.getFlyingSpeed();
       var expectedSpeed = currentSpeed+5;
 
-      GameSpeedController.increaseFlyingSpeed();
+      gameSpeedController.increaseFlyingSpeed();
 
-      assertEquals(expectedSpeed, GameSpeedController.getFlyingSpeed());
+      assertEquals(expectedSpeed, gameSpeedController.getFlyingSpeed());
     }
 
     @Test
     public void TestRunningGamespeedValue() {
-      var currentSpeed = GameSpeedController.getRunningSpeed();
+      
+      var gameSpeedController = new GameSpeedController();
+      var currentSpeed = gameSpeedController.getRunningSpeed();
       var expectedSpeed = currentSpeed+5;
 
-      GameSpeedController.increaseRunningSpeed();
+      gameSpeedController.increaseRunningSpeed();
 
-      assertEquals(expectedSpeed, GameSpeedController.getRunningSpeed());
+      assertEquals(expectedSpeed, gameSpeedController.getRunningSpeed());
     }
 }

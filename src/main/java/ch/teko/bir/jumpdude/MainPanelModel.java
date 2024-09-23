@@ -6,6 +6,7 @@ public class MainPanelModel {
 
     private int windowWidth = 0;  
     private int levelTimer = 10;
+    private int speedTimer = 10000;
     
     private Color groundColor = Color.GREEN;
     private int groundX = 0;
@@ -44,6 +45,12 @@ public class MainPanelModel {
     public void setLevelTimer(int levelTimer) {
         this.levelTimer = levelTimer;
     }
+    
+    public int getSpeedTimer()
+    {
+        return speedTimer;
+    }
+
 
     public Color getGroundColor() {
         return groundColor;

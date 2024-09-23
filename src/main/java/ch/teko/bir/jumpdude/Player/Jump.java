@@ -17,6 +17,11 @@ public class Jump {
         return playerPositions;
     }
 
+    
+    /** 
+     * @param playerPositions
+     * @return Position
+     */
     public static Position Down(Position playerPositions)
     {
         playerPositions.addToY(+JUMP_SPEED);

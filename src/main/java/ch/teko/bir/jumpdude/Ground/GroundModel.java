@@ -34,6 +34,10 @@ public class GroundModel {
         this.groundBrickList = groundBrickList;
     }
 
+    
+    /** 
+     * @return ArrayList<Ground>
+     */
     public ArrayList<Ground> getGroundBrickList() {
         return groundBrickList;
     }

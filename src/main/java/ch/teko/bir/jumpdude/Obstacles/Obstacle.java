@@ -64,6 +64,10 @@ public class Obstacle {
         flyingState = true;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getX() {
         return position.getX();
     }

@@ -40,6 +40,10 @@ public class Jetpack{
     public int getX() {
         return position.getX();
     }
+    
+    /** 
+     * @param x
+     */
     public void setX(int x) {
         position.setX(x);
         hitbox.setX(x);

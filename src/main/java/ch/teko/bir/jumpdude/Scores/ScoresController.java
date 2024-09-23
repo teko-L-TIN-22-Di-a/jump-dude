@@ -45,6 +45,11 @@ public class ScoresController {
         return null;
     }
 
+    
+    /** 
+     * @param scoresJson
+     * @return ScoresTableModel
+     */
     public ScoresTableModel parseJson(String scoresJson)
     {
         Score[] scores = null;

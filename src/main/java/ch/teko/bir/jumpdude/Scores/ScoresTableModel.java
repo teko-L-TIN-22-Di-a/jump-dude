@@ -26,6 +26,11 @@ public class ScoresTableModel extends AbstractTableModel {
         return scoreData;
     }
 
+    
+    /** 
+     * @param column
+     * @return String
+     */
     @Override
     public String getColumnName(int column) {
         return columnNames[column];

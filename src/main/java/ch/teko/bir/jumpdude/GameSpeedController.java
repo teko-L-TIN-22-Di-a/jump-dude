@@ -31,6 +31,10 @@ public class GameSpeedController {
         FLYING_SPEED += 5;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getFlyingSpeed()
     {
         return FLYING_SPEED;

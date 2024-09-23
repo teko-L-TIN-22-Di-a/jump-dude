@@ -28,6 +28,11 @@ class Flying {
         return playerPositions;
     }
 
+    
+    /** 
+     * @param playerPositions
+     * @return Position
+     */
     public static Position Right(Position playerPositions) {
         if (playerPositions.getX() < RIGHT_LIMIT)
         {

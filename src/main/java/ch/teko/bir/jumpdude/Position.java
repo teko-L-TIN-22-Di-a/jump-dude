@@ -17,6 +17,10 @@ public class Position {
     public int getX() {
         return X;
     }
+    
+    /** 
+     * @param x
+     */
     public void setX(int x) {
         X = x;
     }

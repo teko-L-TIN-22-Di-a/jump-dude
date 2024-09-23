@@ -58,6 +58,10 @@ public class CloudsController {
         }
     }
 
+    
+    /** 
+     * @param state
+     */
     public void setFlyingState(boolean state)
     {
         this.flyingState = state;

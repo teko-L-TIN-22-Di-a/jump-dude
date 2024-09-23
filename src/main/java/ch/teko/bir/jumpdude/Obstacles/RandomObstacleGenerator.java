@@ -17,6 +17,11 @@ public class RandomObstacleGenerator {
         return new Obstacle(spawnPoint, groundY - height, width, height);
     }
 
+    
+    /** 
+     * @param groundY
+     * @return Obstacle
+     */
     public static Obstacle generateRandomSky(int groundY)
     {
         var height = getRandomHeight();

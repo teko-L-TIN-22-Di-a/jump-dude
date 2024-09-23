@@ -40,6 +40,10 @@ public class GroundController {
         }
     }
 
+    
+    /** 
+     * @param windowWidth
+     */
     public void repaint(int windowWidth)
     {
         var bricks = groundModel.getGroundBrickList();

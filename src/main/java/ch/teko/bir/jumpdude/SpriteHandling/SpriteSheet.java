@@ -22,6 +22,11 @@ public class SpriteSheet {
         return sprites.size();
     }
 
+    
+    /** 
+     * @param progress
+     * @return BufferedImage
+     */
     public BufferedImage getSprite(double progress) {
         int frame = (int) (count() * progress);
         return sprites.get(frame);

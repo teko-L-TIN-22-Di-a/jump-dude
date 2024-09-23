@@ -26,6 +26,10 @@ public class Score {
         return rank;
     }
 
+    
+    /** 
+     * @param value
+     */
     public void setRank(int value)
     {
         rank = value;

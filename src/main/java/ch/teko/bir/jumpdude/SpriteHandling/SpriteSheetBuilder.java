@@ -29,6 +29,11 @@ public class SpriteSheetBuilder {
         return this;
     }
 
+    
+    /** 
+     * @param cols
+     * @return SpriteSheetBuilder
+     */
     public SpriteSheetBuilder withColumns(int cols) {
         this.columns = cols;
         return this;

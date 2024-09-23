@@ -121,6 +121,12 @@ public class ScoresPanel extends JPanel {
         add(scrollPane, gridBagConstraints);
     }
 
+    
+    /** 
+     * @param tableHeader
+     * @param tableFont
+     * @param scrollPaneWidth
+     */
     private void setTableHeaders(JTableHeader tableHeader, Font tableFont, int scrollPaneWidth)
     {       
         tableHeader.setFont(tableFont);

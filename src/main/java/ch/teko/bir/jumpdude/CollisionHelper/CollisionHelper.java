@@ -40,6 +40,11 @@ public class CollisionHelper {
         return false;
     }
 
+    
+    /** 
+     * @param playerHitbox
+     * @return boolean
+     */
     public boolean CheckIfPlayerHitsJetpack(Hitbox playerHitbox)
     {
         var jetpack = jetpackModel.getJetpack();

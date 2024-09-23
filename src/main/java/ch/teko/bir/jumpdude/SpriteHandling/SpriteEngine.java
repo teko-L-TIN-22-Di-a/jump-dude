@@ -33,6 +33,10 @@ public class SpriteEngine {
         return framesPerSecond;
     }
 
+    
+    /** 
+     * @return double
+     */
     public double getCycleProgress() {
         return cycleProgress;
     }

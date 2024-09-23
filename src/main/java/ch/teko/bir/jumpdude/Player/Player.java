@@ -51,6 +51,10 @@ public class Player {
         return name;
     }
 
+    
+    /** 
+     * @return SpriteSheet
+     */
     public SpriteSheet getSpriteSheet() {
         return spriteSheet;
     }

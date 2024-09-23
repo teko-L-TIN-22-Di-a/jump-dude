@@ -21,6 +21,10 @@ public class Ground {
     public int getX() {
         return x;
     }
+    
+    /** 
+     * @param x
+     */
     public void setX(int x) {
         this.x = x;
     }

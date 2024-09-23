@@ -32,6 +32,10 @@ public class Clouds {
     public int getX() {
         return position.getX();
     }
+    
+    /** 
+     * @param x
+     */
     public void setX(int x) {
         this.position.setX(x);
     }

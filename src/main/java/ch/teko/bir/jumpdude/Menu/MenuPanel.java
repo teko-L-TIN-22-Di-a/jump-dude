@@ -152,6 +152,12 @@ public class MenuPanel extends JPanel {
         add(buttons, gridBagConstraints);
     }
 
+    
+    /** 
+     * @param text
+     * @param font
+     * @return JButton
+     */
     private JButton createButton(String text, Font font)
     {
         var button = new JButton(text);

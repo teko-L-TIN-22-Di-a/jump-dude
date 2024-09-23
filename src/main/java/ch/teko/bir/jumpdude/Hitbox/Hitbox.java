@@ -29,6 +29,13 @@ public class Hitbox {
         this.position.addToY(dy);
     }
 
+    
+    /** 
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     */
     public void set(int x, int y, int width, int height) {
         this.position.setX(x);
         this.position.setY(y);

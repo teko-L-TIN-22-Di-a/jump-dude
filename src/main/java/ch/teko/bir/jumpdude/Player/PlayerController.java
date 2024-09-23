@@ -46,6 +46,11 @@ public class PlayerController {
         this.player.hitbox.draw(graphics2d, panel);
     }
 
+    
+    /** 
+     * @param windowWidth
+     * @param spriteWidth
+     */
     private void doMovementFromState(int windowWidth, int spriteWidth)
     {
         var playerState = player.getState();

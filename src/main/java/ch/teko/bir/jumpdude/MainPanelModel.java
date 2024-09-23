@@ -27,6 +27,10 @@ public class MainPanelModel {
         return groundY;
     }
 
+    
+    /** 
+     * @param groundY
+     */
     public void setGroundY(int groundY) {
         this.groundY = groundY;
     }

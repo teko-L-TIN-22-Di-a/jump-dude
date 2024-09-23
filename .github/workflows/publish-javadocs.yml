@@ -22,5 +22,5 @@ jobs:
           target-folder: javadoc # url will be https://<username>.github.io/<repo>/javadoc, This can be left as nothing to generate javadocs in the root folder.
           project: maven
           custom-command: mvn javadoc:javadoc
-          javadoc-source-folder: 'target/site/apidocs'
-          subdirectories: main test #for subdirectories support, needs to be run with custom command
+          javadoc-source-folder: 'target/reports/apidocs'
+          # subdirectories: main test #for subdirectories support, needs to be run with custom command

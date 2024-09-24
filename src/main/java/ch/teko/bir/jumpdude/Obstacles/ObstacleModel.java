@@ -23,11 +23,15 @@ public class ObstacleModel {
     private void generateInitialObstacles()
     {
         int height = 100;
-        obstacleList.add(new Obstacle(900, groundY - height, 80, height));
+        obstacleList.add(new Obstacle(1500, groundY - height, 80, height));
         height = 80;
-        obstacleList.add(new Obstacle(800, groundY - height, 70, height));
+        obstacleList.add(new Obstacle(2800, groundY - height, 70, height));
         height = 80;
-        obstacleList.add(new Obstacle(1500, groundY - height, 40, height));
+        obstacleList.add(new Obstacle(3700, groundY - height, 40, height));
+        height = 40;
+        obstacleList.add(new Obstacle(4500, groundY - height, 20, height));
+        height = 100;
+        obstacleList.add(new Obstacle(5500, groundY - height, 40, height));
     }
 
     public int getGroundY() {

@@ -6,7 +6,7 @@ public class GameSpeedController {
 
     public void increaseRunningSpeed()
     {
-        RUNNING_SPEED += 1;
+        RUNNING_SPEED += 2;
     }
 
     

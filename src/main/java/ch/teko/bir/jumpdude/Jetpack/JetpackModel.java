@@ -7,7 +7,7 @@ public class JetpackModel {
         
     public JetpackModel(int groundY){
         this.groundY = groundY;
-        jetpack = new Jetpack(2000, groundY - 80, 70, 70);
+        jetpack = new Jetpack(6000, groundY - 80, 70, 70);
         
         System.gc();
     }

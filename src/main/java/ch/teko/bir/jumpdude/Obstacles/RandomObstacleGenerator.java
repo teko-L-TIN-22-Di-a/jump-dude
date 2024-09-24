@@ -45,7 +45,7 @@ public class RandomObstacleGenerator {
 
     private static int getRandomGroundXValue()
     {
-        return getRandomBetween(950, 1300);
+        return getRandomBetween(1500, 3000);
     }
     
     private static int getRandomSkyXValue()

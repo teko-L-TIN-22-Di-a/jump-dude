@@ -1,9 +1,14 @@
 ch.teko.bir.jumpdude
+ch.teko.bir.jumpdude.Clouds
 ch.teko.bir.jumpdude.CollisionHelper
 ch.teko.bir.jumpdude.Ground
 ch.teko.bir.jumpdude.Hitbox
+ch.teko.bir.jumpdude.Jetpack
 ch.teko.bir.jumpdude.KeyListener
+ch.teko.bir.jumpdude.Menu
 ch.teko.bir.jumpdude.Obstacles
+ch.teko.bir.jumpdude.Options
 ch.teko.bir.jumpdude.Player
+ch.teko.bir.jumpdude.Scores
 ch.teko.bir.jumpdude.SoundHandling
 ch.teko.bir.jumpdude.SpriteHandling
